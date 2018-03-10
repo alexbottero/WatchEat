@@ -19,15 +19,19 @@ public class DAOFactory {
 
     /**
      * 
+     * @return 
      */
-    public void createUserDAO() {
+    public UserDAO createUserDAO() {
         // TODO implement here
+        return null;
     }
 
     /**
      * @param type
+     * @return 
      */
-    public void getFactory(int type) {
+    public DAOFactory getFactory(int type) {
+        return null;
         // TODO implement here
     }
 

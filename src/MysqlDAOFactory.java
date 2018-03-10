@@ -12,10 +12,13 @@ public class MysqlDAOFactory extends DAOFactory {
     public MysqlDAOFactory() {
     }
 
+    
     /**
      * 
+     * @return 
      */
-    public void createUserDAO() {
+    public UserDAO createUserDAO() {
+        return null;
         // TODO implement here
     }
 
