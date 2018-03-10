@@ -16,11 +16,12 @@ public class DBConnection {
     
     private static final String HOST = "localhost";
     private static final String PORT = "5432";
-    private static final String DATABASE = "WatchEat";
-    private static final String USERNAME = "postgres";
-    private static final String PASSWORD = "K2vm@0r67";
+    private static final String DATABASE = "";
+    private static final String USERNAME = "";
+    private static final String PASSWORD = "";
     
     private static Statement stmt = null;
+    private static Connection c = null;
     
     private final String host;
     private final String port;
@@ -36,23 +37,31 @@ public class DBConnection {
         this.password = password;
     }
     
+    public DBConnection(){
+        this.host = HOST;
+        this.port = PORT;
+        this.database = DATABASE;
+        this.username = USERNAME;
+        this.password = PASSWORD;
+    }
+    
     /**
      * Permet de se connecter à la base de donnée postgres.
      */
     public void connect() {
-      Connection c = null;
+      
       try {
          Class.forName("org.postgresql.Driver");
          c = DriverManager
             .getConnection("jdbc:postgresql://" + host + ":" + port +"/" + database,
             username, password);
          stmt = c.createStatement();
+         System.out.println("Opened database successfully");
       } catch (Exception e) {
          e.printStackTrace();
          System.err.println(e.getClass().getName()+": "+e.getMessage());
          System.exit(0);
       }
-      System.out.println("Opened database successfully");
    }
     
     /**
@@ -61,7 +70,9 @@ public class DBConnection {
      */
     public void update(String reqSQL){
         try {
+            connect();
             stmt.executeUpdate(reqSQL);
+            c.close();
         } catch (SQLException ex) {
             Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -75,7 +86,9 @@ public class DBConnection {
     public ResultSet select(String reqSQL){
         ResultSet res = null;
         try {
+            connect();
             res = stmt.executeQuery(reqSQL);
+            c.close();
         } catch (SQLException ex) {
             Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -84,6 +97,7 @@ public class DBConnection {
     
     public static void main(String[] args){
         DBConnection dbConnection = new DBConnection(HOST,PORT,DATABASE,USERNAME,PASSWORD);
-        dbConnection.connect();
+        dbConnection.update("INSERT INTO public.user (mail, pwd) VALUES ('ehamelojulia1@gmail.com','chat');");
+        dbConnection.update("INSERT INTO public.user (mail, pwd) VALUES ('ehamelojulia2@gmail.com','chat');");
     }
 }

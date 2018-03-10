@@ -24,6 +24,7 @@ public class UserDAO {
      */
     public User find(String mail) {
         User user = new User();
+        
         user.setMail("fabazad@live.fr");
         user.setMail("chocolat");
         return user;
