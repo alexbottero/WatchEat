@@ -34,7 +34,6 @@ public class DBConnection {
         this.database = database;
         this.username = username;
         this.password = password;
-        //hello
     }
     
     /**
