@@ -20,9 +20,15 @@ public class UserDAO {
 
     /**
      * @param mail
+     * @return 
      */
-    public void find(String mail) {
+    public User find(String mail) {
+        User user = new User();
+        user.setMail("fabazad@live.fr");
+        user.setMail("chocolat");
+        return user;
         // TODO implement here
+        
     }
 
     /**

@@ -17,12 +17,12 @@ public class User {
     /**
      * L'adresse mail de l'utilisateur.
      */
-    public String mail;
+    private String mail;
 
     /**
      * Le mot de passe de l'utilisateur.
      */
-    public String pwd;
+    private String pwd;
 
     /**
      * @param mail 
@@ -30,6 +30,34 @@ public class User {
      */
     public void login(String mail, String pwd) {
         // TODO implement here
+    }
+
+    /**
+     * @return the mail
+     */
+    public String getMail() {
+        return mail;
+    }
+
+    /**
+     * @param mail the mail to set
+     */
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    /**
+     * @return the pwd
+     */
+    public String getPwd() {
+        return pwd;
+    }
+
+    /**
+     * @param pwd the pwd to set
+     */
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 
 }
