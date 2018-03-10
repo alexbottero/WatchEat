@@ -85,7 +85,7 @@ public class DBConnection {
      //Constructors ****************************************************
 
   /**
-   * Constructs an instance of the ClientConsole UI.
+   * Constructs an instance of the DBConnection.
    *
    * @param host The host to connect to.
    * @param port The port to connect on.
@@ -101,6 +101,10 @@ public class DBConnection {
         this.password = password;
     }
     
+    /**
+   * Constructs an instance of the DBConnection.
+   * 
+   */
     
     public DBConnection(){
         this.host = HOST;
@@ -110,9 +114,13 @@ public class DBConnection {
         this.password = PASSWORD;
     }
     
-    /**
-     * Permet de se connecter à la base de donnée postgres.
-     */
+    
+    //Instance methods ************************************************
+  
+  /**
+   * This method allows you to connect to the database. 
+   * 
+   */
     public void connect() {
       
       try {
@@ -130,8 +138,8 @@ public class DBConnection {
    }
     
     /**
-     * Permet d'ajouter ou de modifier dans la base de donnée (INSERT,UPDATE).
-     * @param reqSQL correspond à la requète SQL à effectuer.
+     * This method update an element or insert a new element in the database. 
+     * @param reqSQL The Sql request to execute.
      */
     public void update(String reqSQL){
         try {
@@ -144,9 +152,9 @@ public class DBConnection {
     }
     
     /**
-     * Permet de selectionner dans la base de donnée.
-     * @param reqSQL correspond à la requète SQL à effectuer.
-     * @return les réultats de la requète de type ResultSet qui est un itérateur.
+     * This method selects data(s) from the database
+     * @param reqSQL The Sql statement to execute.
+     * @return The result of the selection from the Sql statement. 
      */
     public ResultSet select(String reqSQL){
         ResultSet res = null;
@@ -160,6 +168,10 @@ public class DBConnection {
         return res;
     }
     
+   /**
+   * This method is a test so far.
+   *
+   */
     public static void main(String[] args){
         DBConnection dbConnection = new DBConnection(HOST,PORT,DATABASE,USERNAME,PASSWORD);
         dbConnection.update("INSERT INTO public.user (mail, pwd) VALUES ('ehamelojulia1@gmail.com','chat');");
