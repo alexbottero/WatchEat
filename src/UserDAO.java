@@ -1,5 +1,6 @@
 
-import java.sql.Connection;
+import JDBC.DBConnection;
+import java.sql.*;
 import java.util.*;
 
 /**
@@ -11,25 +12,31 @@ public class UserDAO {
      * Default constructor
      */
     public UserDAO() {
+        this.connect = new DBConnection();
     }
 
     /**
      * 
      */
-    public Connection connect;
+    public DBConnection connect;
 
     /**
-     * @param mail
-     * @return 
+     * Find an user in the database, if nothing return null
+     * @param mail mail address of the searching user
+     * @return the user found
+     * @throws java.sql.SQLException 
      */
-    public User find(String mail) {
+    public User find(String mail) throws SQLException {
         User user = new User();
+        ResultSet res = connect.select("SELECT mail, pwd FROM public.user WHERE mail = '" + mail + "'");
         
-        user.setMail("fabazad@live.fr");
-        user.setMail("chocolat");
-        return user;
-        // TODO implement here
-        
+        if(res.next() && res.getString("mail").length() > 0){
+            user.setMail(res.getString("mail"));
+            user.setPwd(res.getString("pwd"));
+            return user; 
+        }else{
+            return null;
+        }      
     }
 
     /**
@@ -44,6 +51,12 @@ public class UserDAO {
      */
     public void createByMail(String mail) {
         // TODO implement here
+    }
+    
+    public static void main(String[] args) throws SQLException{
+        UserDAO userDAO = new UserDAO();
+        User user = userDAO.find("fabazad@live.fr");
+        if(user != null){System.out.println(user.getMail() + " : " + user.getPwd());}
     }
 
 }
