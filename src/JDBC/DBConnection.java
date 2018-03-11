@@ -5,7 +5,7 @@
  */
 package JDBC;
 
-import java.sql.ResultSet;
+import java.sql.*;
 
 /**
  * This class is handles the connection to the database.
@@ -114,68 +114,5 @@ public abstract class DBConnection {
         this.username = USERNAME;
         this.password = PASSWORD;
     }
-    
-    
-    //Instance methods ************************************************
-  
-  /**
-   * This method allows you to connect to the database. 
-   * 
-   */
-    public void connect() {
-      
-      try {
-         Class.forName("org.postgresql.Driver");
-         c = DriverManager
-            .getConnection("jdbc:postgresql://" + host + ":" + port +"/" + database,
-            username, password);
-         stmt = c.createStatement();
-         System.out.println("Opened database successfully");
-      } catch (Exception e) {
-         e.printStackTrace();
-         System.err.println(e.getClass().getName()+": "+e.getMessage());
-         System.exit(0);
-      }
-   }
-    
-    /**
-     * This method update an element or insert a new element in the database. 
-     * @param reqSQL The Sql request to execute.
-     */
-    public void update(String reqSQL){
-        try {
-            connect();
-            stmt.executeUpdate(reqSQL);
-            c.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    /**
-     * This method selects data(s) from the database
-     * @param reqSQL The Sql statement to execute.
-     * @return The result of the selection from the Sql statement. 
-     */
-    public ResultSet select(String reqSQL){
-        ResultSet res = null;
-        try {
-            connect();
-            res = stmt.executeQuery(reqSQL);
-            c.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return res;
-    }
-    
-   /**
-   * This method is a test so far.
-   *
-   */
-    public static void main(String[] args){
-        DBConnection dbConnection = new DBConnection(HOST,PORT,DATABASE,USERNAME,PASSWORD);
-        dbConnection.update("INSERT INTO public.user (mail, pwd) VALUES ('ehamelojulia1@gmail.com','chat');");
-        dbConnection.update("INSERT INTO public.user (mail, pwd) VALUES ('ehamelojulia2@gmail.com','chat');");
-    }
+
 }
