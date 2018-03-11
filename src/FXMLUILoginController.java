@@ -39,13 +39,14 @@ public class FXMLUILoginController implements Initializable {
             if(!inputMail.getText().equals("") && !inputPwd.getText().equals("")){
                 UserFacade uf=new UserFacade(inputMail.getText(),inputPwd.getText());
                 if(uf.login(inputMail.getText(),inputPwd.getText())){
-                    System.out.println("Connecté");
-                    inputMail.setText("Connecté");
+                    labelStatut.setText("Connected !");
+                }else{
+                    labelStatut.setText("Fail login.");
                 }
                 
             }
             else{
-                labelStatut.setText("Empty fields");
+                labelStatut.setText("Empty fields !");
             }
         }
    
