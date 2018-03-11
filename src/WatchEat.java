@@ -10,17 +10,19 @@ import javafx.stage.Stage;
 /**
  * 
  */
-public class UILogin extends Application{
+public class WatchEat extends Application{
+    
+    private static WatchEat app;
 
     @Override
-        public void start(Stage stage) throws Exception {
+    public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLUILogin.fxml"));
-        
         Scene scene = new Scene(root);
-        
         stage.setScene(scene);
         stage.show();
     }
+    
+    
      /**
      * @param args the command line arguments
      */
