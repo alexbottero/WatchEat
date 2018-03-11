@@ -28,7 +28,15 @@ public class FXMLUILoginController implements Initializable {
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        System.out.println(inputMail.getText());
+        if(event.getSource()==btLogIn){
+            if(!inputMail.getText().equals("") && !inputPwd.getText().equals("")){
+                UserFacade uf=new UserFacade(inputMail.getText(),inputPwd.getText());
+            }
+            else{
+                System.out.println("pas plein");
+            }
+        }
+
         
     }
     /**

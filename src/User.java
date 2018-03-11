@@ -15,6 +15,11 @@ public class User {
     public User() {
         fact = new PostgresDAOFactory();
     }
+     
+    public User(String mail,String password) {
+        this.mail=mail;
+        this.pwd=password;
+    }
 
     /**
      * L'adresse mail de l'utilisateur.
