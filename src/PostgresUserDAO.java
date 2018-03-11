@@ -5,12 +5,12 @@ import java.util.*;
 /**
  * 
  */
-public class MysqlUserDAO extends UserDAO {
+public class PostgresUserDAO extends UserDAO {
 
     /**
      * Default constructor
      */
-    public MysqlUserDAO() {
+    public PostgresUserDAO() {
         
         
     }

@@ -1,5 +1,5 @@
 
-import JDBC.DBConnection;
+import JDBC.*;
 import java.sql.*;
 import java.util.*;
 
@@ -12,7 +12,7 @@ public class UserDAO {
      * Default constructor
      */
     public UserDAO() {
-        this.connect = new DBConnection();
+        this.connect = new DBPostgresConnection();
     }
 
     /**

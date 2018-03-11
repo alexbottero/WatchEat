@@ -4,12 +4,12 @@ import java.util.*;
 /**
  * 
  */
-public class MysqlDAOFactory extends DAOFactory {
+public class PostgresDAOFactory extends DAOFactory {
 
     /**
      * Default constructor
      */
-    public MysqlDAOFactory() {
+    public PostgresDAOFactory() {
     }
 
     
