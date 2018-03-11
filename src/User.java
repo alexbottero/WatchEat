@@ -13,7 +13,6 @@ public class User {
      * Default constructor
      */
     public User() {
-    public User() {
         fact = new PostgresDAOFactory();
     }
      
