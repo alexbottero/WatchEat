@@ -1,4 +1,7 @@
+package Facade;
 
+
+import BL.User;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.*;

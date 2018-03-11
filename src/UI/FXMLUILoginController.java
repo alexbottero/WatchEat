@@ -1,9 +1,18 @@
+package UI;
+
+
+
+
+
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
+import Facade.UserFacade;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
@@ -48,16 +57,11 @@ public class FXMLUILoginController implements Initializable {
                 UserFacade uf=new UserFacade(inputMail.getText(),inputPwd.getText());
                 if(uf.login(inputMail.getText(),inputPwd.getText())){
                     labelStatut.setText("Connected !");
-                    try {
-                        Parent truc = FXMLLoader.load(getClass().getResource("FXMLHomePage.fxml"));
-                        Scene homePage = new Scene(truc);
-                        Stage st = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        st.setScene(homePage);
-                        st.show();
-                    } catch (IOException ex) {
-                        Logger.getLogger(FXMLUILoginController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }else{
+                    /*Parent truc = FXMLLoader.load(getClass().getResource("UI/FXMLHomePage.fxml"));
+                    Scene homePage = new Scene(truc);
+                    Stage st = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    st.setScene(homePage);
+                    st.show();*/                }else{
                     labelStatut.setText("Fail login.");
                 }
                 
