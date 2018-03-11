@@ -19,7 +19,6 @@ public class PostgresDAOFactory extends DAOFactory {
      */
     public UserDAO createUserDAO() {
         return new PostgresUserDAO();
-        // TODO implement here
     }
 
 }

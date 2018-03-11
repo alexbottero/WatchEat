@@ -5,6 +5,7 @@
  */
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,13 +28,18 @@ public class FXMLUILoginController implements Initializable {
     private Button btLogIn;
     
     @FXML
-    private void handleButtonAction(ActionEvent event) {
+    private void handleButtonAction(ActionEvent event) throws SQLException {
         if(event.getSource()==btLogIn){
             if(!inputMail.getText().equals("") && !inputPwd.getText().equals("")){
                 UserFacade uf=new UserFacade(inputMail.getText(),inputPwd.getText());
+                if(uf.login(inputMail.getText(),inputPwd.getText())){
+                    System.out.println("Connecté");
+                    inputMail.setText("Connecté");
+                }
+                
             }
             else{
-                System.out.println("pas plein");
+                System.out.println("Des champs sont vides");
             }
         }
 

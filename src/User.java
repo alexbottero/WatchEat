@@ -19,6 +19,7 @@ public class User {
     public User(String mail,String password) {
         this.mail=mail;
         this.pwd=password;
+        fact = new PostgresDAOFactory();
     }
 
     /**
@@ -37,10 +38,10 @@ public class User {
      * @param mail 
      * @param pwd
      */
-    public boolean login(String mail, String pwd) throws SQLException {
+    public boolean login() throws SQLException {
         UserDAO userDAO = fact.createUserDAO();
-        User user = userDAO.find(mail);
-        return (user != null && user.getPwd().equals(pwd));
+        User user = userDAO.find(this.mail);
+        return (user != null && user.getPwd().equals(this.pwd));
     }
 
     /**
@@ -72,9 +73,9 @@ public class User {
     }
     
     public static void main(String[] args) throws SQLException{
-        User user = new User();
+        User user = new User("fabazad@live.fr","chocolat");
         
-        System.out.print(user.login("fabazad@live.fr","chocolat"));
+        System.out.print(user.login());
     }
 
 }

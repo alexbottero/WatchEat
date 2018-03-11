@@ -1,4 +1,5 @@
 
+import java.sql.SQLException;
 import java.util.*;
 
 /**
@@ -21,9 +22,19 @@ public class UserFacade {
     /**
      * @param mail 
      * @param pwd
+     * @return 
+     * @throws java.sql.SQLException
      */
-    public void login(String mail, String pwd) {
-        // TODO implement here
+    public boolean login(String mail, String pwd) throws SQLException {
+        User user = new User(mail,pwd);
+        boolean connect = user.login();
+        if(connect){
+            connectedUser = user;
+            return true;
+        }else{
+            connectedUser = null;
+            return false;
+        }
     }
 
     /**
