@@ -9,26 +9,90 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
- * @version 1.0
- * @author Fabien
+ * This class is handles the connection to the database.
+ * @author Alexandre Bottero
+ * @author Hamelina Ehamelo
+ * @author Fabien Turgut
+ * @author Marion Rul
+ * @version March 2018
  */
 public class DBConnection {
     
+    //Class variables *************************************************
+    
+    /**
+   * The host of the database.
+   */
     private static final String HOST = "localhost";
+    
+    /**
+   * The port to connect on.
+   */
     private static final String PORT = "5432";
+    
+    /**
+   * The name of the database to which we need to connect to.
+   */
     private static final String DATABASE = "";
+    
+    /**
+   * The name of the user.
+   */
     private static final String USERNAME = "";
+    
+    /**
+   * The password of the user to connect to the database.
+   */
     private static final String PASSWORD = "";
     
+    /**
+   * The Statement used for executing a static SQL statement and returning the results it produces
+   */
     private static Statement stmt = null;
+    
+    /**
+   * The Connection to the database.
+   */
     private static Connection c = null;
     
+     //Instance variables **********************************************
+  
+    /**
+     * The instance of the Java Database Connection corresponding to the host.
+     */
     private final String host;
+    
+    /**
+     * The instance of the Java Database Connection corresponding to port to connect to.
+     */
     private final String port;
+    
+    /**
+     * The instance of the Java Database Connection corresponding to the name of the database.
+     */
     private final String database;
+    
+    /**
+     * The instance of the Java Database Connection corresponding to the name of the user.
+     */
     private final String username;
+    
+    /**
+     * The instance of the Java Database Connection corresponding to the password of the user to connect to the database.
+     */
     private final String password;
     
+     //Constructors ****************************************************
+
+  /**
+   * Constructs an instance of the DBConnection.
+   *
+   * @param host The host to connect to.
+   * @param port The port to connect on.
+   * @param database The database to connect to.
+   * @param username The username to connect with. 
+   * @param password The password to connect with. 
+   */
     public DBConnection(String host, String port, String database, String username, String password){
         this.host = host;
         this.port = port;
@@ -36,6 +100,11 @@ public class DBConnection {
         this.username = username;
         this.password = password;
     }
+    
+    /**
+   * Constructs an instance of the DBConnection.
+   * 
+   */
     
     public DBConnection(){
         this.host = HOST;
@@ -45,9 +114,13 @@ public class DBConnection {
         this.password = PASSWORD;
     }
     
-    /**
-     * Permet de se connecter à la base de donnée postgres.
-     */
+    
+    //Instance methods ************************************************
+  
+  /**
+   * This method allows you to connect to the database. 
+   * 
+   */
     public void connect() {
       
       try {
@@ -65,8 +138,8 @@ public class DBConnection {
    }
     
     /**
-     * Permet d'ajouter ou de modifier dans la base de donnée (INSERT,UPDATE).
-     * @param reqSQL correspond à la requète SQL à effectuer.
+     * This method update an element or insert a new element in the database. 
+     * @param reqSQL The Sql request to execute.
      */
     public void update(String reqSQL){
         try {
@@ -79,9 +152,9 @@ public class DBConnection {
     }
     
     /**
-     * Permet de selectionner dans la base de donnée.
-     * @param reqSQL correspond à la requète SQL à effectuer.
-     * @return les réultats de la requète de type ResultSet qui est un itérateur.
+     * This method selects data(s) from the database
+     * @param reqSQL The Sql statement to execute.
+     * @return The result of the selection from the Sql statement. 
      */
     public ResultSet select(String reqSQL){
         ResultSet res = null;
@@ -95,6 +168,10 @@ public class DBConnection {
         return res;
     }
     
+   /**
+   * This method is a test so far.
+   *
+   */
     public static void main(String[] args){
         DBConnection dbConnection = new DBConnection(HOST,PORT,DATABASE,USERNAME,PASSWORD);
         dbConnection.update("INSERT INTO public.user (mail, pwd) VALUES ('ehamelojulia1@gmail.com','chat');");
