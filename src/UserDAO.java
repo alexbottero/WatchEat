@@ -30,7 +30,7 @@ public class UserDAO {
         User user = new User();
         ResultSet res = connect.select("SELECT mail, pwd FROM public.user WHERE mail = '" + mail + "'");
         
-        if(res.next() && res.getString("mail").length() > 0){
+        if(res.next()){
             user.setMail(res.getString("mail"));
             user.setPwd(res.getString("pwd"));
             return user; 
