@@ -11,7 +11,12 @@ public class User {
     /**
      * Default constructor
      */
-    public User() {
+     public User() {;
+    }
+     
+    public User(String mail,String password) {
+        this.mail=mail;
+        this.pwd=password;
     }
 
     /**
