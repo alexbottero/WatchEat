@@ -4,7 +4,7 @@ import java.util.*;
 /**
  * 
  */
-public class DAOFactory {
+public abstract class DAOFactory {
 
     /**
      * Default constructor
@@ -21,10 +21,7 @@ public class DAOFactory {
      * 
      * @return 
      */
-    public UserDAO createUserDAO() {
-        // TODO implement here
-        return null;
-    }
+    public abstract UserDAO createUserDAO();
 
     /**
      * @param type
