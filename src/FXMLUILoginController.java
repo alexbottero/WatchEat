@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -32,7 +34,7 @@ public class FXMLUILoginController implements Initializable {
     private Label labelStatut;
     
     @FXML
-    private void handleButtonAction(ActionEvent event) throws SQLException {
+    private void handleButtonAction(ActionEvent event) throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if(event.getSource()==btLogIn){
             if(!inputMail.getText().equals("") && !inputPwd.getText().equals("")){
                 UserFacade uf=new UserFacade(inputMail.getText(),inputPwd.getText());

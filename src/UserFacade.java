@@ -1,6 +1,9 @@
 
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * 
@@ -25,8 +28,11 @@ public class UserFacade {
      * @return 
      * @throws java.sql.SQLException
      */
-    public boolean login(String mail, String pwd) throws SQLException {
-        User user = new User(mail,pwd);
+    public boolean login(String mail, String pwd) throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException {
+        byte[] pwdBy = pwd.getBytes();
+        byte[] pwdHash = null;
+        pwdHash = MessageDigest.getInstance("MD5").digest(pwdBy);
+        User user = new User(mail,new String(pwdHash, "UTF-8"));
         boolean connect = user.login();
         if(connect){
             connectedUser = user;
@@ -49,6 +55,14 @@ public class UserFacade {
      */
     public void getLastNameByMail(String mail) {
         // TODO implement here
+    }
+    
+    public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException{
+        String pwd = "chocolat";
+        byte[] pwdBy = pwd.getBytes();
+        byte[] pwdHash = null;
+        pwdHash = MessageDigest.getInstance("MD5").digest(pwdBy);
+        System.out.println(new String(pwdBy, "UTF-8"));
     }
 
 }
