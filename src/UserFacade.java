@@ -9,8 +9,7 @@ public class UserFacade {
     /**
      * Default constructor
      */
-    public UserFacade(String mail,String password) {
-        connectedUser=new User(mail,password);
+    public UserFacade() {
     }
 
     /**
