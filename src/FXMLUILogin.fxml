@@ -33,6 +33,7 @@
                      </children>
                   </Pane>
                   <PasswordField fx:id="inputPwd" layoutX="156.0" layoutY="120.0" AnchorPane.leftAnchor="145.0" AnchorPane.rightAnchor="20.0" />
+                  <Label fx:id="labelStatut" layoutX="166.0" layoutY="30.0" />
                </children>
             </AnchorPane>
         </content>

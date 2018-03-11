@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -27,6 +28,8 @@ public class FXMLUILoginController implements Initializable {
     private PasswordField inputPwd;
     @FXML
     private Button btLogIn;
+    @FXML 
+    private Label labelStatut;
     
     @FXML
     private void handleButtonAction(ActionEvent event) throws SQLException {
@@ -40,12 +43,12 @@ public class FXMLUILoginController implements Initializable {
                 
             }
             else{
-                System.out.println("Des champs sont vides");
+                labelStatut.setText("Empty fields");
             }
         }
-
-        
+   
     }
+    
     /**
      * Initializes the controller class.
      */
