@@ -24,7 +24,7 @@ public class PostgresUserDAO extends UserDAO {
     /**
    * The name of the database to which we need to connect to.
    */
-    private static final String DATABASE = "WatchEat";
+    private static final String DATABASE = "watchEat";
     
     /**
    * The name of the user.
@@ -34,7 +34,7 @@ public class PostgresUserDAO extends UserDAO {
     /**
    * The password of the user to connect to the database.
    */
-    private static final String PASSWORD = "K2vm@0r67";
+    private static final String PASSWORD = "93Marieb";
     
     /**
      * The instance of the Java Database Connection corresponding to the host.

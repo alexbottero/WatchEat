@@ -3,7 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/julia/Documents/WatchEat/src/watcheat/WatchEat.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/DAO/UserDAO.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/DAO/PostgresUserDAO.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/WatchEat.java</file>
         </group>
     </open-files>
 </project-private>
