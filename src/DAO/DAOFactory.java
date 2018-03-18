@@ -18,11 +18,6 @@ public abstract class DAOFactory {
 
     /**
      * 
-     */
-    public int DAO_FACTORY = 0;
-
-    /**
-     * 
      * @return 
      */
     public abstract UserDAO createUserDAO();

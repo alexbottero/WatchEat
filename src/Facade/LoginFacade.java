@@ -14,14 +14,14 @@ import java.security.NoSuchAlgorithmException;
 /**
  * 
  */
-public class UserFacade {
+public class LoginFacade {
     
     private UserDAO userDAO;
 
     /**
      * Default constructor
      */
-    public UserFacade() {
+    public LoginFacade() {
         //connectedUser=new User(mail,password);
         DAOFactory fact = PostgresDAOFactory.getInstance();
         userDAO = fact.createUserDAO();
@@ -53,12 +53,7 @@ public class UserFacade {
     }
     
     public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException, SQLException{
-        UserFacade uf = new UserFacade();
-        uf.deconnection();
-    }
-
-    public void deconnection() {
-        userDAO.deconnection();
+        
     }
 
 }

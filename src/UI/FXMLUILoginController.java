@@ -12,7 +12,7 @@ package UI;
  * and open the template in the editor.
  */
 
-import Facade.UserFacade;
+import Facade.LoginFacade;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
@@ -41,7 +41,7 @@ import javafx.stage.Stage;
  */
 public class FXMLUILoginController implements Initializable {
     
-    private UserFacade uf;
+    private LoginFacade uf;
 
     @FXML
     private TextField inputMail;
@@ -84,7 +84,7 @@ public class FXMLUILoginController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        uf = new UserFacade();
+        uf = new LoginFacade();
     }    
     
 }
