@@ -1,6 +1,7 @@
 package DAO;
 
 import BL.User;
+import JDBC.JDBC;
 import java.sql.*;
 import java.util.*;
 import java.util.logging.Level;
@@ -24,7 +25,7 @@ public class PostgresUserDAO extends UserDAO {
     /**
    * The name of the database to which we need to connect to.
    */
-    private static final String DATABASE = "watchEat";
+    private static final String DATABASE = "WatchEat";
     
     /**
    * The name of the user.
@@ -34,7 +35,7 @@ public class PostgresUserDAO extends UserDAO {
     /**
    * The password of the user to connect to the database.
    */
-    private static final String PASSWORD = "93Marieb";
+    private static final String PASSWORD = "garabla2996";
     
     /**
      * The instance of the Java Database Connection corresponding to the host.
@@ -60,6 +61,10 @@ public class PostgresUserDAO extends UserDAO {
      * The instance of the Java Database Connection corresponding to the password of the user to connect to the database.
      */
     private final String password;
+    private String className;
+    private String connectionSettings; 
+    
+    private JDBC jdbc; 
     
     
     public PostgresUserDAO(){
@@ -68,6 +73,9 @@ public class PostgresUserDAO extends UserDAO {
         this.database = DATABASE;
         this.username = USERNAME;
         this.password = PASSWORD;
+        this.className = "org.postgresql.Driver";
+        this.connectionSettings = "jdbc:postgresql://" + host + ":" + port +"/" + database;
+        this.jdbc= new JDBC(className,connectionSettings,username, password);
     }
     
     /**
@@ -85,14 +93,18 @@ public class PostgresUserDAO extends UserDAO {
         this.database = database;
         this.username = username;
         this.password = password;
+        this.className = "org.postgresql.Driver";
+        this.connectionSettings = "jdbc:postgresql://" + host + ":" + port +"/" + database;
+        this.jdbc= new JDBC(className,connectionSettings, username, password);
     }
     
     @Override
-    public User find(String mail) throws SQLException {
-        User user = new User();
-        ResultSet res = select("SELECT mail, pwd FROM public.user WHERE mail = '" + mail + "'");
+    public User find(String mail, String pwd) throws SQLException {
+        String query = "SELECT mail, pwd FROM public.user WHERE mail = '" + mail +"' AND pwd = '" + pwd + "'";
+        ResultSet res = jdbc.select(query);
         
         if(res.next()){
+            User user  = new User();
             user.setMail(res.getString("mail"));
             user.setPwd(res.getString("pwd"));
             return user; 
@@ -103,12 +115,13 @@ public class PostgresUserDAO extends UserDAO {
     
     @Override
     public User update(String mail, String pwd) {
+        String query = "UPDATE public.user SET pwd = '" + pwd + "' WHERE mail='" + mail + "'";
         try {
-            update("UPDATE public.user SET pwd = '" + pwd + "' WHERE mail='" + mail + "'");
+            jdbc.update(query);
         } catch (SQLException ex) {
             Logger.getLogger(PostgresUserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        User user = new User();
+        User user  = new User();
         user.setMail(mail);
         user.setPwd(pwd);
         return user;
@@ -118,7 +131,7 @@ public class PostgresUserDAO extends UserDAO {
     
     /**
      * Permet de se connecter à la base de donnée postgres.
-     */
+     
     public void connect() {
       try {
          Class.forName("org.postgresql.Driver");
@@ -131,35 +144,37 @@ public class PostgresUserDAO extends UserDAO {
          System.err.println(e.getClass().getName()+": "+e.getMessage());
          System.exit(0);
       }
-   }
+   }**/
     
     /**
      * Permet d'ajouter ou de modifier dans la base de donnée (INSERT,UPDATE).
      * @param reqSQL correspond à la requète SQL à effectuer.
-     */
+     
     public void update(String reqSQL) throws SQLException{
         
         connect();
         connect.createStatement().executeUpdate(reqSQL);
         connect.close();
-    }
+    }**/
     
     /**
      * Permet de selectionner dans la base de donnée.
      * @param reqSQL correspond à la requète SQL à effectuer.
      * @return les réultats de la requète de type ResultSet qui est un itérateur.
-     */
+     
     public ResultSet select(String reqSQL) throws SQLException{
         ResultSet res = null;
         connect();
         res = connect.createStatement().executeQuery(reqSQL);
         connect.close();
         return res;
-    }
+    }**/
 
-    public static void main(String[] args) throws SQLException{
+    /**public static void main(String[] args) throws SQLException{
         PostgresUserDAO userDAO = new PostgresUserDAO();
-        User user = userDAO.find("fabazad@live.fr");
+        User u = new User("ehamelojulia@gmail.com", "chat");
+        
+        //User user = userDAO.find("fabazad@live.fr");
         if(user != null){System.out.println(user.getMail() + " : " + user.getPwd());}
-    }
+      **/  
 }

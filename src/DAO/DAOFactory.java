@@ -7,7 +7,7 @@ import java.util.*;
  * 
  */
 public abstract class DAOFactory {
-
+    DAOFactory singleton;
     /**
      * Default constructor
      */
@@ -29,9 +29,5 @@ public abstract class DAOFactory {
      * @param type
      * @return 
      */
-    public DAOFactory getFactory(int type) {
-        return null;
-        // TODO implement here
-    }
-
+    public abstract DAOFactory getFactory();
 }

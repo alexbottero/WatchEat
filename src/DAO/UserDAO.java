@@ -27,7 +27,7 @@ public abstract class UserDAO {
      * @return the user found
      * @throws java.sql.SQLException 
      */
-    public abstract User find(String mail) throws SQLException;
+    public abstract User find(String mail, String pwd) throws SQLException;
 
     /**
      * @param mail
