@@ -8,31 +8,24 @@ import java.util.*;
 /**
  * 
  */
-public abstract class UserDAO {
+public interface UserDAO {
 
     /**
-     * Default constructor
-     */
-    public UserDAO() {
-    }
-
-    /**
-     * 
-     */
-    public Connection connect;
-
-    /**
-     * Find an user in the database, if nothing return null
+     * Find an user in the database thanks to his mail, if nothing return null
      * @param mail mail address of the searching user
      * @return the user found
      * @throws java.sql.SQLException 
      */
-    public abstract User find(String mail, String pwd) throws SQLException;
+    public User find(String mail) throws SQLException;
 
     /**
      * @param mail
      * @param pwd
      * @return 
      */
-    public abstract User update(String mail, String pwd);
+    public User update(String mail, String pwd);
+    
+    public boolean login(String mail, String pwd);
+
+    public void deconnection();
 }

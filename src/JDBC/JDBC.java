@@ -17,51 +17,75 @@ import java.sql.DriverManager;
  */
 public class JDBC {
     
-    private Connection connect; 
-    private final String className;
-    private final String connectionSettings;
-    private final String userName;
-    private final String password;
+    private Connection connect;
     
-       public JDBC(String className, String connectionSettings, String userName, String password){
-        this.className = className;
-        this.connectionSettings = connectionSettings;
-        this.userName = userName;
-        this.password = password;
+    static JDBC singleton;
+    
+     /**
+   * The host of the database.
+   */
+    private static final String HOST = "localhost";
+    
+    /**
+   * The port to connect on.
+   */
+    private static final String PORT = "5432";
+    
+    /**
+   * The name of the database to which we need to connect to.
+   */
+    private static final String DATABASE = "WatchEat";
+    
+    /**
+   * The name of the user.
+   */
+    private static final String USERNAME = "postgres";
+    
+    /**
+   * The password of the user to connect to the database.
+   */
+    private static final String PASSWORD = "K2vm@0r67";
+    
+    private static final String CLASSNAME = "org.postgresql.Driver";
+    
+    private JDBC(){
     }
 
 
-    
-       
+    public static JDBC getInstance(){
+        if(singleton != null){
+            return singleton;
+        }
+        else{
+            return new JDBC();
+        }
+    }       
             
     public void connect() {
       try {
-         Class.forName(className);
+         Class.forName(CLASSNAME);
           connect = DriverManager
-                  .getConnection(connectionSettings, userName, password);
+                  .getConnection("jdbc:postgresql://" + HOST + ":" + PORT +"/" + DATABASE, USERNAME, PASSWORD);
          System.out.println("Opened database successfully");
       } catch (ClassNotFoundException | SQLException e) {
          System.err.println(e.getClass().getName()+": "+e.getMessage());
          System.exit(0);
       }
-    }
-      
-      
+    }      
         
-      public void update(String reqSQL) throws SQLException{
-        
+    public void update(String reqSQL) throws SQLException{
         connect();
         connect.createStatement().executeUpdate(reqSQL);
         connect.close();
-        }
+    }
       
-      public ResultSet select(String reqSQL) throws SQLException{
+    public ResultSet select(String reqSQL) throws SQLException{
         ResultSet res = null;
         connect();
         res = connect.createStatement().executeQuery(reqSQL);
         connect.close();
         return res;
-       } static final String HOST = "localhost";
+    }
     
 
     /** public static void main(String[] args){

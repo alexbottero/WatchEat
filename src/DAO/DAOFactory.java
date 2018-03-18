@@ -8,6 +8,8 @@ import java.util.*;
  */
 public abstract class DAOFactory {
     DAOFactory singleton;
+    
+    UserDAO userDao;
     /**
      * Default constructor
      */

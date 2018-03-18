@@ -40,6 +40,8 @@ import javafx.stage.Stage;
  * @author alexandre
  */
 public class FXMLUILoginController implements Initializable {
+    
+    private UserFacade uf;
 
     @FXML
     private TextField inputMail;
@@ -54,14 +56,18 @@ public class FXMLUILoginController implements Initializable {
     private void handleButtonAction(ActionEvent event) throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if(event.getSource()==btLogIn){
             if(!inputMail.getText().equals("") && !inputPwd.getText().equals("")){
-                UserFacade uf=new UserFacade(inputMail.getText(),inputPwd.getText());
                 if(uf.login(inputMail.getText(),inputPwd.getText())){
-                    labelStatut.setText("Connected !");
-                    /*Parent truc = FXMLLoader.load(getClass().getResource("UI/FXMLHomePage.fxml"));
-                    Scene homePage = new Scene(truc);
-                    Stage st = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    st.setScene(homePage);
-                    st.show();*/                }else{
+                    try {
+                        labelStatut.setText("Connected !");
+                        Parent truc = FXMLLoader.load(getClass().getResource("FXMLHomePage.fxml"));
+                        Scene homePage = new Scene(truc);
+                        Stage st = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        st.setScene(homePage);              
+                        st.show();
+                    } catch (IOException ex) {
+                        Logger.getLogger(FXMLUILoginController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
                     labelStatut.setText("Fail login.");
                 }
                 
@@ -78,7 +84,7 @@ public class FXMLUILoginController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        uf = new UserFacade();
     }    
     
 }

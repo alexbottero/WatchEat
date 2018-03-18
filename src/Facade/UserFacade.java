@@ -15,20 +15,18 @@ import java.security.NoSuchAlgorithmException;
  * 
  */
 public class UserFacade {
+    
+    private UserDAO userDAO;
 
     /**
      * Default constructor
      */
-    public UserFacade(String mail,String password) {
+    public UserFacade() {
         //connectedUser=new User(mail,password);
-        fact = new PostgresDAOFactory();
+        DAOFactory fact = PostgresDAOFactory.getInstance();
+        userDAO = fact.createUserDAO();
     }
 
-    /**
-     * 
-     */
-    public User connectedUser;
-    private DAOFactory fact; 
 
     /**
      * @param mail 
@@ -36,24 +34,8 @@ public class UserFacade {
      * @return 
      * @throws java.sql.SQLException
      */
-    public boolean login(String mail, String pwd) throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException {
-        byte[] pwdBy = pwd.getBytes();
-        byte[] pwdHash = null;
-        pwdHash = MessageDigest.getInstance("MD5").digest(pwdBy);
-        //User user = new User(mail,new String(pwdHash, "UTF-8"));
-        fact = new PostgresDAOFactory();
-        UserDAO uDao= fact.createUserDAO();
-        User user = uDao.find(mail, pwd);
-        boolean connect =  user!= null && user.getPwd().equals(pwd);
-       // boolean connect = (connectedUser.equals(uDao.find(mail, pwd)));
-        //boolean connect = user.login();
-        if(connect){
-            connectedUser = user;
-            return true;
-        }else{
-            connectedUser = null;
-            return false;
-        }
+    public boolean login(String mail, String pwd) throws SQLException{
+        return userDAO.login(mail,pwd);
     }
 
     /**
@@ -71,14 +53,12 @@ public class UserFacade {
     }
     
     public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException, SQLException{
-        String pwd = "chocolat";
-        byte[] pwdBy = pwd.getBytes();
-        byte[] pwdHash = null;
-        pwdHash = MessageDigest.getInstance("MD5").digest(pwdBy);
-        System.out.println(new String(pwdBy, "UTF-8"));
-        UserFacade uf = new UserFacade("ehamelojulia@gmail.com", "chat");
-        
-        System.out.println(uf.login("ehamelojulia@gmail.com", "chat"));
+        UserFacade uf = new UserFacade();
+        uf.deconnection();
+    }
+
+    public void deconnection() {
+        userDAO.deconnection();
     }
 
 }
