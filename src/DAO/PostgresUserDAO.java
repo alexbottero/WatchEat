@@ -45,27 +45,7 @@ public class PostgresUserDAO implements UserDAO {
         return user;
     }
 
-    @Override
-    public boolean login(String mail, String pwd) {
-        User user;
-        try {
-            user = find(mail);
-            return user.login(mail,pwd);
-        } catch (SQLException ex) {
-            Logger.getLogger(PostgresUserDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-    }
-
-    @Override
-    public void deconnection() {
-        User user = new User();
-        user.deconnection();
-    }
-    
-
     public static void main(String[] args) throws SQLException{
         UserDAO userDAO = new PostgresUserDAO();
-        userDAO.deconnection();
     } 
 }

@@ -24,8 +24,4 @@ public interface UserDAO {
      * @return 
      */
     public User update(String mail, String pwd);
-    
-    public boolean login(String mail, String pwd);
-
-    public void deconnection();
 }

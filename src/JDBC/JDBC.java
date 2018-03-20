@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package JDBC;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.*;
 import java.util.logging.Level;
@@ -44,7 +46,7 @@ public class JDBC {
     /**
    * The password of the user to connect to the database.
    */
-    private static final String PASSWORD = "K2vm@0r67";
+    private static final String PASSWORD = "garabla2996";
     
     private static final String CLASSNAME = "org.postgresql.Driver";
     
@@ -88,9 +90,22 @@ public class JDBC {
     }
     
 
-    /** public static void main(String[] args){
-         JDBC jdbc = new JDBC("org.postgresql.Driver", "jdbc:postgresql://localhost:5432/WatchEat",
-            "postgres", "garabla2996");
-
-     }**/
+    public static void main(String[] args){
+        try {
+            String pwd = "gui";
+            byte[] pwdBy = pwd.getBytes();
+            byte[] pwdHash = null;
+            String pwdFinal;
+            try {
+                pwdHash = MessageDigest.getInstance("MD5").digest(pwdBy);
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(JDBC.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            pwdFinal = new String(pwdHash);
+            JDBC jdbc = new JDBC();
+            jdbc.update("INSERT INTO public.user (mail,pwd)VALUES('test@test.fr','"+ pwdFinal +"')");
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBC.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

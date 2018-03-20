@@ -14,14 +14,15 @@ import java.security.NoSuchAlgorithmException;
 /**
  * 
  */
-public class LoginFacade {
+public class UserFacade {
     
     private UserDAO userDAO;
+    private User connectedUser;
 
     /**
      * Default constructor
      */
-    public LoginFacade() {
+    public UserFacade() {
         //connectedUser=new User(mail,password);
         DAOFactory fact = PostgresDAOFactory.getInstance();
         userDAO = fact.createUserDAO();
@@ -35,7 +36,18 @@ public class LoginFacade {
      * @throws java.sql.SQLException
      */
     public boolean login(String mail, String pwd) throws SQLException{
-        return userDAO.login(mail,pwd);
+        User user = userDAO.find(mail);
+        if(user == null){
+            return false;
+        }
+        else{
+            boolean succeedLogin = user.login(mail,pwd);
+            if(succeedLogin){
+                this.connectedUser = user;
+            }
+            return succeedLogin;
+        }
+        
     }
 
     /**
@@ -50,6 +62,13 @@ public class LoginFacade {
      */
     public void getLastNameByMail(String mail) {
         // TODO implement here
+    }
+    
+    /**
+     * 
+     */
+    public void deconnection() {
+        this.connectedUser = null;
     }
     
     public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException, SQLException{

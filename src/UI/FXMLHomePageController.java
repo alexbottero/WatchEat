@@ -34,7 +34,7 @@ import javafx.stage.Stage;
  */
 public class FXMLHomePageController implements Initializable {
     
-    private HomePageFacade uf;
+    private UserFacade uf;
 
     @FXML
     private Label accueilLabel;
@@ -48,7 +48,7 @@ public class FXMLHomePageController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        uf = new HomePageFacade();
+        uf = new UserFacade();
         accueilLabel.setText("Accueil :D");
     }    
     
