@@ -17,7 +17,7 @@ import java.security.NoSuchAlgorithmException;
 public class UserFacade {
     
     private UserDAO userDAO;
-    private User connectedUser;
+    private static User connectedUser;
 
     /**
      * Default constructor
@@ -89,6 +89,17 @@ public class UserFacade {
      */
     public void deconnection() {
         this.connectedUser = null;
+    }
+    
+    /**
+     * @param firstName 
+     * @param lastName 
+     * @param height 
+     * @param weight 
+     */
+    public void updateUserAccount(String firstName, String lastName, String height, String weight) {
+        User user = userDAO.updateUserAccount(firstName, lastName, height, weight, connectedUser.getMail());
+        connectedUser = user;
     }
     
     public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException, SQLException{
