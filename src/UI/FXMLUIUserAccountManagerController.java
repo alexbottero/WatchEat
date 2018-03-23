@@ -35,33 +35,6 @@ public class FXMLUIUserAccountManagerController implements Initializable {
     private Button changePassword_button;
     
     private UserFacade uf;
-
-    
-      /*  private void click_validate(ActionEvent event) throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException {
-        if(event.getSource()==Validate){
-            if(!inputMail.getText().equals("") && !inputPwd.getText().equals("")){
-                if(uf.login(inputMail.getText(),inputPwd.getText())){
-                    try {
-                        labelStatut.setText("Connected !");
-                        Parent truc = FXMLLoader.load(getClass().getResource("FXMLHomePage.fxml"));
-                        Scene homePage = new Scene(truc);
-                        Stage st = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        st.setScene(homePage);              
-                        st.show();
-                    } catch (IOException ex) {
-                        Logger.getLogger(FXMLUILoginController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }else{
-                    labelStatut.setText("Fail login.");
-                }
-                
-            }
-            else{
-                labelStatut.setText("Empty fields !");
-            }
-        }
-   
-    }*/
     /**
      * Initializes the controller class.
      */
