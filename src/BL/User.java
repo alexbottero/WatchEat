@@ -26,11 +26,19 @@ public class User {
     public User() {
         //fact = new PostgresDAOFactory();
     }
-     
-    public User(String mail,String password) {
+    
+        public User(String mail,String password) {
         this.mail=mail;
         this.pwd=password;
-        //fact = new PostgresDAOFactory();
+    }
+     
+    public User(String mail,String password, String firstName, String lastName, Double height, Double weight) {
+        this.mail=mail;
+        this.pwd=password;
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.height = height;
+        this.weight= weight;
     }
 
     /**
@@ -42,6 +50,26 @@ public class User {
      * Le mot de passe de l'utilisateur.
      */
     private String pwd = "";
+    
+    /**
+     * Le prénom de l'utilisateur.
+     */
+    private String firstName = "";
+    
+    /**
+     * Le nom de l'utilisateur.
+     */
+    private String lastName = "";
+    
+    /**
+     * La taille de l'utilisateur.
+     */
+    private Double height;
+    
+    /**
+     * Le poids de l'utilisateur.
+     */
+    private Double weight;
 
     /**
      * @return the mail
@@ -94,6 +122,62 @@ public class User {
 
     public void deconnection() {
         connectedUser = null;
+    }
+
+    /**
+     * @return the firstName
+     */
+    public String getFirstName() {
+        return firstName;
+    }
+
+    /**
+     * @param firstName the firstName to set
+     */
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    /**
+     * @return the lastName
+     */
+    public String getLastName() {
+        return lastName;
+    }
+
+    /**
+     * @param lastName the lastName to set
+     */
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    /**
+     * @return the height
+     */
+    public Double getHeight() {
+        return height;
+    }
+
+    /**
+     * @param height the height to set
+     */
+    public void setHeight(Double height) {
+        this.height = height;
+    }
+
+    /**
+     * @return the weight
+     */
+    public Double getWeight() {
+        return weight;
+    }
+
+    /**
+     * @param weight the weight to set
+     */
+    public void setWeight(Double weight) {
+        this.weight = weight;
     }
     
    /** public static void main(String[] args) throws SQLException{
