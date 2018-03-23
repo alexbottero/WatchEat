@@ -71,16 +71,14 @@ public class UserFacade {
         this.connectedUser = null;
     }
     
-        /**
+    /**
      * @param firstName 
      * @param lastName 
-     * @param mailAdress 
      * @param height 
      * @param weight 
-     * @param user
      */
-    public void updateUserAccount(String firstName, String lastName, String mailAdress, Double height, Double weight) {
-        // TODO implement here
+    public void updateUserAccount(String firstName, String lastName, String height, String weight) {
+        
     }
     
     public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException, SQLException{

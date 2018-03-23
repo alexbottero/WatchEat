@@ -98,32 +98,7 @@ public class User {
     public void setPwd(String pwd) {
         this.pwd = pwd;
     }
-
-    public boolean login(String mail, String pwd) {
-        byte[] pwdBy = pwd.getBytes();
-        byte[] pwdHash = null;
-        String pwdFinal;
-        try {
-            pwdHash = MessageDigest.getInstance("MD5").digest(pwdBy);
-            pwdFinal = new String(pwdHash);
-            if(this.mail.equals(mail) && this.pwd.equals(pwdFinal)){
-                connectedUser = this;
-                return true;
-            }
-            else{
-                connectedUser = null;
-                return false;
-            }
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-    }
-
-    public void deconnection() {
-        connectedUser = null;
-    }
-
+    
     /**
      * @return the firstName
      */
@@ -179,6 +154,33 @@ public class User {
     public void setWeight(Double weight) {
         this.weight = weight;
     }
+
+    public boolean login(String mail, String pwd) {
+        byte[] pwdBy = pwd.getBytes();
+        byte[] pwdHash = null;
+        String pwdFinal;
+        try {
+            pwdHash = MessageDigest.getInstance("MD5").digest(pwdBy);
+            pwdFinal = new String(pwdHash);
+            if(this.mail.equals(mail) && this.pwd.equals(pwdFinal)){
+                connectedUser = this;
+                return true;
+            }
+            else{
+                connectedUser = null;
+                return false;
+            }
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+
+    public void deconnection() {
+        connectedUser = null;
+    }
+
+
     
    /** public static void main(String[] args) throws SQLException{
         User user = new User("fabazad@live.fr","chocolat");
