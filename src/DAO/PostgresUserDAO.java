@@ -45,7 +45,7 @@ public class PostgresUserDAO implements UserDAO {
         return user;
     }
 
-    public User updateUserAccount(String firstName, String lastName, String mailAdress, Double height, Double weight) {
+    public User updateUserAccount(String firstName, String lastName, String height, String weight, String mailAdress) {
         String query = "UPDATE public.user SET firstName = '" + firstName + "' lastName = '" + lastName + "' height = '" + height + "' weight = '" + weight +"' WHERE mail = '" + mailAdress + "'";
         try {
            jdbc.update(query);
@@ -56,8 +56,10 @@ public class PostgresUserDAO implements UserDAO {
         user.setMail(mailAdress);
         user.setFirstName(firstName);
         user.setLastName(lastName);
-        user.setHeight(height);
-        user.setWeight(weight);
+        double h = Double.parseDouble(height);
+        user.setHeight(h);
+        double w = Double.parseDouble(weight);
+        user.setWeight(w);
         return user;
      
     }

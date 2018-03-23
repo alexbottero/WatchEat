@@ -24,4 +24,6 @@ public interface UserDAO {
      * @return 
      */
     public User update(String mail, String pwd);
+    public User updateUserAccount(String firstName, String lastName, String height, String weight, String mailAdress);
+    
 }
