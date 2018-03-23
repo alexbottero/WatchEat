@@ -27,11 +27,23 @@ public class User {
         //fact = new PostgresDAOFactory();
     }
      
-    public User(String mail,String password) {
+    public User(String mail,String password,String firstName,String lastName,String gender,Date date) {
         this.mail=mail;
         this.pwd=password;
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.gender=gender;
+        this.dateOfBirth=date;
+                
         //fact = new PostgresDAOFactory();
     }
+    
+       public User(String mail,String password) {
+        this.mail=mail;
+        this.pwd=password;
+ 
+    }
+
 
     /**
      * L'adresse mail de l'utilisateur.
@@ -91,7 +103,7 @@ public class User {
             return false;
         }
     }
-
+    
     public void deconnection() {
         connectedUser = null;
     }

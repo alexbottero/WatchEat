@@ -49,6 +49,26 @@ public class UserFacade {
         }
         
     }
+    
+    public boolean signUp(String mail,String pwd,String lastName , String firstName , String gender , Date dateOfBirth ) throws SQLException{
+        java.sql.Date sDate = convertUtilToSql(dateOfBirth);
+        User user= userDAO.find(mail);
+        
+        if(user==null){
+             user = userDAO.create(mail,pwd , lastName, firstName,gender,sDate);
+             if (user!=null){
+                 this.connectedUser = user;
+                 return true;
+             }
+             else{
+                 return false;
+             }
+        }
+        else{
+            return false;
+        }
+                
+    }
 
     /**
      * @param mail
@@ -75,4 +95,8 @@ public class UserFacade {
         
     }
 
+     private static java.sql.Date convertUtilToSql(java.util.Date uDate) {
+        java.sql.Date sDate = new java.sql.Date(uDate.getTime());
+        return sDate;
+    }
 }

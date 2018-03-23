@@ -45,6 +45,25 @@ public class PostgresUserDAO implements UserDAO {
         return user;
     }
 
+    @Override
+    public User create(String mail,String pwd, String lastName , String firstName , String gender , java.sql.Date dateOfBirth){
+        String query= "INSERT INTO public.user( mail, pwd, lastName, firstName,gender,dateOfBirth VALUE("+ mail +","+pwd+","+ lastName+","+","+firstName+","+gender+","+dateOfBirth+")";
+        try {
+            jdbc.update(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(PostgresUserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        User user = new User();
+        user.setMail(mail);
+        user.setPwd(mail);
+        user.setLastName(lastName);
+        user.setFirstName(firstName);
+        user.setGender(gender);
+        user.setDateOfBirth(dateOfBirth);
+        return user;
+        
+        
+    }
     public static void main(String[] args) throws SQLException{
         UserDAO userDAO = new PostgresUserDAO();
     } 
