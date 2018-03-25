@@ -73,7 +73,7 @@ public class FXMLUISignUpController extends AbstractUIController implements Init
             if(!mail_Field.getText().equals("") && !firstName.getText().equals("")&&!lastName.getText().equals("") && !pwdField.getText().equals("") && !gender.getSelectionModel().getSelectedItem().equals("") && dateOfBirth.getValue()!=null){
                 Date date= Date.valueOf(dateOfBirth.getValue());
                 if(uf.signUp(mail_Field.getText(),pwdField.getText(),firstName.getText(),lastName.getText(),gender.getSelectionModel().getSelectedItem(),date)){
-                     new NavigationHelpers().changeScene(event,"HomePage",null);
+                     new NavigationHelpers().changeScene(firstName,"HomePage",null);
                 }
                 else
                 {
@@ -85,7 +85,7 @@ public class FXMLUISignUpController extends AbstractUIController implements Init
             }
         }
         if (event.getSource()== cancelButton){
-            new NavigationHelpers().changeScene(event,"UILogin",null);
+            new NavigationHelpers().changeScene(firstName,"UILogin",null);
         }
     }
     

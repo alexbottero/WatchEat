@@ -72,7 +72,7 @@ public class FXMLUILoginController extends AbstractUIController implements Initi
         
         else if (event.getSource() == signUpButton){
             System.out.print("t a");
-            new NavigationHelpers().changeScene(event,"UISignUp",null);
+            new NavigationHelpers().changeScene(inputMail,"UISignUp",null);
         }
     }
     
