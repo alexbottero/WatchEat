@@ -33,7 +33,7 @@ import javafx.stage.Stage;
  *
  * @author fabaz
  */
-public class FXMLHomePageController implements Initializable {
+public class FXMLHomePageController extends AbstractUIController implements Initializable {
     
     private UserFacade uf;
 
@@ -56,6 +56,6 @@ public class FXMLHomePageController implements Initializable {
     @FXML
     private void deconnection(ActionEvent event){
         uf.deconnection();
-        new NavigationHelpers().changeScene(event,"UILogin");
+        new NavigationHelpers().changeScene(event,"UILogin",null);
     }
 }

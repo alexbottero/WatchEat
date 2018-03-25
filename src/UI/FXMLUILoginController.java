@@ -40,7 +40,7 @@ import javafx.stage.Stage;
  *
  * @author alexandre
  */
-public class FXMLUILoginController implements Initializable {
+public class FXMLUILoginController extends AbstractUIController implements Initializable {
     
     private UserFacade uf;
 
@@ -58,7 +58,7 @@ public class FXMLUILoginController implements Initializable {
         if(event.getSource()==btLogIn){
             if(!inputMail.getText().equals("") && !inputPwd.getText().equals("")){
                 if(uf.login(inputMail.getText(),inputPwd.getText())){
-                    new NavigationHelpers().changeScene(event,"HomePage");
+                    new NavigationHelpers().changeScene(event,"HomePage",null);
                 }else{
                     labelStatut.setText("Fail login.");
                 }
