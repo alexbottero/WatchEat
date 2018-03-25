@@ -5,6 +5,8 @@
  */
 package Helpers;
 
+import BL.User;
+import Facade.UserFacade;
 import UI.AbstractUIController;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -15,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Control;
 import javafx.stage.Stage;
 
 /**
@@ -25,24 +28,37 @@ public class NavigationHelpers {
     
     /**
      * Change de page
-     * @param event du bouton appuyé necessaire pour obtenir la fenetre actuelle
+     * @param stage stage de la page
      * @param page le nom de la page sans FXML ni .fxml
      * @param givenData la donné à transmettre à la page suivante
      */
-    public void changeScene(ActionEvent event,String page, Object givenData){
+    public void changeScene(Stage stage,String page, Object givenData){
         try {
+            //A enlever pour les tests, sinon vous devrez vous reconnecter à chaque fois
+            /*if((page == "HomePage" 
+                || page == "CreateRecipe"
+                || page == "UserAccountManager")
+                && UserFacade.connectedUser == null){
+                page = "UILogin";
+            }*/
+            
+            
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../UI/FXML" + page + ".fxml"));
             Parent parent = loader.load();
             Scene scene = new Scene(parent);
-            Stage st = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            st.setScene(scene);
-            AbstractUIController controller = loader.getController();
-            controller.setGivenData(givenData);
-            st.show();
+            stage.setScene(scene);
+            AbstractUIController nextController = loader.getController();
+            nextController.setGivenData(givenData);
+            stage.show();
         } catch (IOException ex) {
             Logger.getLogger(NavigationHelpers.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void changeScene(Control control,String page, Object givenData){
+        Stage stage = (Stage) ((Node) control).getScene().getWindow();
+        changeScene(stage,page,givenData);
     }
     
     public NavigationHelpers(){

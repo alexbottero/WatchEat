@@ -18,14 +18,19 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -43,6 +48,9 @@ public class FXMLHomePageController extends AbstractUIController implements Init
     @FXML
     private Button decoButton;
     
+    @FXML
+    private Button createRecipeButton;
+    
     
     /**
      * Initializes the controller class.
@@ -50,12 +58,17 @@ public class FXMLHomePageController extends AbstractUIController implements Init
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         uf = new UserFacade();
-        accueilLabel.setText("Accueil :D");
+        accueilLabel.setText("Accueil :D"); 
     }    
     
     @FXML
     private void deconnection(ActionEvent event){
         uf.deconnection();
-        new NavigationHelpers().changeScene(event,"UILogin",null);
+        new NavigationHelpers().changeScene(accueilLabel,"UILogin",null);
+    }
+    
+    @FXML
+    private void createRecipeButtonClicked(ActionEvent event){
+        new NavigationHelpers().changeScene(accueilLabel,"CreateRecipe",null);
     }
 }

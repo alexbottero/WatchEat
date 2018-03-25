@@ -58,17 +58,15 @@ public class FXMLUILoginController extends AbstractUIController implements Initi
         if(event.getSource()==btLogIn){
             if(!inputMail.getText().equals("") && !inputPwd.getText().equals("")){
                 if(uf.login(inputMail.getText(),inputPwd.getText())){
-                    new NavigationHelpers().changeScene(event,"HomePage",null);
+                    new NavigationHelpers().changeScene(inputMail,"HomePage",null);
                 }else{
                     labelStatut.setText("Fail login.");
                 }
-                
             }
             else{
                 labelStatut.setText("Empty fields !");
             }
         }
-   
     }
     
     /**

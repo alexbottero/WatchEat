@@ -16,8 +16,8 @@ import java.security.NoSuchAlgorithmException;
  */
 public class UserFacade {
     
-    private UserDAO userDAO;
-    private static User connectedUser;
+    public UserDAO userDAO;
+    public static User connectedUser;
 
     /**
      * Default constructor

@@ -5,6 +5,7 @@ package Application;
 
 
 
+import Helpers.NavigationHelpers;
 import java.util.*;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
@@ -22,10 +23,7 @@ public class WatchEat extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("../UI/FXMLUILogin.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        new NavigationHelpers().changeScene(stage,"HomePage",null);
     }
     
     
