@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class User {
 
-    public static User connectedUser = null;
+    private static User connectedUser = null;
     
     /**
      * Default constructor
@@ -33,27 +33,22 @@ public class User {
     }
      
     public User(String mail,String password, String firstName, String lastName, Double height, Double weight) {
-    public User(String mail,String password,String firstName,String lastName,String gender,Date date) {
         this.mail=mail;
-        this.pwd=password;
-        this.firstName=firstName;
-        this.lastName=lastName;
-        this.gender=gender;
-        this.dateOfBirth=date;
-                
-        //fact = new PostgresDAOFactory();
+        this.pwd=password;      
         this.firstName=firstName;
         this.lastName=lastName;
         this.height = height;
         this.weight= weight;
     }
     
-       public User(String mail,String password) {
+     public User(String mail,String password,String firstName,String lastName,String gender,Date date) {
         this.mail=mail;
         this.pwd=password;
- 
-    }
-
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.gender=gender;
+        this.dateOfBirth=date;
+     }
 
     /**
      * L'adresse mail de l'utilisateur.
@@ -75,6 +70,15 @@ public class User {
      */
     private String lastName = "";
     
+        /**
+     * Le genre de l'utilisateur.
+     */
+    private String gender = "";
+    
+    /**
+     * birth of user de l'utilisateur.
+     */
+    private Date dateOfBirth ;
     /**
      * La taille de l'utilisateur.
      */
@@ -84,6 +88,7 @@ public class User {
      * Le poids de l'utilisateur.
      */
     private Double weight;
+  
 
     /**
      * @return the mail
@@ -176,12 +181,12 @@ public class User {
         try {
             pwdHash = MessageDigest.getInstance("MD5").digest(pwdBy);
             pwdFinal = new String(pwdHash);
-            if(this.mail.equals(mail) && this.pwd.equals(pwdFinal)){
-                connectedUser = this;
+            if(this.getMail().equals(mail) && this.getPwd().equals(pwdFinal)){
+                setConnectedUser(this);
                 return true;
             }
             else{
-                connectedUser = null;
+                setConnectedUser(null);
                 return false;
             }
         } catch (NoSuchAlgorithmException ex) {
@@ -191,7 +196,49 @@ public class User {
     }
     
     public void deconnection() {
-        connectedUser = null;
+        setConnectedUser(null);
+    }
+
+    /**
+     * @return the connectedUser
+     */
+    public static User getConnectedUser() {
+        return connectedUser;
+    }
+
+    /**
+     * @param aConnectedUser the connectedUser to set
+     */
+    public static void setConnectedUser(User aConnectedUser) {
+        connectedUser = aConnectedUser;
+    }
+
+    /**
+     * @return the gender
+     */
+    public String getGender() {
+        return gender;
+    }
+
+    /**
+     * @param gender the gender to set
+     */
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    /**
+     * @return the dateOfBirth
+     */
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    /**
+     * @param dateOfBirth the dateOfBirth to set
+     */
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
 

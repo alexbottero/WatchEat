@@ -6,6 +6,7 @@
 package UI;
 
 import Facade.UserFacade;
+import Helpers.NavigationHelpers;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -35,7 +36,7 @@ import javafx.stage.Stage;
  *
  * @author alexandre
  */
-public class FXMLUISignUpController implements Initializable {
+public class FXMLUISignUpController extends AbstractUIController implements Initializable {
 
     @FXML
     private TextField firstName;
@@ -72,16 +73,7 @@ public class FXMLUISignUpController implements Initializable {
             if(!mail_Field.getText().equals("") && !firstName.getText().equals("")&&!lastName.getText().equals("") && !pwdField.getText().equals("") && !gender.getSelectionModel().getSelectedItem().equals("") && dateOfBirth.getValue()!=null){
                 Date date= Date.valueOf(dateOfBirth.getValue());
                 if(uf.signUp(mail_Field.getText(),pwdField.getText(),firstName.getText(),lastName.getText(),gender.getSelectionModel().getSelectedItem(),date)){
-                    try {
-                        labelStatut.setText("Sign up!");
-                        Parent scene = FXMLLoader.load(getClass().getResource("FXMLHomePage.fxml"));
-                        Scene homePage = new Scene(scene);
-                        Stage st = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        st.setScene(homePage);              
-                        st.show();
-                    } catch (IOException ex) {
-                        Logger.getLogger(FXMLUILoginController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                     new NavigationHelpers().changeScene(event,"HomePage",null);
                 }
                 else
                 {
@@ -91,6 +83,9 @@ public class FXMLUISignUpController implements Initializable {
             else{
                 labelStatut.setText("Empty fields !");
             }
+        }
+        if (event.getSource()== cancelButton){
+            new NavigationHelpers().changeScene(event,"UILogin",null);
         }
     }
     

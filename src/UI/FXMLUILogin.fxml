@@ -34,6 +34,8 @@
                   </Pane>
                   <PasswordField fx:id="inputPwd" layoutX="156.0" layoutY="120.0" AnchorPane.leftAnchor="145.0" AnchorPane.rightAnchor="20.0" />
                   <Label fx:id="labelStatut" layoutX="166.0" layoutY="30.0" />
+                  <Label layoutX="14.0" layoutY="238.0" prefHeight="17.0" prefWidth="113.0" text="Not registered ?" />
+                  <Button fx:id="signUpButton" layoutX="122.0" layoutY="233.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: #00b826;" text="Sign Up" textFill="#d3d2d2" />
                </children>
             </AnchorPane>
         </content>
