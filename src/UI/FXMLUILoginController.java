@@ -13,6 +13,7 @@ package UI;
  */
 
 import Facade.UserFacade;
+import Helpers.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
@@ -39,7 +40,7 @@ import javafx.stage.Stage;
  *
  * @author alexandre
  */
-public class FXMLUILoginController implements Initializable {
+public class FXMLUILoginController extends AbstractUIController implements Initializable {
     
     private UserFacade uf;
 
@@ -57,16 +58,7 @@ public class FXMLUILoginController implements Initializable {
         if(event.getSource()==btLogIn){
             if(!inputMail.getText().equals("") && !inputPwd.getText().equals("")){
                 if(uf.login(inputMail.getText(),inputPwd.getText())){
-                    try {
-                        labelStatut.setText("Connected !");
-                        Parent truc = FXMLLoader.load(getClass().getResource("FXMLHomePage.fxml"));
-                        Scene homePage = new Scene(truc);
-                        Stage st = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        st.setScene(homePage);              
-                        st.show();
-                    } catch (IOException ex) {
-                        Logger.getLogger(FXMLUILoginController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    new NavigationHelpers().changeScene(event,"HomePage",null);
                 }else{
                     labelStatut.setText("Fail login.");
                 }
