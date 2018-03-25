@@ -3,7 +3,6 @@ package DAO;
 
 import BL.User;
 import java.sql.*;
-import java.util.*;
 
 /**
  * 
@@ -24,6 +23,8 @@ public interface UserDAO {
      * @return 
      */
     public User update(String mail, String pwd);
+    
+    public User create(String mail,String pwd, String lastName , String firstName , String gender , Date dateOfBirth);
     public User updateUserAccount(String firstName, String lastName, String height, String weight, String mailAdress);
     
 }

@@ -52,6 +52,8 @@ public class FXMLUILoginController extends AbstractUIController implements Initi
     private Button btLogIn;
     @FXML 
     private Label labelStatut;
+    @FXML
+    private Button signUpButton;
     
     @FXML
     private void handleButtonAction(ActionEvent event) throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException {
@@ -66,6 +68,11 @@ public class FXMLUILoginController extends AbstractUIController implements Initi
             else{
                 labelStatut.setText("Empty fields !");
             }
+        }
+        
+        else if (event.getSource() == signUpButton){
+            System.out.print("t a");
+            new NavigationHelpers().changeScene(event,"UISignUp",null);
         }
     }
     

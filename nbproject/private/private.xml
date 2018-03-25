@@ -3,7 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/Polytech/Desktop/WatchEat/src/UI/FXMLUIUserAccountManagerController.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/BL/User.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/JDBC/JDBC.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/UI/FXMLUISignUp.fxml</file>
+            <file>file:/Users/alexandre/WatchEat/src/DAO/UserDAO.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/UI/FXMLUILoginController.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/UI/FXMLUISignUpController.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/DAO/DAOFactory.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/Facade/UserFacade.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/DAO/PostgresDAOFactory.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/DAO/PostgresUserDAO.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/WatchEat.java</file>
         </group>
     </open-files>
 </project-private>
