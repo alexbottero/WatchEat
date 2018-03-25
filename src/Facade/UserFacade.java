@@ -68,7 +68,7 @@ public class UserFacade {
      * 
      */
     public void deconnection() {
-        this.connectedUser = null;
+        UserFacade.connectedUser = null;
     }
     
     /**

@@ -11,6 +11,7 @@ package UI;
  */
 
 import Facade.*;
+import Helpers.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -54,16 +55,7 @@ public class FXMLHomePageController implements Initializable {
     
     @FXML
     private void deconnection(ActionEvent event){
-        
-        try {
-            uf.deconnection();
-            Parent truc = FXMLLoader.load(getClass().getResource("FXMLUILogin.fxml"));
-            Scene homePage = new Scene(truc);
-            Stage st = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            st.setScene(homePage);
-            st.show();
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLHomePageController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        uf.deconnection();
+        new NavigationHelpers().changeScene(event,"UILogin");
     }
 }
