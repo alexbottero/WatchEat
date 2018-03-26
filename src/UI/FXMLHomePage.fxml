@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.FXMLHomePageController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.FXMLHomePageController">
    <children>
       <Label fx:id="accueilLabel" layoutX="253.0" layoutY="178.0" text="Accueil" textAlignment="CENTER" textFill="#079a0c">
          <font>
@@ -14,5 +14,6 @@
       </Label>
       <Button fx:id="decoButton" layoutX="53.0" layoutY="30.0" mnemonicParsing="false" onAction="#deconnection" style="-fx-background-color: black;" text="Déconnexion" textAlignment="CENTER" textFill="WHITE" />
       <Button fx:id="createRecipeButton" layoutX="42.0" layoutY="330.0" mnemonicParsing="false" onAction="#createRecipeButtonClicked" text="Créer une recette" />
+      <Button fx:id="account" layoutX="234.0" layoutY="330.0" mnemonicParsing="false" onAction="#clickOnAccountButton" text="Mon compte" />
    </children>
 </AnchorPane>
