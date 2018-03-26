@@ -6,6 +6,8 @@
 package DAO;
 
 import BL.Consumable;
+import BL.Ingredient;
+import BL.Recipe;
 import java.util.ArrayList;
 
 /**
@@ -15,4 +17,8 @@ import java.util.ArrayList;
 public interface ConsumableDAO {
     
     public ArrayList<Consumable> getConsumables();
+    public Consumable getConsumable(String name);
+    public ArrayList<Consumable> getFood();
+    public ArrayList<Consumable> getRecipes();
+    public ArrayList<Ingredient> getIngredients(Recipe recipe);
 }

@@ -6,6 +6,7 @@
 package UI;
 
 import BL.Consumable;
+import BL.Ingredient;
 import Facade.RecipeFacade;
 import Facade.UserFacade;
 import Helpers.NavigationHelpers;
@@ -179,9 +180,17 @@ public class FXMLCreateRecipeController extends AbstractUIController implements 
             errorMessageLabel.setText("Des champs obligatoirs sont vides.");
         }
         else{
-            try { 
+            try {
+                ArrayList<String> ingredientsName = new ArrayList<>();
+                ArrayList<Integer> ingredientsQuantity = new ArrayList<>();
+                for(ComboBox ingredientField : ingredientsField){
+                    ingredientsName.add((String)ingredientField.getValue());
+                    ingredientsQuantity.add(Integer.parseInt(quantitiesField.get(ingredientsField.indexOf(ingredientField)).getText()));
+                }
                 int time = Integer.parseInt(timeField.getText());
                 int peopleAmount = Integer.parseInt(peopleAmountString);
+                
+                this.recipeFacade.createRecipe(name,description,type,timeString,peopleAmountString,instructions,ingredientsName,ingredientsQuantity);
                 errorMessageLabel.setText("Recette créée.");
             } 
             catch (NumberFormatException e) { 

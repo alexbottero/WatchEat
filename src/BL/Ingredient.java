@@ -17,4 +17,12 @@ public class Ingredient {
         this.consumable = consumable;
         this.quantity = quantity;
     }
+
+    public Consumable getConsumable() {
+        return this.consumable;
+    }
+
+    public int getQuantity() {
+        return this.quantity;
+    }
 }

@@ -5,6 +5,8 @@
  */
 package BL;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author fabaz
@@ -26,4 +28,6 @@ public abstract class Consumable implements Comparable {
     public int compareTo(Object c){
         return (this.name.compareTo(((Consumable)c).getName()));
     }
+
+    public abstract void setIngredients(ArrayList<Ingredient> ingredients);
 }

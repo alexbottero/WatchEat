@@ -5,6 +5,7 @@
  */
 package BL;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,13 +16,13 @@ public class Recipe extends Consumable{
 
     private String description;
     private String instructions;
-    private String time;
-    private String peopleAmount;
+    private int time;
+    private int peopleAmount;
     private String type;
-    private List<Ingredient> ingredients;
+    private ArrayList<Ingredient> ingredients;
     
 
-    public Recipe(String name, String description, String instructions, String time, String peopleAmount, String type, List<Ingredient> ingredients) {
+    public Recipe(String name, String description, String instructions, int time, int peopleAmount, String type, ArrayList<Ingredient> ingredients) {
         super(name);
         this.description = description;
         this.instructions = instructions;
@@ -31,7 +32,7 @@ public class Recipe extends Consumable{
         this.ingredients = ingredients;
     }
     
-    public Recipe(String name, String description, String instructions, String time, String peopleAmount, String type) {
+    public Recipe(String name, String description, String instructions, int time, int peopleAmount, String type) {
         super(name);
         this.description = description;
         this.instructions = instructions;
@@ -41,7 +42,29 @@ public class Recipe extends Consumable{
         this.ingredients = null;
     }
     
-    public void setIngredients(List<Ingredient> ingredients){
+
+    @Override
+    public void setIngredients(ArrayList<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public String getInstructions() {
+        return this.instructions;
+    }
+
+    public int getTimeRecipe() {
+       return this.time; 
+    }
+
+    public int getPeopleAmount() {
+        return this.peopleAmount;
+    }
+
+    public Iterable<Ingredient> getIngredients() {
+        return this.ingredients;
+    }
+
+    public String getType() {
+        return this.type;
     }
 }

@@ -6,6 +6,8 @@
 package Facade;
 
 import BL.Consumable;
+import BL.Ingredient;
+import BL.Recipe;
 import DAO.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,5 +43,18 @@ public class RecipeFacade {
             nameConsumables.add(c.getName());
         });
         return FXCollections.observableArrayList(nameConsumables);
+    }
+    
+    public void createRecipe(String name, String description, String type, String timeString, String peopleAmountString, String instructions, ArrayList<String> ingredientsName, ArrayList<Integer> ingredientsQuantity) {
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
+        for(String ingredientName : ingredientsName){
+            Consumable consumable = consumableDAO.getConsumable(name);
+            int quantity = ingredientsQuantity.get(ingredientsName.indexOf(ingredientName));
+            ingredients.add(new Ingredient(consumable,quantity));
+        }
+        int time = Integer.parseInt(timeString);
+        int peopleAmount = Integer.parseInt(peopleAmountString);
+        Recipe recipe = new Recipe(name,description,instructions,time,peopleAmount,type,ingredients);
+        recipeDAO.createRecipe(recipe);
     }
 }

@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import BL.Recipe;
 import java.util.ArrayList;
 
 /**
@@ -14,5 +15,7 @@ import java.util.ArrayList;
 public interface RecipeDAO {
 
     public ArrayList<String> getTypes();
+
+    public void createRecipe(Recipe recipe);
     
 }

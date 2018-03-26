@@ -5,6 +5,8 @@
  */
 package BL;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author fabaz
@@ -13,6 +15,10 @@ public class Food extends Consumable{
     
     public Food(String name) {
         super(name);
+    }
+
+    @Override
+    public void setIngredients(ArrayList<Ingredient> ingredients) {
     }
     
 }
