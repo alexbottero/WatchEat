@@ -68,7 +68,7 @@ public class PostgresUserDAO implements UserDAO {
     }
     @Override
     public User updateUserAccount(String firstName, String lastName, String height, String weight, String mailAdress) {
-        String query = "UPDATE public.user SET firstName = '" + firstName + "' lastName = '" + lastName + "' height = '" + height + "' weight = '" + weight +"' WHERE mail = '" + mailAdress + "'";
+        String query = "UPDATE public.user SET firstName = '" + firstName + "', lastName = '" + lastName + "' ,height = '" + height + "' ,weight = '" + weight +"' WHERE mail = '" + mailAdress + "'";
         try {
            jdbc.update(query);
         } catch(SQLException ex) {

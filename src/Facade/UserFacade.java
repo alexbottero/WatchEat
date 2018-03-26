@@ -108,10 +108,12 @@ public class UserFacade {
      * @param lastName 
      * @param height 
      * @param weight 
+     * @return  
      */
-    public void updateUserAccount(String firstName, String lastName, String height, String weight) {
+    public User updateUserAccount(String firstName, String lastName, String height, String weight) {
         User user = userDAO.updateUserAccount(firstName, lastName, height, weight, connectedUser.getMail());
         connectedUser = user;
+        return connectedUser;
     }
     
     public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException, SQLException{

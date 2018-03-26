@@ -30,7 +30,7 @@ public class NavigationHelpers {
      * Change de page
      * @param stage stage de la page
      * @param page le nom de la page sans FXML ni .fxml
-     * @param givenData la donné à transmettre à la page suivante
+     * @param givenData la donnée à transmettre à la page suivante
      */
     public void changeScene(Stage stage,String page, Object givenData){
         try {

@@ -5,13 +5,16 @@
  */
 package UI;
 
+import BL.User;
 import Facade.UserFacade;
+import Helpers.NavigationHelpers;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
@@ -19,7 +22,7 @@ import javafx.scene.control.TextField;
  *
  * @author Polytech
  */
-public class FXMLUIUserAccountManagerController implements Initializable {
+public class FXMLUIUserAccountManagerController extends AbstractUIController implements Initializable {
 
     @FXML
     private Button Validate;
@@ -35,6 +38,8 @@ public class FXMLUIUserAccountManagerController implements Initializable {
     private Button changePassword_button;
     
     private UserFacade uf;
+    @FXML
+    private Label labelText;
     /**
      * Initializes the controller class.
      */
@@ -42,11 +47,26 @@ public class FXMLUIUserAccountManagerController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         this.uf = new UserFacade();
+        User user = UserFacade.connectedUser;
+        firstName_textField.setText(user.getFirstName());
+        lastName_textField.setText(user.getLastName());
+        String h = Double.toString(user.getHeight());
+        height_textField.setText(h);
+        String w = Double.toString(user.getWeight());
+        weight_textField.setText(w);
+        
     }    
 
     @FXML
     private void click_validate(ActionEvent event) {
-        uf.updateUserAccount(firstName_textField.getText(), lastName_textField.getText(), height_textField.getText(), weight_textField.getText());
+        if(uf.updateUserAccount(firstName_textField.getText(), lastName_textField.getText(), height_textField.getText(), weight_textField.getText())!= null){
+            new NavigationHelpers().changeScene(Validate,"HomePage",null);
+            labelText.setText("Changements réussis");
+        }
+        else{
+                labelText.setText("Erreur");
+                }
     }
     
 }
+
