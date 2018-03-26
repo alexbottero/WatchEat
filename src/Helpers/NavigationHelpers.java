@@ -37,7 +37,7 @@ public class NavigationHelpers {
             //A enlever pour les tests, sinon vous devrez vous reconnecter à chaque fois
             if((page == "HomePage" 
                 || page == "CreateRecipe"
-                || page == "UserAccountManager")
+                || page == "UIUserAccountManager")
                 && UserFacade.connectedUser == null){
                 page = "UILogin";
             }

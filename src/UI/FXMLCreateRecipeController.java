@@ -164,17 +164,24 @@ public class FXMLCreateRecipeController extends AbstractUIController implements 
      * @param event clique sur le bouton créer recette
      */
     public void createRecipeClicked(ActionEvent event){
-        if("".equals(nameField.getText()) 
-            || "".equals(descriptionField.getText()) 
-            || typeField.getValue() == null
-            || "".equals(timeField.getText())
-            || "".equals(peopleAmountField.getText())
-            || "".equals(instructionsField.getText())){
+        String name = nameField.getText();
+        String description = descriptionField.getText();
+        String type = (String) typeField.getValue();
+        String timeString = timeField.getText();
+        String peopleAmountString = peopleAmountField.getText();
+        String instructions = instructionsField.getText();
+        if("".equals(name) 
+            || "".equals(description) 
+            || type == null
+            || "".equals(timeString)
+            || "".equals(peopleAmountString)
+            || "".equals(instructions)){
             errorMessageLabel.setText("Des champs obligatoirs sont vides.");
         }
         else{
             try { 
-                int i = Integer.parseInt(timeField.getText());
+                int time = Integer.parseInt(timeField.getText());
+                int peopleAmount = Integer.parseInt(peopleAmountString);
                 errorMessageLabel.setText("Recette créée.");
             } 
             catch (NumberFormatException e) { 
