@@ -9,18 +9,21 @@ package BL;
  *
  * @author fabaz
  */
-public class Consumable {
+public abstract class Consumable implements Comparable {
     String name;
     Food food;
     Recipe recipe;
     
-    public Consumable(String name, Food food, Recipe recipe){
+    public Consumable(String name){
         this.name = name;
-        this.food = food;
-        this.recipe = recipe;
     }
 
     public String getName() {
         return this.name;
+    }
+    
+    @Override
+    public int compareTo(Object c){
+        return (this.name.compareTo(((Consumable)c).getName()));
     }
 }

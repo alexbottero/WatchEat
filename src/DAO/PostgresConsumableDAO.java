@@ -6,10 +6,13 @@
 package DAO;
 
 import BL.Consumable;
+import BL.Food;
+import BL.Recipe;
 import JDBC.JDBC;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,15 +31,26 @@ public class PostgresConsumableDAO implements ConsumableDAO {
     public ArrayList<Consumable> getConsumables(){
         ArrayList<Consumable> consumables = new ArrayList<>();
         try {
-            String query = "SELECT * FROM public.consumable ORDER BY name";
+            String query = "SELECT * FROM public.consumable";
             ResultSet res = jdbc.select(query);
             while(res.next()){
-                Consumable consumable  = new Consumable(res.getString("name"),null,null); 
-                consumables.add(consumable);
+                Food food  = new Food(res.getString("name")); 
+                consumables.add(food);
+            }
+            query = "SELECT * FROM public.recipe";
+            res = jdbc.select(query);
+            while(res.next()){
+                Recipe recipe  = new Recipe(res.getString("name"),
+                        res.getString("description"),
+                        res.getString("instructions"),
+                        res.getString("timeRecipe"),
+                        res.getString("peopleAmount")); 
+                consumables.add(recipe);
             }
         } catch (SQLException ex) {
             Logger.getLogger(PostgresRecipeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        Collections.sort(consumables);
         return consumables;
     }
     

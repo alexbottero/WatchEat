@@ -9,6 +9,10 @@ package BL;
  *
  * @author fabaz
  */
-public class Food {
+public class Food extends Consumable{
+    
+    public Food(String name) {
+        super(name);
+    }
     
 }
