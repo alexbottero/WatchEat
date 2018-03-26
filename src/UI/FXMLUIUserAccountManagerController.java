@@ -6,6 +6,7 @@
 package UI;
 
 import Facade.UserFacade;
+import Helpers.NavigationHelpers;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -19,7 +20,7 @@ import javafx.scene.control.TextField;
  *
  * @author Polytech
  */
-public class FXMLUIUserAccountManagerController implements Initializable {
+public class FXMLUIUserAccountManagerController extends AbstractUIController implements Initializable {
 
     @FXML
     private Button Validate;
@@ -46,7 +47,12 @@ public class FXMLUIUserAccountManagerController implements Initializable {
 
     @FXML
     private void click_validate(ActionEvent event) {
-        uf.updateUserAccount(firstName_textField.getText(), lastName_textField.getText(), height_textField.getText(), weight_textField.getText());
+        if(uf.updateUserAccount(firstName_textField.getText(), lastName_textField.getText(), height_textField.getText(), weight_textField.getText())!= null){
+            new NavigationHelpers().changeScene(Validate,"HomePage",null);
+        }
+        else{
+                System.out.print("faux");
+                }
     }
     
 }
