@@ -88,6 +88,8 @@ public class FXMLCreateRecipeController extends AbstractUIController implements 
     
     private RecipeFacade recipeFacade;
     
+    private ObservableList<String> consumables;
+    
     
     /**
      * Initializes the controller class.
@@ -104,12 +106,12 @@ public class FXMLCreateRecipeController extends AbstractUIController implements 
         addRowIngredient();
         ObservableList<String> types = recipeFacade.getTypes();
         typeField.setItems(types);
-        ObservableList<String> consumables = recipeFacade.getConsumables();
-        ingredientsField.get(0).setItems(consumables);
+        consumables = recipeFacade.getConsumables();
+        ingredientsField.get(0).setItems(consumables);     
+
     }
     
     /**
-     *
      * @param event
      */
     public void addIngredientButtonClicked(ActionEvent event){
@@ -126,7 +128,6 @@ public class FXMLCreateRecipeController extends AbstractUIController implements 
         ComboBox ingredientField = new ComboBox();
         ingredientField.setPromptText("Ingrédients");
         ingredientsPane.add(ingredientField, 0, indexIngredient);
-        ObservableList<String> consumables = recipeFacade.getConsumables();
         ingredientField.setItems(consumables);
         
         TextField quantityField = new TextField();

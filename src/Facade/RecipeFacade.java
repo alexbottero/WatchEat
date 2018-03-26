@@ -8,6 +8,7 @@ package Facade;
 import BL.Consumable;
 import DAO.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -35,6 +36,7 @@ public class RecipeFacade {
     public ObservableList<String> getConsumables(){
         ArrayList<Consumable> consumables = consumableDAO.getConsumables();
         ArrayList<String> nameConsumables = new ArrayList<String>();
+        Collections.sort(consumables);
         consumables.forEach((c) -> {
             nameConsumables.add(c.getName());
         });

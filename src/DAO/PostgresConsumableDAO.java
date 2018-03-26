@@ -50,7 +50,6 @@ public class PostgresConsumableDAO implements ConsumableDAO {
         } catch (SQLException ex) {
             Logger.getLogger(PostgresRecipeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Collections.sort(consumables);
         return consumables;
     }
     
