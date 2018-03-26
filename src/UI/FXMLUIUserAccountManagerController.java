@@ -48,6 +48,7 @@ public class FXMLUIUserAccountManagerController extends AbstractUIController imp
         // TODO
         this.uf = new UserFacade();
         User user = UserFacade.connectedUser;
+        System.out.println(user.getFirstName());
         firstName_textField.setText(user.getFirstName());
         lastName_textField.setText(user.getLastName());
         if(!(user.getHeight()==null)) {
