@@ -20,11 +20,17 @@ public class PostgresUserDAO implements UserDAO {
     
     @Override
     public User find(String mail) throws SQLException {
-        String query = "SELECT mail, pwd FROM public.user WHERE mail = '" + mail +"'";
+        String query = "SELECT * FROM public.user WHERE mail = '" + mail +"'";
         ResultSet res = jdbc.select(query);
         
         if(res.next()){
-            User user  = new User(res.getString("mail"),res.getString("pwd"));
+            User user = new User();
+            user.setMail(res.getString("mail"));
+            user.setPwd(res.getString("pwd"));
+            user.setLastName(res.getString("lastname"));
+            user.setFirstName(res.getString("firstname"));
+            user.setGender(res.getString("gender"));
+            user.setDateOfBirth(java.sql.Date.valueOf(res.getString("dateofbirth")));
             return user; 
         }else{
             return null;
@@ -68,7 +74,7 @@ public class PostgresUserDAO implements UserDAO {
     }
     @Override
     public User updateUserAccount(String firstName, String lastName, String height, String weight, String mailAdress) {
-        String query = "UPDATE public.user SET firstName = '" + firstName + "', lastName = '" + lastName + "' ,height = '" + height + "' ,weight = '" + weight +"' WHERE mail = '" + mailAdress + "'";
+        String query = "UPDATE public.user SET firstName = '" + firstName + "', lastName = '" + lastName + "' ,height = " + (int)Double.parseDouble(height)*100 + " ,weight = " + weight +" WHERE mail = '" + mailAdress + "'";
         try {
            jdbc.update(query);
         } catch(SQLException ex) {
@@ -78,9 +84,9 @@ public class PostgresUserDAO implements UserDAO {
         user.setMail(mailAdress);
         user.setFirstName(firstName);
         user.setLastName(lastName);
-        double h = Double.parseDouble(height);
+        int h = Integer.parseInt(height);
         user.setHeight(h);
-        double w = Double.parseDouble(weight);
+        int w = Integer.parseInt(weight);
         user.setWeight(w);
         return user;
      

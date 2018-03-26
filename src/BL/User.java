@@ -19,36 +19,6 @@ import java.util.logging.Logger;
 public class User {
 
     private static User connectedUser = null;
-    
-    /**
-     * Default constructor
-     */
-    public User() {
-        //fact = new PostgresDAOFactory();
-    }
-    
-        public User(String mail,String password) {
-        this.mail=mail;
-        this.pwd=password;
-    }
-     
-    public User(String mail,String password, String firstName, String lastName, Double height, Double weight) {
-        this.mail=mail;
-        this.pwd=password;      
-        this.firstName=firstName;
-        this.lastName=lastName;
-        this.height = height;
-        this.weight= weight;
-    }
-    
-     public User(String mail,String password,String firstName,String lastName,String gender,Date date) {
-        this.mail=mail;
-        this.pwd=password;
-        this.firstName=firstName;
-        this.lastName=lastName;
-        this.gender=gender;
-        this.dateOfBirth=date;
-     }
 
     /**
      * L'adresse mail de l'utilisateur.
@@ -82,13 +52,45 @@ public class User {
     /**
      * La taille de l'utilisateur.
      */
-    private Double height;
+    private int height;
     
     /**
      * Le poids de l'utilisateur.
      */
-    private Double weight;
+    private int weight;
   
+    
+    /**
+     * Default constructor
+     */
+    public User() {
+        //fact = new PostgresDAOFactory();
+    }
+    
+    public User(String mail,String password) {
+        this.mail=mail;
+        this.pwd=password;
+    }
+     
+    public User(String mail,String password, String firstName, String lastName, int height, int weight) {
+        this.mail=mail;
+        this.pwd=password;      
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.height = height;
+        this.weight= weight;
+    }
+    
+     public User(String mail,String password,String firstName,String lastName,String gender,Date date) {
+        this.mail=mail;
+        this.pwd=password;
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.gender=gender;
+        this.dateOfBirth=date;
+        this.height = 0;
+        this.weight =0;
+     }
 
     /**
      * @return the mail
@@ -149,28 +151,28 @@ public class User {
     /**
      * @return the height
      */
-    public Double getHeight() {
+    public int getHeight() {
         return height;
     }
 
     /**
      * @param height the height to set
      */
-    public void setHeight(Double height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
     /**
      * @return the weight
      */
-    public Double getWeight() {
+    public int getWeight() {
         return weight;
     }
 
     /**
      * @param weight the weight to set
      */
-    public void setWeight(Double weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 

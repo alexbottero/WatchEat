@@ -31,6 +31,8 @@ public class WatchEat extends Application{
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        System.out.println(Double.parseDouble("1.81"));
+        //System.out.println(Double.parseDouble("1,81"));
         launch(args);
     }
 }

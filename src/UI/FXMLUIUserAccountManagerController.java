@@ -50,12 +50,12 @@ public class FXMLUIUserAccountManagerController extends AbstractUIController imp
         User user = UserFacade.connectedUser;
         firstName_textField.setText(user.getFirstName());
         lastName_textField.setText(user.getLastName());
-        if(!(user.getHeight()==null)) {
-        String h = Double.toString(user.getHeight());
+        if(!(user.getHeight()==0)) {
+        String h = Integer.toString(user.getHeight());
         height_textField.setText(h);
         }
-        if(!(user.getWeight()==null)){
-        String w = Double.toString(user.getWeight());
+        if(!(user.getWeight()==0)){
+        String w = Integer.toString(user.getWeight());
         weight_textField.setText(w);
         }
         
