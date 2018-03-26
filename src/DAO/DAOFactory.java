@@ -9,7 +9,10 @@ import java.util.*;
 public abstract class DAOFactory {
     DAOFactory singleton;
     
-    UserDAO userDao;
+    UserDAO userDAO;
+    RecipeDAO recipeDAO;
+    ConsumableDAO consumableDAO;
+    
     /**
      * Default constructor
      */
@@ -27,4 +30,8 @@ public abstract class DAOFactory {
      * @return 
      */
     public abstract DAOFactory getFactory();
+
+    public abstract RecipeDAO createRecipeDAO();
+
+    public abstract ConsumableDAO createConsumableDAO();
 }

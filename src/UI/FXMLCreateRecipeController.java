@@ -5,6 +5,8 @@
  */
 package UI;
 
+import BL.Consumable;
+import Facade.RecipeFacade;
 import Facade.UserFacade;
 import Helpers.NavigationHelpers;
 import java.awt.event.ActionListener;
@@ -12,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
@@ -83,6 +86,8 @@ public class FXMLCreateRecipeController extends AbstractUIController implements 
      */
     private ArrayList<Button> deleteButtons;
     
+    private RecipeFacade recipeFacade;
+    
     
     /**
      * Initializes the controller class.
@@ -91,12 +96,16 @@ public class FXMLCreateRecipeController extends AbstractUIController implements 
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        uf = new UserFacade();
+        recipeFacade = new RecipeFacade();
         errorMessageLabel.setText("");
         ingredientsField = new ArrayList<ComboBox>();
         quantitiesField = new ArrayList<TextField>();
         deleteButtons = new ArrayList<Button>();
         addRowIngredient();
+        ObservableList<String> types = recipeFacade.getTypes();
+        typeField.setItems(types);
+        ObservableList<String> consumables = recipeFacade.getConsumables();
+        ingredientsField.get(0).setItems(consumables);
     }
     
     /**
@@ -117,7 +126,8 @@ public class FXMLCreateRecipeController extends AbstractUIController implements 
         ComboBox ingredientField = new ComboBox();
         ingredientField.setPromptText("Ingrédients");
         ingredientsPane.add(ingredientField, 0, indexIngredient);
-        
+        ObservableList<String> consumables = recipeFacade.getConsumables();
+        ingredientField.setItems(consumables);
         
         TextField quantityField = new TextField();
         quantityField.setPromptText("Quantité (g / ml)");
@@ -128,19 +138,13 @@ public class FXMLCreateRecipeController extends AbstractUIController implements 
         
         deleteButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                if(deleteButtons.size() > 1){
-                    int index  = deleteButtons.indexOf(e.getSource());
-                    ingredientsPane.getChildren().remove(ingredientsField.get(index));
-                    ingredientsPane.getChildren().remove(quantitiesField.get(index));
-                    ingredientsPane.getChildren().remove(deleteButtons.get(index));
-                    ingredientsField.remove(index);
-                    quantitiesField.remove(index);
-                    System.out.println(deleteButtons.size());
-                    deleteButtons.remove(index);
-                    System.out.println(deleteButtons.size());
-                }
+                int index  = deleteButtons.indexOf(e.getSource());
+                deleteRow(index);
             }
+
+            
         });
+        
         ingredientsField.add(ingredientField);
         quantitiesField.add(quantityField);
         deleteButtons.add(deleteButton);
@@ -174,6 +178,29 @@ public class FXMLCreateRecipeController extends AbstractUIController implements 
             } 
             catch (NumberFormatException e) { 
                 errorMessageLabel.setText("Le nombre de personne et le temps de la recette doit être un nombre entier représentant le nombre de minute."); 
+            }
+        }
+    }
+    
+    /**
+     * Supprime une ligne du tableau des ingrédients
+     * @param index 
+     */
+    private void deleteRow(int index) {
+        if(deleteButtons.size() > 1){
+            //Supression de l'élément des listes de Controls
+            ingredientsField.remove(index);
+            quantitiesField.remove(index);
+            deleteButtons.remove(index);
+
+            //Vidage du GridPane pour le reremplir ensuite
+            ingredientsPane.getChildren().removeIf(c -> true);
+            index = 0;
+            for(ComboBox ingredientField : ingredientsField){
+                ingredientsPane.add(ingredientField,0,index);
+                ingredientsPane.add(quantitiesField.get(index),1,index);
+                ingredientsPane.add(deleteButtons.get(index),2,index);
+                index++;
             }
         }
     }

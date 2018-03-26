@@ -42,7 +42,6 @@ public class NavigationHelpers {
                 page = "UILogin";
             }
             
-            
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../UI/FXML" + page + ".fxml"));
             Parent parent = loader.load();

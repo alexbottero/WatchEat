@@ -31,18 +31,31 @@ public class PostgresDAOFactory extends DAOFactory {
     
     /**
      * 
-     * @return 
+     * @return PostgresUserDAO
      */
     public UserDAO createUserDAO() {
         return new PostgresUserDAO();
     }
-    
     
     public PostgresDAOFactory getFactory(){
         if (this.singleton ==null){
             this.singleton = new PostgresDAOFactory();
         }
         return (PostgresDAOFactory) singleton;
+    }
+
+    /**
+     * 
+     * @return PostgresRecipeDAO
+     */
+    @Override
+    public RecipeDAO createRecipeDAO() {
+        return new PostgresRecipeDAO();
+    }
+
+    @Override
+    public ConsumableDAO createConsumableDAO() {
+        return new PostgresConsumableDAO();
     }
 
 }

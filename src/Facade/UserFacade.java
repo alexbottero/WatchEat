@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class UserFacade {
     
-    public UserDAO userDAO;
+    private UserDAO userDAO;
     public static User connectedUser;
 
     /**
