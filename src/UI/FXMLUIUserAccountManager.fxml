@@ -33,13 +33,14 @@
                         <Label text="First name :" />
                         <Label text="Height : " GridPane.rowIndex="2" />
                         <Label text="Weight :" GridPane.rowIndex="3" />
-                        <TextField fx:id="firstName_textField" promptText="Marion" GridPane.columnIndex="1" />
-                        <TextField fx:id="lastName_textField" promptText="RUL" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="height_textField" promptText="1,58" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField fx:id="weight_textField" promptText="48" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="firstName_textField" GridPane.columnIndex="1" />
+                        <TextField fx:id="lastName_textField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="height_textField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="weight_textField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Button fx:id="changePassword_button" mnemonicParsing="false" text="Change password" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
+                  <Label fx:id="labelText" layoutX="242.0" layoutY="26.0" text="Label" />
                </children>
             </AnchorPane>
         </content>

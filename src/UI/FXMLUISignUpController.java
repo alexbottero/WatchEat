@@ -63,7 +63,7 @@ public class FXMLUISignUpController extends AbstractUIController implements Init
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         uf = new UserFacade(); // TODO
-        gender.setItems(FXCollections.observableArrayList("Mal", "Femal"));
+        gender.setItems(FXCollections.observableArrayList("Male", "Female"));
         
     }    
 
