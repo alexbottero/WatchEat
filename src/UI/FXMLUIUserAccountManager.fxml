@@ -31,7 +31,7 @@
                         <Button fx:id="Validate" mnemonicParsing="false" onAction="#click_validate" text="Validate" GridPane.rowIndex="4" />
                         <Label text="Last name :" GridPane.rowIndex="1" />
                         <Label text="First name :" />
-                        <Label text="Height : " GridPane.rowIndex="2" />
+                        <Label text="Height (cm) : " GridPane.rowIndex="2" />
                         <Label text="Weight :" GridPane.rowIndex="3" />
                         <TextField fx:id="firstName_textField" GridPane.columnIndex="1" />
                         <TextField fx:id="lastName_textField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -40,7 +40,7 @@
                         <Button fx:id="changePassword_button" mnemonicParsing="false" text="Change password" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
-                  <Label fx:id="labelText" layoutX="242.0" layoutY="26.0" text="Label" />
+                  <Label fx:id="labelText" layoutX="242.0" layoutY="26.0" />
                </children>
             </AnchorPane>
         </content>
