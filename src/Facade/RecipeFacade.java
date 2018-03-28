@@ -36,13 +36,9 @@ public class RecipeFacade {
     }
     
     public ObservableList<String> getConsumables(){
-        ArrayList<Consumable> consumables = consumableDAO.getConsumables();
-        ArrayList<String> nameConsumables = new ArrayList<String>();
+        ArrayList<String> consumables = consumableDAO.getStringConsumables();
         Collections.sort(consumables);
-        consumables.forEach((c) -> {
-            nameConsumables.add(c.getName());
-        });
-        return FXCollections.observableArrayList(nameConsumables);
+        return FXCollections.observableArrayList(consumables);
     }
     
     public void createRecipe(String name, String description, String type, String timeString, String peopleAmountString, String instructions, ArrayList<String> ingredientsName, ArrayList<Integer> ingredientsQuantity) {
@@ -56,5 +52,9 @@ public class RecipeFacade {
         int peopleAmount = Integer.parseInt(peopleAmountString);
         Recipe recipe = new Recipe(name,description,instructions,time,peopleAmount,type,ingredients);
         recipeDAO.createRecipe(recipe);
+    }
+
+    public ObservableList<String> getStringConsumables() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

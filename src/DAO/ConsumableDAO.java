@@ -21,4 +21,6 @@ public interface ConsumableDAO {
     public ArrayList<Consumable> getFood();
     public ArrayList<Consumable> getRecipes();
     public ArrayList<Ingredient> getIngredients(Recipe recipe);
+
+    public ArrayList<String> getStringConsumables();
 }

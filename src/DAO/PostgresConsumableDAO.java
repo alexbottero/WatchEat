@@ -130,5 +130,20 @@ public class PostgresConsumableDAO implements ConsumableDAO {
         res.addAll(getFood());
         return res;
     }
+
+    @Override
+    public ArrayList<String> getStringConsumables() {
+        ArrayList<String> consumables = new ArrayList<>();
+        try {
+            String query = "SELECT name FROM public.consumable ORDER BY name";
+            ResultSet res = jdbc.select(query);
+            while(res.next()){
+                consumables.add(res.getString("name"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PostgresConsumableDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return consumables;
+    }
     
 }
