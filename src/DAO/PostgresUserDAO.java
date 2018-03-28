@@ -52,22 +52,31 @@ public class PostgresUserDAO implements UserDAO {
     }
 
     @Override
-    public User create(String mail,String pwd, String lastName , String firstName , String gender , java.sql.Date dateOfBirth){
+    public User create(String mail,String pwd, String lastName , String firstName , String gender , java.sql.Date dateOfBirth, String nutriDesc){
         
         
-        String query= "INSERT INTO public.user( mail, pwd, lastname, firstname,gender,dateOfBirth) VALUES('"+ mail +"','"+pwd+"','"+ lastName+"','"+firstName+"','"+gender+"','"+dateOfBirth+"')";
+        String query= "INSERT INTO public.user( mail, pwd, lastname, firstname,gender,dateOfBirth, nutridescription) VALUES('"+ mail +"','"+pwd+"','"+ lastName+"','"+firstName+"','"+gender+"','"+dateOfBirth+"','"+ nutriDesc"')";
         try {
             jdbc.update(query);
         } catch (SQLException ex) {
             Logger.getLogger(PostgresUserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        User user = new User();
+        
+        User user;
+        if(){
+            user = new User();
+        }
+        else{
+            user = new Nutritionnist();
+        }
         user.setMail(mail);
         user.setPwd(pwd);
         user.setLastName(lastName);
         user.setFirstName(firstName);
         user.setGender(gender);
         user.setDateOfBirth(dateOfBirth);
+        user.setNutriDesc(nutridescription);
+        
         return user;
         
         
