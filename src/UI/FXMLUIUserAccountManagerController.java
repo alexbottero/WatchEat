@@ -72,5 +72,13 @@ public class FXMLUIUserAccountManagerController extends AbstractUIController imp
                 }
     }
     
+        /**
+     * Lors du click sur le bouton retour, refait venir à la page précédente
+     * @param event
+     */
+    public void backClicked(ActionEvent event){
+        new NavigationHelpers().changeScene(Validate,"HomePage",null);
+    }
+    
 }
 

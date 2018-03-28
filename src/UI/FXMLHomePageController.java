@@ -28,6 +28,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -49,11 +50,13 @@ public class FXMLHomePageController extends AbstractUIController implements Init
     private Button decoButton;
     
     @FXML
-    private Button createRecipeButton;
+    private MenuItem createRecipeButton;
     @FXML
-    private Button account;
+    private MenuItem account;
     @FXML
-    private Button myRequestButton;
+    private MenuItem myRequestButton;
+    @FXML
+    private MenuItem newRequestButton;
     
     
     /**
@@ -61,8 +64,7 @@ public class FXMLHomePageController extends AbstractUIController implements Init
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        uf = new UserFacade();
-        accueilLabel.setText("Accueil :D"); 
+        uf = new UserFacade(); 
     }    
     
     @FXML
@@ -78,11 +80,15 @@ public class FXMLHomePageController extends AbstractUIController implements Init
 
     @FXML
     private void clickOnAccountButton(ActionEvent event) {
-        new NavigationHelpers().changeScene(account, "UIUserAccountManager", null);
+        new NavigationHelpers().changeScene(accueilLabel, "UIUserAccountManager", null);
     }
     
    @FXML
     private void clickOnMyRequestsButton(ActionEvent event) {
         new NavigationHelpers().changeScene(accueilLabel, "MyRequests", null);
+    }
+    @FXML
+    private void clickNewRequestButton(ActionEvent event) {
+        new NavigationHelpers().changeScene(accueilLabel, "NewRequest", null);
     }
 }

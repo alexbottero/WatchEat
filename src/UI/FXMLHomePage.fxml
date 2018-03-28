@@ -9,16 +9,33 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.FXMLHomePageController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #00b826;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.FXMLHomePageController">
    <children>
-      <Label fx:id="accueilLabel" layoutX="253.0" layoutY="178.0" text="Accueil" textAlignment="CENTER" textFill="#079a0c">
+      <Label fx:id="accueilLabel" layoutX="216.0" layoutY="39.0" text="Accueil" textAlignment="CENTER" textFill="#d6d6d6">
          <font>
-            <Font name="Leelawadee UI Bold" size="30.0" />
+            <Font name="Apple SD GothicNeo ExtraBold" size="46.0" />
          </font>
       </Label>
-      <Button fx:id="decoButton" layoutX="53.0" layoutY="30.0" mnemonicParsing="false" onAction="#deconnection" style="-fx-background-color: black;" text="Déconnexion" textAlignment="CENTER" textFill="WHITE" />
-      <Button fx:id="createRecipeButton" layoutX="42.0" layoutY="330.0" mnemonicParsing="false" onAction="#createRecipeButtonClicked" text="New recipe" />
-      <Button fx:id="account" layoutX="208.0" layoutY="330.0" mnemonicParsing="false" onAction="#clickOnAccountButton" text="My Account" />
-      <Button fx:id="myRequestButton" layoutX="369.0" layoutY="330.0" mnemonicParsing="false" onAction="#clickOnMyRequestsButton" text="My requests" />
+      <Button fx:id="decoButton" layoutX="467.0" layoutY="50.0" mnemonicParsing="false" onAction="#deconnection" style="-fx-background-color: #d6d6d6;" text="Déconnexion" textAlignment="CENTER" textFill="#141414" />
+      <MenuBar prefHeight="29.0" prefWidth="602.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Account">
+            <items>
+              <MenuItem fx:id="account" mnemonicParsing="false" onAction="#clickOnAccountButton" text="Account manager" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Recipe">
+            <items>
+              <MenuItem fx:id="createRecipeButton" mnemonicParsing="false" onAction="#createRecipeButtonClicked" text="new" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Request">
+            <items>
+                  <MenuItem fx:id="newRequestButton" mnemonicParsing="false" onAction="#clickNewRequestButton" text="new" />
+              <MenuItem fx:id="myRequestButton" mnemonicParsing="false" onAction="#clickOnMyRequestsButton" text="my requests" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
    </children>
 </AnchorPane>
