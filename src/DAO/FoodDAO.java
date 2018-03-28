@@ -5,19 +5,16 @@
  */
 package DAO;
 
-import BL.Consumable;
 import BL.Food;
-import BL.Ingredient;
-import BL.Recipe;
 import java.util.ArrayList;
 
 /**
  *
  * @author fabaz
  */
-public interface ConsumableDAO {
+public interface FoodDAO {
     
-    public Consumable getConsumable(String name);
-
-    public ArrayList<String> getStringConsumables();
+    public Food getFood(String name);
+    
+    public ArrayList<Food> getFood();
 }

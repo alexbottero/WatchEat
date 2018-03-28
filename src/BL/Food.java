@@ -13,6 +13,13 @@ import java.util.ArrayList;
  */
 public class Food extends Consumable{
     
+    private ArrayList<NFQuantity> nutritiveValues;
+    
+    public Food(String name, ArrayList<NFQuantity> nutritiveValues) {
+        super(name);
+        this.nutritiveValues = nutritiveValues;
+    }
+    
     public Food(String name) {
         super(name);
     }

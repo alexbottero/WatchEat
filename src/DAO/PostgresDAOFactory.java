@@ -58,4 +58,9 @@ public class PostgresDAOFactory extends DAOFactory {
         return new PostgresConsumableDAO();
     }
 
+    @Override
+    public FoodDAO createFoodDAO() {
+        return new PostgresFoodDAO();
+    }
+
 }
