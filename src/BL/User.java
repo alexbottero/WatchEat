@@ -19,37 +19,6 @@ import java.util.logging.Logger;
 public class User {
 
     private static User connectedUser = null;
-    
-    /**
-     * Default constructor
-     */
-    public User() {
-        //fact = new PostgresDAOFactory();
-    }
-    
-        public User(String mail,String password) {
-        this.mail=mail;
-        this.pwd=password;
-    }
-     
-    public User(String mail,String password, String firstName, String lastName, Double height, Double weight) {
-        this.mail=mail;
-        this.pwd=password;      
-        this.firstName=firstName;
-        this.lastName=lastName;
-        this.height = height;
-        this.weight= weight;
-    }
-    
-     public User(String mail,String password,String firstName,String lastName,String gender,Date date) {
-        this.mail=mail;
-        this.pwd=password;
-        this.firstName=firstName;
-        this.lastName=lastName;
-        this.gender=gender;
-        this.dateOfBirth=date;
-     }
-     
 
     /**
      * L'adresse mail de l'utilisateur.
