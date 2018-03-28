@@ -68,7 +68,6 @@ public class JDBC {
          Class.forName(CLASSNAME);
           connect = DriverManager
                   .getConnection("jdbc:postgresql://" + HOST + ":" + PORT +"/" + DATABASE, USERNAME, PASSWORD);
-         System.out.println("Opened database successfully");
       } catch (ClassNotFoundException | SQLException e) {
          System.err.println(e.getClass().getName()+": "+e.getMessage());
          System.exit(0);

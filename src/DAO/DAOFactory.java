@@ -36,5 +36,7 @@ public abstract class DAOFactory {
 
     public abstract ConsumableDAO createConsumableDAO();
     
+    public abstract FoodDAO createFoodDAO();
+    
     public abstract RequestDAO createRequestDAO();
 }

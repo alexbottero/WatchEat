@@ -67,4 +67,8 @@ public class Recipe extends Consumable{
     public String getType() {
         return this.type;
     }
+
+    public String getDescription() {
+        return this.description;
+    }
 }

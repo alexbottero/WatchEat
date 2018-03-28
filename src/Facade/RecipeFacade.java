@@ -6,6 +6,7 @@
 package Facade;
 
 import BL.Consumable;
+import BL.Food;
 import BL.Ingredient;
 import BL.Recipe;
 import DAO.*;
@@ -22,12 +23,14 @@ public class RecipeFacade {
     
     private DAOFactory daoFactory;
     private RecipeDAO recipeDAO;
+    private FoodDAO foodDAO;
     private ConsumableDAO consumableDAO;
     
     public RecipeFacade(){
         daoFactory = PostgresDAOFactory.getInstance();
         recipeDAO = daoFactory.createRecipeDAO();
         consumableDAO = daoFactory.createConsumableDAO();
+        foodDAO = daoFactory.createFoodDAO();
     }
     
     public ObservableList<String> getTypes(){
@@ -44,17 +47,21 @@ public class RecipeFacade {
     public void createRecipe(String name, String description, String type, String timeString, String peopleAmountString, String instructions, ArrayList<String> ingredientsName, ArrayList<Integer> ingredientsQuantity) {
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         for(String ingredientName : ingredientsName){
-            Consumable consumable = consumableDAO.getConsumable(name);
+            Consumable consumable;
+            Food food = foodDAO.getFood(ingredientName);
+            if(food != null){
+                consumable = food;
+                
+            }else{
+                consumable = recipeDAO.getRecipe(ingredientName);
+                System.out.println(consumable.getName());
+            }
             int quantity = ingredientsQuantity.get(ingredientsName.indexOf(ingredientName));
             ingredients.add(new Ingredient(consumable,quantity));
         }
         int time = Integer.parseInt(timeString);
         int peopleAmount = Integer.parseInt(peopleAmountString);
         Recipe recipe = new Recipe(name,description,instructions,time,peopleAmount,type,ingredients);
-        recipeDAO.createRecipe(recipe);
-    }
-
-    public ObservableList<String> getStringConsumables() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        recipeDAO.createRecipe(recipe,UserFacade.connectedUser);
     }
 }
