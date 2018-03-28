@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #00b826;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.FXMLNewRequestController">
+   <children>
+      <Label layoutX="200.0" layoutY="42.0" text="New Request">
+         <font>
+            <Font name="Apple SD GothicNeo ExtraBold" size="31.0" />
+         </font>
+      </Label>
+      <Label layoutX="43.0" layoutY="132.0" text="Request message :">
+         <font>
+            <Font name="Apple SD GothicNeo ExtraBold" size="17.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="descRequ" layoutX="43.0" layoutY="168.0" prefHeight="145.0" prefWidth="535.0" />
+      <Button fx:id="sendButton" layoutX="407.0" layoutY="330.0" mnemonicParsing="false" onAction="#clickSendButton" text="send" />
+      <Button fx:id="cancelButton" layoutX="499.0" layoutY="330.0" mnemonicParsing="false" onAction="#clickBackButton" text="cancel" />
+   </children>
+</AnchorPane>

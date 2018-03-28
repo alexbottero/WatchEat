@@ -46,7 +46,7 @@ public class JDBC {
     /**
    * The password of the user to connect to the database.
    */
-    private static final String PASSWORD = "garabla2996";
+    private static final String PASSWORD = "93Marieb";
     
     private static final String CLASSNAME = "org.postgresql.Driver";
     

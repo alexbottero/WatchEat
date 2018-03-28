@@ -52,6 +52,8 @@ public class FXMLHomePageController extends AbstractUIController implements Init
     private Button createRecipeButton;
     @FXML
     private Button account;
+    @FXML
+    private Button myRequestButton;
     
     
     /**
@@ -79,4 +81,8 @@ public class FXMLHomePageController extends AbstractUIController implements Init
         new NavigationHelpers().changeScene(account, "UIUserAccountManager", null);
     }
     
+   @FXML
+    private void clickOnMyRequestsButton(ActionEvent event) {
+        new NavigationHelpers().changeScene(accueilLabel, "MyRequests", null);
+    }
 }

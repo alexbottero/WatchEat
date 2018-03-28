@@ -95,4 +95,20 @@ public class PostgresUserDAO implements UserDAO {
     public static void main(String[] args) throws SQLException{
         UserDAO userDAO = new PostgresUserDAO();
     } 
+
+    @Override
+    public String selectUser(String Mail) {
+     
+    String query = "Select iduser from public.user where mail='"+ Mail+"'";
+         String id="";
+        try {
+            ResultSet res =jdbc.select(query);
+            while(res.next()){
+                id = res.getString("iduser");
+                System.out.print(id);}
+        } catch (SQLException ex) {
+            Logger.getLogger(PostgresUserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return id;
+    }
 }
