@@ -250,6 +250,10 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public String getFullName() {
+        return this.lastName + " " + this.firstName;
+    }
+
     
    /** public static void main(String[] args) throws SQLException{
         User user = new User("fabazad@live.fr","chocolat");

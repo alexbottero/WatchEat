@@ -20,7 +20,7 @@
       </Label>
       <TextField fx:id="nameField" layoutX="71.0" layoutY="96.0" prefHeight="25.0" prefWidth="246.0" promptText="Recipe name" />
       <TextArea fx:id="descriptionField" layoutX="71.0" layoutY="138.0" prefHeight="58.0" prefWidth="375.0" promptText="Short recipe description" />
-      <TextArea fx:id="instructionsField" layoutX="71.0" layoutY="346.0" prefHeight="145.0" prefWidth="375.0" promptText="recipe instructions" />
+      <TextArea fx:id="instructionsField" layoutX="71.0" layoutY="346.0" prefHeight="145.0" prefWidth="375.0" promptText="Recipe instructions" />
       <Button layoutX="452.0" layoutY="525.0" mnemonicParsing="false" onAction="#createRecipeClicked" text="Create Recipe" />
       <ComboBox fx:id="typeField" layoutX="71.0" layoutY="214.0" prefWidth="150.0" promptText="Recipe type" />
       <Label layoutX="71.0" layoutY="257.0" text="Recipe time" textFill="WHITE">

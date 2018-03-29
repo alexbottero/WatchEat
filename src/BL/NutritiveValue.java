@@ -17,4 +17,12 @@ public class NutritiveValue {
         this.name = name;
         this.unity = unity;
     }
+    
+    public String getName(){
+        return this.name;
+    }
+
+    public String getUnity() {
+        return this.unity;
+    }
 }

@@ -47,7 +47,6 @@ public class NavigationHelpers {
             Parent parent = loader.load();
             UIController nextController = loader.getController();
             nextController.receiveData(givenData);
-            nextController.receiveData(givenData);
             Scene scene = new Scene(parent);
             stage.setScene(scene);
             stage.show();

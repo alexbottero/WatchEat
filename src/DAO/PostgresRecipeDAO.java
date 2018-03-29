@@ -81,6 +81,7 @@ public class PostgresRecipeDAO implements RecipeDAO{
             jdbc.update(query);
             
             for(Ingredient ingredient : recipe.getIngredients()){
+                System.out.println(ingredient.getConsumable().getName());
                 query = "SELECT idconsumable FROM public.consumable WHERE name = '" + ingredient.getConsumable().getName() + "'";
                 res = jdbc.select(query);
                 res.next();

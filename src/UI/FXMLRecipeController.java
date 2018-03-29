@@ -6,10 +6,12 @@
 package UI;
 
 import BL.Ingredient;
+import BL.NFQuantity;
 import BL.Recipe;
 import Facade.UserFacade;
 import Helpers.NavigationHelpers;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -44,6 +46,10 @@ public class FXMLRecipeController implements Initializable, UIController {
     private Label instructionsLabel;
     @FXML
     private GridPane ingredientsGridPane;
+    @FXML
+    private GridPane nutritiveValuesPane;
+    @FXML
+    private Label authorLabel;
 
     /**
      * Initializes the controller class.
@@ -70,13 +76,16 @@ public class FXMLRecipeController implements Initializable, UIController {
     }
     
     public void initLabels(){
+        //les informations
         recipeNameLabel.setText(recipe.getName());
         nameLabel.setText(recipe.getName());
         descriptionLabel.setText(recipe.getDescription());
         instructionsLabel.setText(recipe.getInstructions());
         peopleAmountLabel.setText(Integer.toString(recipe.getPeopleAmount()) + " person(s)");
         timeLabel.setText(Integer.toString(recipe.getTimeRecipe()) + " minutes");
+        authorLabel.setText(recipe.getCreator().getFullName());
         
+        //Les ingrédients
         int index = 1;
         System.out.println(recipe.getIngredients().size());
         for(Ingredient ingredient : recipe.getIngredients()){
@@ -91,8 +100,17 @@ public class FXMLRecipeController implements Initializable, UIController {
                     }
                 });
             }
-            
-            
+            index++;
+        }
+        
+        //Les valeurs nutritives 
+        ArrayList<NFQuantity> nutritiveValues = recipe.getNutritiveValues();
+        index = 1;
+        for(NFQuantity nfQuantity : nutritiveValues){
+            System.out.println("num nv : " + Integer.toString(nfQuantity.getQuantity()));
+            nutritiveValuesPane.add(new Label(nfQuantity.getNutritiveValue().getName()), 0, index);
+            nutritiveValuesPane.add(new Label(Integer.toString(nfQuantity.getQuantity())), 1, index);
+            nutritiveValuesPane.add(new Label(nfQuantity.getNutritiveValue().getUnity()), 2, index);
             index++;
         }
     }
@@ -102,5 +120,4 @@ public class FXMLRecipeController implements Initializable, UIController {
         this.recipe = (Recipe)givenData;
         initLabels();
     }
-    
 }

@@ -22,10 +22,16 @@ public class Food extends Consumable{
     
     public Food(String name) {
         super(name);
+        this.nutritiveValues = new ArrayList<>();
     }
 
     @Override
     public void setIngredients(ArrayList<Ingredient> ingredients) {
+    }
+
+    @Override
+    public ArrayList<NFQuantity> getNutritiveValues() {
+        return this.nutritiveValues;
     }
     
 }

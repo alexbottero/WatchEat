@@ -40,7 +40,7 @@ public class Recipe extends Consumable{
         this.time = time;
         this.peopleAmount = peopleAmount;
         this.type = type;
-        this.ingredients = null;
+        this.ingredients = new ArrayList<>();
     }
 
     public Recipe(String name, String description, String instructions, int time, int peopleAmount, String type, User user) {
@@ -51,7 +51,7 @@ public class Recipe extends Consumable{
         this.peopleAmount = peopleAmount;
         this.type = type;
         this.creator = user;
-        this.ingredients = null;    
+        this.ingredients = new ArrayList<>();    
     }
     
 
@@ -86,5 +86,57 @@ public class Recipe extends Consumable{
 
     public User getCreator() {
         return this.creator; 
+    }
+    
+    @Override
+    public ArrayList<NFQuantity> getNutritiveValues(){
+        //Récupération des valeurs nutritives en vrac
+        ArrayList<NFQuantity> nutritiveValues = new ArrayList<>();
+        int totalQuantity = 0;
+        for(Ingredient ingredient : this.getIngredients()){
+            totalQuantity += ingredient.getQuantity();
+            Consumable consumable = ingredient.getConsumable();
+            ArrayList<NFQuantity> ingredientNutritiveValues;
+            
+            if(consumable instanceof Food){
+                Food food = ((Food)consumable);
+                ingredientNutritiveValues = food.getNutritiveValues();
+            }
+            else{
+                Recipe recipe = ((Recipe)consumable);
+                ingredientNutritiveValues = recipe.getNutritiveValues();
+            }
+            //Les multiplier par rapport aux quantitées
+            for(NFQuantity nfQuantity : ingredientNutritiveValues){
+                nfQuantity.setQuantity(nfQuantity.getQuantity()* ingredient.getQuantity()/100);
+            }
+            nutritiveValues.addAll(ingredientNutritiveValues);
+        }
+        
+        //On rassemble valeurs nutritives entre elles
+        ArrayList<NFQuantity> sortedNutritiveValues = new ArrayList<>();
+        for(int i = 0; i < nutritiveValues.size(); i++){
+            NFQuantity nfQuantity = nutritiveValues.get(i);
+            boolean sorted = false;
+            for(int j = 0; j < sortedNutritiveValues.size(); j++){
+                NFQuantity sortedNFQuantity = sortedNutritiveValues.get(j);
+                if(nfQuantity.getNutritiveValue().getName().equals(sortedNFQuantity.getNutritiveValue().getName())){
+                    sortedNFQuantity.addQuantity(nfQuantity.getQuantity());
+                    sorted = true;
+                }
+            }
+            if(!sorted){
+                sortedNutritiveValues.add(new NFQuantity(nfQuantity.getNutritiveValue(),nfQuantity.getQuantity()));
+            }
+            
+        }
+        
+        //On divise tout par la quantité
+        for(NFQuantity nfQuantity : sortedNutritiveValues){
+            System.out.println(nfQuantity.getNutritiveValue().getName() + " " + nfQuantity.getQuantity());
+
+            nfQuantity.setQuantity(100*nfQuantity.getQuantity()/totalQuantity);
+        }
+        return sortedNutritiveValues;
     }
 }

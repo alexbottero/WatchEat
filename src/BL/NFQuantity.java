@@ -17,4 +17,20 @@ public class NFQuantity {
         this.nutritiveValue = nutritiveValue;
         this.quantity = quantity;
     }
+
+    public NutritiveValue getNutritiveValue() {
+        return nutritiveValue;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+    
+    public void addQuantity(int quantity){
+        this.quantity += quantity;
+    }
+
+    public int getQuantity() {
+        return this.quantity;
+    }
 }
