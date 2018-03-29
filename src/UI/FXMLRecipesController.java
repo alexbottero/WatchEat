@@ -19,9 +19,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -37,7 +39,9 @@ public class FXMLRecipesController implements Initializable, UIController {
     private GridPane recipesGridPane;
     
     private NavigationHelpers navHelpers;
+    
     private RecipeFacade recipeFacade;
+    
     private ArrayList<Recipe> recipes;
     
     @FXML
@@ -47,6 +51,14 @@ public class FXMLRecipesController implements Initializable, UIController {
     private TextField searchField;
     
     private ObservableList<Node> childrens;
+    
+    @FXML
+    private ComboBox<String> typeComboBox;
+    
+    @FXML
+    private TextField timeMaxField;
+    @FXML
+    private Text errorMessageLabel;
     /**
      * Initializes the controller class.
      */
@@ -56,6 +68,10 @@ public class FXMLRecipesController implements Initializable, UIController {
         recipeFacade = new RecipeFacade();
         recipes = recipeFacade.getRecipes();
         childrens = recipesGridPane.getChildren();
+        ObservableList<String> types = recipeFacade.getTypes();
+        types.add("None");
+        typeComboBox.setItems(types);
+        errorMessageLabel.setText("");
         initRecipes();
     }
 
@@ -118,7 +134,18 @@ public class FXMLRecipesController implements Initializable, UIController {
 
     @FXML
     private void searchButtonClicked(ActionEvent event) {
-        recipes = recipeFacade.getRecipes(searchField.getText());
+        errorMessageLabel.setText("");
+        int time = 0;
+        if(!timeMaxField.getText().equals("")){
+            try{
+            time = Integer.parseInt(timeMaxField.getText());
+            }
+            catch(Exception e){
+                errorMessageLabel.setText("Time max field should be numeric.");
+            }
+        }
+        recipes = recipeFacade.getRecipes(searchField.getText(),typeComboBox.getValue(),time);
+        
         initRecipes();
     }
     

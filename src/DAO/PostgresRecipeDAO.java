@@ -105,7 +105,7 @@ public class PostgresRecipeDAO implements RecipeDAO{
 
     @Override
     public ArrayList<Recipe> getRecipes(){
-        return getRecipes("");
+        return getRecipes("","",999);
     }
     
     public ArrayList<Ingredient> getIngredients(Recipe recipe){
@@ -161,13 +161,14 @@ public class PostgresRecipeDAO implements RecipeDAO{
     }
 
     @Override
-    public ArrayList<Recipe> getRecipes(String name) {
-ArrayList<Recipe> consumables = new ArrayList<>();
+    public ArrayList<Recipe> getRecipes(String name, String type, int timeMax) {
+        ArrayList<Recipe> consumables = new ArrayList<>();
         try {
             String query = "SELECT DISTINCT(c.name), r.description, r.instructions, t.title, r.timerecipe, r.peopleamount, \n" +
                 "u.lastname, u.firstname, u.mail, u.pwd\n" +
                 "FROM public.recipe r, public.type t, public.consumable c, public.recipecontain rc, public.user u\n" +
-                "WHERE r.idtype = t.idtype  AND r.idconsumable = c.idconsumable AND r.iduser =u.iduser AND c.name LIKE '%" + name + "%'";
+                "WHERE r.idtype = t.idtype  AND r.idconsumable = c.idconsumable AND r.iduser =u.iduser "
+                    + "AND c.name LIKE '%" + name + "%' AND t.title LIKE '%" + type + "%' AND r.timerecipe <= " + timeMax + ";";
             ResultSet res = jdbc.select(query);
             String currentRecipe;
             

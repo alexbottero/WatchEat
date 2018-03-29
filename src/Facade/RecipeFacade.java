@@ -68,7 +68,10 @@ public class RecipeFacade {
         return recipeDAO.getRecipes();
     }
 
-    public ArrayList<Recipe> getRecipes(String name) {
-        return recipeDAO.getRecipes(name);
+    public ArrayList<Recipe> getRecipes(String name, String type, int timeMax) {
+        name = (name == null ? "" : name);
+        type = (type == null || type.equals("None") ? "" : type);
+        timeMax = (timeMax == 0 ? 999 : timeMax);
+        return recipeDAO.getRecipes(name,type,timeMax);
     }
 }

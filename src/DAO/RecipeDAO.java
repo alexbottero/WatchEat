@@ -23,5 +23,5 @@ public interface RecipeDAO {
     
     public Recipe getRecipe(String name);
 
-    public ArrayList<Recipe> getRecipes(String name);
+    public ArrayList<Recipe> getRecipes(String name, String type, int timeMax);
 }
