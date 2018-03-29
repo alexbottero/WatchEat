@@ -6,7 +6,6 @@
 package UI;
 
 import BL.Menu;
-import BL.Recipe;
 import Facade.MenuFacade;
 import Helpers.NavigationHelpers;
 import java.net.URL;
