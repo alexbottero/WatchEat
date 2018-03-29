@@ -5,7 +5,9 @@
  */
 package DAO;
 
+import BL.Consumable;
 import BL.Food;
+import BL.Menu;
 import BL.NFQuantity;
 import BL.NutritiveValue;
 import JDBC.JDBC;
@@ -74,5 +76,34 @@ public class PostgresFoodDAO implements FoodDAO {
             Logger.getLogger(PostgresRecipeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return consumables;
+    }
+    
+    //Julia pour avoir les food d'un menu
+
+    /**
+     *
+     * @param menu
+     * @return
+     * @throws SQLException
+     */
+    @Override
+    public ArrayList <Food> getAllFoodFromMenu(Menu menu) throws SQLException{
+        ArrayList <Food> food = new ArrayList <Food>();
+        try {
+            String query = "SELECT DISTINCT(c.name)"+
+                "FROM public.food f, public.menu m, public.consumable c, public.containconsumable cc \n" +
+                "WHERE  f.idconsumable = c.idconsumable AND m.idmenu =cc.idmenu AND cc.idconsumable = c.idconsumable AND m.name = '" + menu.getName() + "' \n"+
+                "ORDER BY c.name";
+            ResultSet res = jdbc.select(query);
+            while(res.next()){
+               System.out.println(res.getString("name"));
+               food.add(getFood(res.getString("name")));
+               //m.addConsumable(fDAO.getFood(res.getString("name")));
+               //System.out.println(f.getName());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PostgresFoodDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return food;
     }
 }

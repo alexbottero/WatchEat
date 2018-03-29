@@ -21,9 +21,10 @@ import javafx.scene.control.Label;
  */
 public class FXMLMyMenusController implements Initializable {
 
+    //private MenuManagerFacade mnf;
 
     @FXML
-    private Label contenuMenu_label;
+    private Label content_label;
     
     @FXML
     private Button back_button;
@@ -42,6 +43,9 @@ public class FXMLMyMenusController implements Initializable {
     
      @FXML
     private Button search_button;
+     
+     @FXML
+    private ComboBox consumable_combobox;
     
 
     /**

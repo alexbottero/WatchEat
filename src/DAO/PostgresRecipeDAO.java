@@ -8,6 +8,7 @@ package DAO;
 import BL.Consumable;
 import BL.Food;
 import BL.Ingredient;
+import BL.Menu;
 import BL.Recipe;
 import BL.User;
 import JDBC.JDBC;
@@ -159,6 +160,37 @@ public class PostgresRecipeDAO implements RecipeDAO{
         }
         return recipe;
     }
+    
+    //Julia : pour get les recettes d'un menu
+
+    /**
+     *
+     * @param m
+     * @return
+     * @throws SQLException
+     */
+    
+    @Override
+    public ArrayList <Recipe> getAllRecipeFromMenu (Menu menu) throws SQLException{
+        ArrayList <Recipe> recipes;
+        recipes = new ArrayList <Recipe>();
+        try {
+            String query = "SELECT DISTINCT(c.name)"+
+                "FROM public.recipe r, public.menu m, public.consumable c, public.containconsumable cc \n" +
+                "WHERE  r.idconsumable = c.idconsumable AND m.idmenu =cc.idmenu AND cc.idconsumable = c.idconsumable AND m.name = '" + menu.getName() + "' \n" +
+                "ORDER BY c.name";
+            ResultSet res = jdbc.select(query);
+            while(res.next()){
+               recipes.add(getRecipe(res.getString("name")));
+               //m.addConsumable(fDAO.getFood(res.getString("name")));
+               //System.out.println(f.getName());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PostgresFoodDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return recipes;
+    }
+               System.out.println(res.getString("name"));
 
     @Override
     public ArrayList<Recipe> getRecipes(String name, String type, int timeMax) {

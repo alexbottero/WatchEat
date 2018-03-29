@@ -10,6 +10,7 @@ import BL.Menu;
 import BL.User;
 import DAO.PostgresFoodDAO;
 import DAO.PostgresMenuDAO;
+import DAO.PostgresRecipeDAO;
 import JDBC.JDBC;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -23,9 +24,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Classe créée pour faire les test sur les requêtes Sql
  * @author julia
  */
+//Fichier test pour les menus MenuDAO
 public class Test {
     
     JDBC jdbc = new JDBC();
@@ -41,9 +43,10 @@ public class Test {
             //System.out.println(user.getFirstName());
             String query = "SELECT m.name, m.description, m.datecreation " +
                     "FROM public.menu m, public.user u " +
-                    "WHERE m.name = '"+ name+ "' AND u.firstname = '" + user.getFirstName()+ "' AND m.iduser = u.iduser ;";
+                    "WHERE m.name = '"+ name+ "' AND u.mail = '" + user.getMail()+ "' AND m.iduser = u.iduser";
             System.out.println("query declared");
             ResultSet res = jdbc.select(query);
+            System.out.println("query passed");
             //System.out.println("result set ok");
             while(res.next()){
                 System.out.println("enter while");
@@ -67,14 +70,15 @@ public class Test {
     }
     
     //pour un nutri
-    public ArrayList<Menu> getMenus(User user) {
+    public ArrayList<Menu> getMenusFromUser(User user) {
         // Hamelina : ajoute liens avec les autres classes
         ArrayList<Menu> menus = new ArrayList<>();
         try {
-            String query = "SELECT m.name, m.description, m.datecreation, \n" +
+            String query = "SELECT DISTINCT(m.name), m.description, m.datecreation, \n" +
              "u.lastname, u.firstname, u.mail, u.pwd\n" +
             "FROM public.menu m, public.user u\n" +
-            "WHERE m.iduser =u.iduser AND u.firstname = '"+ user.getFirstName()+ "';";
+            "WHERE m.iduser =u.iduser AND u.mail = '"+ user.getMail()+ "'\n"+
+            "ORDER BY m.name";
             ResultSet res = jdbc.select(query);
             
             while(res.next()) {
@@ -82,23 +86,27 @@ public class Test {
                 res.getString("pwd"),
                 res.getString("lastname"),
                 res.getString("firstname"));*/
+                System.out.println(res.getString("name"));
                 menus.add(new Menu(res.getString("name"), res.getString("description"), res.getDate("datecreation"), user));
             }
+            /*for (Menu m : menus){
+                m.addListConsumable(getAllFoodFromMenu(m));
+                m.addListConsumable(getAllRecipeFromMenu(m));
+            }*/
         }catch (SQLException ex) {
             Logger.getLogger(PostgresMenuDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return menus;
     }
+    PostgresFoodDAO fDAO = new PostgresFoodDAO();
     
-    //pour un user pas nutri
-    public ArrayList<Menu> getAllMenus(User user) {
-        // Hamelina : ajoute liens avec les autres classes
-        ArrayList<Menu> menus = new ArrayList<>();
+    public ArrayList <Consumable> getAllFoodFromMenu(Menu m) throws SQLException{
+        ArrayList <Consumable> consumables = new ArrayList <Consumable>();
         try {
-            String query = "SELECT m.name, m.description, m.datecreation, \n" +
-             "u.lastname, u.firstname, u.mail, u.pwd\n" +
-            "FROM public.menu m, public.user u\n" +
-            "WHERE m.iduser =u.iduser AND u.firstname = '"+ user.getFirstName()+ "';";
+            String query = "SELECT DISTINCT(c.name)"+
+                "FROM public.food f, public.menu m, public.consumable c, public.containconsumable cc \n" +
+                "WHERE  f.idconsumable = c.idconsumable AND m.idmenu =cc.idmenu AND cc.idconsumable = c.idconsumable AND m.name = '" + m.getName() + "' \n"+
+                "ORDER BY c.name";
             ResultSet res = jdbc.select(query);
             
             while(res.next()) {
@@ -147,75 +155,55 @@ public class Test {
             String currentRecipe;
             
             while(res.next()){
-                Consumable recipe  = new Recipe(res.getString("name"),
-                        res.getString("description"),
-                        res.getString("instructions"),
-                        Integer.parseInt(res.getString("timeRecipe")),
-                        Integer.parseInt(res.getString("peopleAmount")),
-                        res.getString("title"),
-                        user); 
-                ArrayList<Ingredient> ingredients = rDAO.getIngredients(recipe);
-                recipe.setIngredients(ingredients);
-                m.addConsumable(recipe);
-            }
-        }catch (SQLException ex) {
-            Logger.getLogger(PostgresRecipeDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //return menus;
-        //return listConsumable;
-    }
-    
-    
-    
-    
-    public void fillWithFoodFromMenu(Menu m){
-        ArrayList<Consumable> listConsumable = new ArrayList<Consumable>();
-        try {
-            String query = "SELECT name FROM public.consumable, public.menu m, public.user u, public.containconsumabble cc, public.food f, public.nfcontained nf  WHERE cc.idconsumable = c.idconsumable AND cc.menu = m.idmenu AND m.iduser = u.iduser AND f.idconsumable = c.idconsumable AND nf.idfood = f.idfood AND cc.idmenu = m.idmenu AND u.firstname = '"+ m.getCreator().getFirstName() + "' ORDER BY c.name;";
-            ResultSet res = jdbc.select(query);
-            while(res.next()){
-                m.getConsumableList().add(new Food(res.getString("name")));
+               System.out.println(res.getString("name"));
+               consumables.add(fDAO.getFood(res.getString("name")));
+               //m.addConsumable(fDAO.getFood(res.getString("name")));
+               //System.out.println(f.getName());
             }
         } catch (SQLException ex) {
             Logger.getLogger(PostgresFoodDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //return menus;
-        //return listConsumable;
+        return consumables;
+    }
+    PostgresRecipeDAO rDAO = new PostgresRecipeDAO();
+    
+    public ArrayList <Consumable> getAllRecipeFromMenu(Menu m) throws SQLException{
+        ArrayList <Consumable> consumables = new ArrayList <Consumable>();
+        try {
+            String query = "SELECT DISTINCT(c.name)"+
+                "FROM public.recipe r, public.menu m, public.consumable c, public.containconsumable cc \n" +
+                "WHERE  r.idconsumable = c.idconsumable AND m.idmenu =cc.idmenu AND cc.idconsumable = c.idconsumable AND m.name = '" + m.getName() + "' \n" +
+                "ORDER BY c.name";
+            ResultSet res = jdbc.select(query);
+            while(res.next()){
+               System.out.println(res.getString("name"));
+               consumables.add(rDAO.getRecipe(res.getString("name")));
+               //m.addConsumable(fDAO.getFood(res.getString("name")));
+               //System.out.println(f.getName());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PostgresFoodDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return consumables;
     }
     
     
-    /*public abstract class Consumable implements Comparable {
-    String name;
-    Food food;
-    Recipe recipe;
-    
-    public Consumable(String name){
-        this.name = name;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-    
-    @Override
-    public int compareTo(Object c){
-        return (this.name.compareTo(((Consumable)c).getName()));
-    }
-
-    public abstract void setIngredients(ArrayList<Ingredient> ingredients);
-}*/
-    
-    
-    public static void main(String[] args){ 
+    /*public static void main(String[] args) throws SQLException{ 
         Test t;
         t = new Test();
         User u = new User("test","chocolat", "test");
         Menu m;
         m = t.getMenu("Recette test", u);
         String name;
-        ArrayList<Menu> a = t.getAllMenus(u);
+        ArrayList<Menu> a = t.getMenusFromUser(u);
+        //t.getAllFoodFromMenu(a.get(1));
+       // ArrayList <Menu> menus = t.getAllMenus(u);
         
         //name = m.getName();
         //System.out.println(m);
-    }
+    }*/
 }
+//Prendre la liste des menus  -- OK
+// Pour le nom d'un menu donné, récupérer la liste de ses consommables.
+    // - food
+    // - recette

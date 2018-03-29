@@ -5,8 +5,10 @@
  */
 package DAO;
 
+import BL.Menu;
 import BL.Recipe;
 import BL.User;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -26,4 +28,6 @@ public interface RecipeDAO {
     public ArrayList<Recipe> getRecipes(String name, String type, int timeMax);
 
     public ArrayList<Recipe> getRecipes(String name, String type, int timeMax, User connectedUser);
+    
+    public ArrayList<Recipe> getAllRecipeFromMenu(Menu menu) throws SQLException;
 }

@@ -92,9 +92,9 @@ public class PostgresUserDAO implements UserDAO {
      
     }
     
-    public static void main(String[] args) throws SQLException{
+    /*public static void main(String[] args) throws SQLException{
         UserDAO userDAO = new PostgresUserDAO();
-    } 
+    } */
 
     @Override
     public String selectUser(String Mail) {

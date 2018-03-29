@@ -103,6 +103,18 @@ public class Menu {
     public void addConsumable ( Consumable c){
         this.consumableList.add(c);
     }
+    
+    public void addListFood (ArrayList<Food> listFood){
+        for (Food c : listFood){
+            addConsumable((Consumable)c);
+        }
+    }
+    
+    public void addListRecipe (ArrayList<Recipe> listRecipe){
+        for (Recipe c : listRecipe){
+            addConsumable((Consumable)c);
+        }
+    }
 
     
 }
