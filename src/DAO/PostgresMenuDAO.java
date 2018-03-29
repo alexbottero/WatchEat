@@ -28,13 +28,12 @@ import java.util.logging.Logger;
 public class PostgresMenuDAO implements MenuDAO {
     
     private JDBC jdbc;
+    DateFormat df = new SimpleDateFormat("EEE MMM dd kk:mm:ss z yyyy", Locale.ENGLISH);
     
     public PostgresMenuDAO(){
         jdbc = JDBC.getInstance();
     }
 
-    DateFormat df = new SimpleDateFormat("EEE MMM dd kk:mm:ss z yyyy", Locale.ENGLISH);
-     
     @Override
     public ArrayList<Menu> getMenus() {
         ArrayList<Menu> menus = new ArrayList<>();
@@ -89,4 +88,6 @@ public class PostgresMenuDAO implements MenuDAO {
         }
         return menu;
     }
+
+
 }
