@@ -5,6 +5,7 @@
  */
 package Facade;
 
+import BL.Menu;
 import BL.Recipe;
 import DAO.ConsumableDAO;
 import DAO.DAOFactory;
@@ -49,6 +50,10 @@ public class MenuFacade {
         
     public ArrayList<Recipe> getRecipes() {
         return recipeDAO.getRecipes();
+    }
+    
+    public ArrayList<Menu> getMenus() {
+        return menuDAO.getMenus();
     }
     
 }

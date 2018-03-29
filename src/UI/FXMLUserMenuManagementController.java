@@ -5,9 +5,12 @@
  */
 package UI;
 
-import Facade.RecipeFacade;
+import BL.Menu;
+import BL.Recipe;
+import Facade.MenuFacade;
 import Helpers.NavigationHelpers;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,13 +29,17 @@ public class FXMLUserMenuManagementController implements Initializable {
     private NavigationHelpers navHelpers;
     @FXML
     private Button myProposals_button;
-
+    private MenuFacade menuFacade;
+    private ArrayList<Menu> menus;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         navHelpers = new NavigationHelpers();
+        menuFacade = new MenuFacade();
+        menus = menuFacade.getMenus();
     }    
 
     @FXML
