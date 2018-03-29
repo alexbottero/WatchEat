@@ -54,7 +54,6 @@ public class RecipeFacade {
                 
             }else{
                 consumable = recipeDAO.getRecipe(ingredientName);
-                System.out.println(consumable.getName());
             }
             int quantity = ingredientsQuantity.get(ingredientsName.indexOf(ingredientName));
             ingredients.add(new Ingredient(consumable,quantity));

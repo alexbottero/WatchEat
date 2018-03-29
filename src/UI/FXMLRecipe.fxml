@@ -21,12 +21,7 @@
       <Button layoutX="14.0" layoutY="24.0" mnemonicParsing="false" onAction="#homePageButtonClicked" text="Home Page" />
       <Button layoutX="114.0" layoutY="24.0" mnemonicParsing="false" onAction="#recipesButtonClicked" text="Return Recipes" />
       <Button layoutX="233.0" layoutY="24.0" mnemonicParsing="false" onAction="#deconnectionButtonClicked" style="-fx-background-color: #202020;" text="Deconnection" textFill="WHITE" />
-      <Label layoutX="53.0" layoutY="119.0" text="Descriptions" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <TabPane layoutX="123.0" layoutY="179.0" prefHeight="309.0" prefWidth="774.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="123.0" layoutY="139.0" prefHeight="413.0" prefWidth="774.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Informations">
             <content>
@@ -72,6 +67,16 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
+                        <Label layoutX="48.0" layoutY="267.0" text="Author">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="authorLabel" layoutX="214.0" layoutY="267.0" text="authorLabel">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
             </content>
@@ -80,9 +85,14 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="320.0" style="-fx-background-color: #f2f2f2;">
                      <children>
-                        <Label fx:id="instructionsLabel" layoutX="71.0" layoutY="55.0" text="instructionsLabel">
+                        <Label fx:id="instructionsLabel" layoutX="71.0" layoutY="96.0" text="instructionsLabel">
                            <font>
                               <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="71.0" layoutY="52.0" text="Instructions">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
                      </children>
@@ -127,7 +137,38 @@
             </Tab>
             <Tab text="Nutritive values">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="362.0" prefWidth="774.0" style="-fx-background-color: #f2f2f2;">
+                     <children>
+                        <GridPane fx:id="nutritiveValuesPane" layoutX="177.0" layoutY="28.0" prefHeight="65.0" prefWidth="420.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Nutritive value">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Value pour 100g/ml" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Unity" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
                </content>
             </Tab>
         </tabs>

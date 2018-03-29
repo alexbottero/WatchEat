@@ -30,4 +30,6 @@ public abstract class Consumable implements Comparable {
     }
 
     public abstract void setIngredients(ArrayList<Ingredient> ingredients);
+    
+    public abstract ArrayList<NFQuantity> getNutritiveValues();
 }

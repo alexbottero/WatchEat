@@ -208,6 +208,7 @@ public class FXMLCreateRecipeController implements Initializable, UIController {
                 errorMessageLabel.setText("Recipe people amount and recipe time should be numerics."); 
             }
         }
+        navHelpers.changeScene(nameField, "Recipes", null);
     }
     
     /**
