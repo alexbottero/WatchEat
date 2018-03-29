@@ -15,11 +15,13 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <GridPane layoutX="63.0" layoutY="104.0" prefHeight="193.0" prefWidth="476.0">
+      <GridPane fx:id="menus_GridPane" layoutX="63.0" layoutY="104.0" prefHeight="193.0" prefWidth="476.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="149.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="390.0" minWidth="10.0" prefWidth="181.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="390.0" minWidth="10.0" prefWidth="149.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="390.0" minWidth="10.0" prefWidth="149.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="390.0" minWidth="10.0" prefWidth="149.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -30,6 +32,8 @@
             <Label text="Name" />
             <Label text="Description" GridPane.columnIndex="1" />
             <Label text="Date" GridPane.columnIndex="2" />
+            <Label text="Author" GridPane.columnIndex="3" />
+            <Label text="Action" GridPane.columnIndex="4" />
          </children>
       </GridPane>
       <Button fx:id="homePage_button" layoutX="33.0" layoutY="332.0" mnemonicParsing="false" onAction="#clickOnHomePage" text="Home page" />
