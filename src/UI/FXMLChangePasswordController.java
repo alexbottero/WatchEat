@@ -5,6 +5,9 @@
  */
 package UI;
 
+import BL.User;
+import Facade.UserFacade;
+import Helpers.NavigationHelpers;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -21,24 +24,29 @@ import javafx.scene.control.TextField;
 public class FXMLChangePasswordController implements Initializable {
 
     @FXML
-    private TextField oldPwd_textField;
-    @FXML
     private TextField newPwd_textField;
     @FXML
     private TextField newPwd2_textField;
     @FXML
     private Button confirm_button;
+    private UserFacade uf;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        this.uf = new UserFacade();
+        User user = UserFacade.connectedUser;
     }    
 
     @FXML
     private void clickOnConfirm(ActionEvent event) {
+        if(newPwd_textField.getText() == newPwd2_textField.getText()) {
+            if(uf.updatePwd(newPwd_textField.getText(), newPwd2_textField.getText()) != null) {
+                new NavigationHelpers().changeScene(confirm_button, "HomePage", null);
+            }
+        }
     }
-    
+
 }

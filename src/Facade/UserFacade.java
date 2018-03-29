@@ -119,6 +119,12 @@ public class UserFacade {
     public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException, SQLException{
         
     }
+    
+    public User updatePwd(String mail, String pwd) {
+        User user = userDAO.updatePwd(connectedUser.getMail(), pwd);
+        connectedUser = user;
+        return connectedUser;
+    }
 
      private static java.sql.Date convertUtilToSql(java.util.Date uDate) {
         java.sql.Date sDate = new java.sql.Date(uDate.getTime());

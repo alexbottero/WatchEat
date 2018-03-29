@@ -111,4 +111,18 @@ public class PostgresUserDAO implements UserDAO {
         }
        return id;
     }
+
+    @Override
+    public User updatePwd(String mail, String pwd) {
+        String query = "UPDATE public.user SET mail = '" + mail + "', pwd = '" + pwd + "' WHERE mail = '" + mail + "'";
+        try {
+           jdbc.update(query);
+        } catch(SQLException ex) {
+            Logger.getLogger(PostgresUserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        User user = new User();
+        user.setMail(mail);
+        user.setPwd(pwd);
+        return user;
+    }
 }
