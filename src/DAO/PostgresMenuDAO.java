@@ -36,6 +36,7 @@ public class PostgresMenuDAO implements MenuDAO {
 
     @Override
     public ArrayList<Menu> getMenus() {
+        // Hamelina : ajoute liens avec les autres classes
         ArrayList<Menu> menus = new ArrayList<>();
         try {
             String query = "SELECT DISTINCT(m.name), m.description, m.date, \n" +
@@ -67,6 +68,7 @@ public class PostgresMenuDAO implements MenuDAO {
 
     @Override
     public Menu getMenu(String name) {
+        // Hamelina : ajoute liens avec les autres classes
         Menu menu = null;
         try {
             String query = "SELECT m.name, m.description, m.date " +
