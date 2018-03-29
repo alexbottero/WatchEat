@@ -255,4 +255,25 @@ public class PostgresRecipeDAO implements RecipeDAO{
         }
         return consumables;
     }
+
+    @Override
+    public void deleteRecipe(Recipe recipe) {
+        try {
+            String query = "SELECT idrecipe, c.idconsumable FROM public.recipe r, public.consumable c WHERE r.idconsumable = c.idconsumable AND name = '" + recipe.getName() +"'";
+            ResultSet res = jdbc.select(query);
+            res.next();
+            int idrecipe = res.getInt("idrecipe");
+            int idconsumable = res.getInt("idconsumable");
+            System.out.println("idrecipe : " + idrecipe);
+            System.out.println("idconsumable : " + idconsumable);
+            
+            query = "DELETE FROM public.recipecontain WHERE idrecipe = " + idrecipe + ";"
+                    + "DELETE FROM public.recipe WHERE idrecipe = " + idrecipe + ";"
+                    + "DELETE FROM public.consumable WHERE idconsumable = " + idconsumable + ";";
+            jdbc.update(query);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PostgresRecipeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

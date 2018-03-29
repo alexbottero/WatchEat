@@ -106,6 +106,7 @@ public class FXMLRecipesController implements Initializable, UIController {
             recipesGridPane.add(new Label(recipe.getType()),2,index);
             recipesGridPane.add(new Label(Integer.toString(recipe.getTimeRecipe()) + " min"),3,index);
             recipesGridPane.add(new Label(nameCreator),4,index);
+            
             Button seeButton = new Button("See");
             seeButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override public void handle(ActionEvent e) {
@@ -113,6 +114,28 @@ public class FXMLRecipesController implements Initializable, UIController {
                 }
             });
             recipesGridPane.add(seeButton,5,index);
+            
+            if(recipe.getCreator().getMail().equals(UserFacade.connectedUser.getMail())){
+                Button editButton = new Button("Edit");
+                editButton.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override public void handle(ActionEvent e) {
+                        //navHelpers.changeScene(createRecipeButton, "EditRecipe", recipe);
+                    }
+                });
+                editButton.setStyle("-fx-background-color: #ffb200");
+                recipesGridPane.add(editButton,6,index);
+                
+                Button deleteButton = new Button("Delete");
+                deleteButton.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override public void handle(ActionEvent e) {
+                        recipeFacade.deleteRecipe(recipe);
+                        recipes = recipeFacade.getRecipes();
+                        initRecipes();
+                    }
+                });
+                deleteButton.setStyle("-fx-background-color: #FF0000");
+                recipesGridPane.add(deleteButton,7,index);
+            }
             index++;
         }
     }

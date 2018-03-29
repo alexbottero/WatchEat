@@ -80,4 +80,8 @@ public class RecipeFacade {
             return recipeDAO.getRecipes(name,type,timeMax,connectedUser);
         }
     }
+
+    public void deleteRecipe(Recipe recipe) {
+        recipeDAO.deleteRecipe(recipe);
+    }
 }

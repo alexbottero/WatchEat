@@ -30,4 +30,6 @@ public interface RecipeDAO {
     public ArrayList<Recipe> getRecipes(String name, String type, int timeMax, User connectedUser);
     
     public ArrayList<Recipe> getAllRecipeFromMenu(Menu menu) throws SQLException;
+
+    public void deleteRecipe(Recipe recipe);
 }
