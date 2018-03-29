@@ -39,7 +39,7 @@ public class PostgresMenuDAO implements MenuDAO {
         // Hamelina : ajoute liens avec les autres classes
         ArrayList<Menu> menus = new ArrayList<>();
         try {
-            String query = "SELECT DISTINCT(m.name), m.description, m.date, \n" +
+            String query = "SELECT DISTINCT(m.name), m.description, m.datecreation, \n" +
              "u.lastname, u.firstname, u.mail, u.pwd\n" +
             "FROM public.menu m, public.user u\n" +
             "WHERE m.iduser =u.iduser";
@@ -53,7 +53,7 @@ public class PostgresMenuDAO implements MenuDAO {
                 try {
                     Menu menu = new Menu(res.getString("name"),
                             res.getString("description"),
-                            (Date) df.parse(res.getString("date")),
+                            (Date) df.parse(res.getString("datecreation")),
                             user);
                 } catch (ParseException ex) {
                     Logger.getLogger(PostgresMenuDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -71,7 +71,7 @@ public class PostgresMenuDAO implements MenuDAO {
         // Hamelina : ajoute liens avec les autres classes
         Menu menu = null;
         try {
-            String query = "SELECT m.name, m.description, m.date " +
+            String query = "SELECT m.name, m.description, m.datecreation " +
                     "FROM public.menu m " +
                     "WHERE m.name = '" + name + "';";
             ResultSet res = jdbc.select(query);
@@ -79,7 +79,7 @@ public class PostgresMenuDAO implements MenuDAO {
                 try {
                     menu = new Menu(name,
                             res.getString("description"),
-                            (Date) df.parse(res.getString("date")));
+                            (Date) df.parse(res.getString("datecreation")));
                 } catch (ParseException ex) {
                     Logger.getLogger(PostgresMenuDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }

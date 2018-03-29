@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #00b826;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.4" fx:controller="UI.FXMLMenuController">
+   <children>
+      <Label alignment="CENTER" layoutX="271.0" layoutY="29.0" text="Menu">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <TabPane layoutX="64.0" layoutY="71.0" prefHeight="259.0" prefWidth="472.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Information">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+          <Tab text="Recipe">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <Button fx:id="homePage_button" layoutX="42.0" layoutY="350.0" mnemonicParsing="false" onAction="#clickOnHomePage" text="Home Page" />
+      <Button fx:id="returnMyMenus_button" layoutX="165.0" layoutY="350.0" mnemonicParsing="false" onAction="#ClickOnReturn" text="Return My menus" />
+   </children>
+</AnchorPane>

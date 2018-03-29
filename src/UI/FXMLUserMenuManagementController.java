@@ -62,7 +62,7 @@ public class FXMLUserMenuManagementController implements Initializable {
             Button seeButton = new Button("See");
             seeButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override public void handle(ActionEvent e) {
-                    navHelpers.changeScene(homePage_button, "MyMenus", menu);
+                    navHelpers.changeScene(homePage_button, "Menu", menu);
                 }
             });
             menus_GridPane.add(seeButton,4,index);
