@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -18,13 +19,14 @@ public class Menu {
     private String description;
     private Date date;
     private User creator;
+    private ArrayList <Consumable> consumableList= new ArrayList <Consumable>();
     
-    public Menu(String name, String description, Date date, User user) {
+    public Menu(String name, String description, Date date, User user, ArrayList <Consumable> cons) {
     this.name = name;
     this.description = description;
     this.date = date;
     this.creator=user;
-
+    this.consumableList = cons;
     }
     
     public Menu(String name, String description, Date date) {
@@ -33,12 +35,20 @@ public class Menu {
     this.date = date;
 
     }
+    
+    public Menu(String name, String description, Date date, User creator) {
+    this.name = name;
+    this.description = description;
+    this.date = date;
+    this.creator = creator;
+
+    }
         
      /**
      * @return the name
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
@@ -52,7 +62,7 @@ public class Menu {
      * @return the description
      */
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     /**
@@ -66,7 +76,7 @@ public class Menu {
      * @return the date
      */
     public Date getDate() {
-        return date;
+        return this.date;
     }
 
     /**
@@ -80,7 +90,18 @@ public class Menu {
      * @return the creator
      */
     public User getCreator() {
-        return creator;
+        return this.creator;
+    }
+    
+    public void setConsumableList (ArrayList <Consumable> consumableList){
+        this.consumableList = consumableList;
+    }
+    public ArrayList <Consumable> getConsumableList(){
+        return this.consumableList;
+    }
+    
+    public void addConsumable ( Consumable c){
+        this.consumableList.add(c);
     }
 
     

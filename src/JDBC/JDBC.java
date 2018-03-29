@@ -50,7 +50,7 @@ public class JDBC {
     
     private static final String CLASSNAME = "org.postgresql.Driver";
     
-    private JDBC(){
+    public JDBC(){
     }
 
 
@@ -88,7 +88,7 @@ public class JDBC {
         return res;
     }
     
-
+/*
     public static void main(String[] args){
         try {
             String pwd = "gui";
@@ -106,5 +106,5 @@ public class JDBC {
         } catch (SQLException ex) {
             Logger.getLogger(JDBC.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }*/
 }

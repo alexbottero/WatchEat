@@ -88,7 +88,7 @@ public class User {
         this.weight= weight;
     }
     
-     public User(String mail,String password,String firstName,String lastName,String gender,Date date) {
+    public User(String mail,String password,String firstName,String lastName,String gender,Date date) {
         this.mail=mail;
         this.pwd=password;
         this.firstName=firstName;
@@ -98,7 +98,11 @@ public class User {
         this.height = 0;
         this.weight =0;
      }
-
+    public User(String mail,String password,String firstName) {
+        this.mail=mail;
+        this.pwd=password;
+        this.firstName=firstName;
+     }
     /**
      * @return the mail
      */

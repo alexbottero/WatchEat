@@ -53,6 +53,9 @@ public class Recipe extends Consumable{
         this.creator = user;
         this.ingredients = new ArrayList<>();    
     }
+    public Recipe(String name){
+        super(name);
+    }
     
 
     @Override
