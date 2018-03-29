@@ -12,12 +12,15 @@ import Helpers.NavigationHelpers;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -36,7 +39,14 @@ public class FXMLRecipesController implements Initializable, UIController {
     private NavigationHelpers navHelpers;
     private RecipeFacade recipeFacade;
     private ArrayList<Recipe> recipes;
+    
+    @FXML
+    private Button searchButton;
 
+    @FXML
+    private TextField searchField;
+    
+    private ObservableList<Node> childrens;
     /**
      * Initializes the controller class.
      */
@@ -45,15 +55,34 @@ public class FXMLRecipesController implements Initializable, UIController {
         navHelpers = new NavigationHelpers();
         recipeFacade = new RecipeFacade();
         recipes = recipeFacade.getRecipes();
+        childrens = recipesGridPane.getChildren();
         initRecipes();
     }
 
+    @FXML
     public void createRecipeButtonClicked(){
         new NavigationHelpers().changeScene(createRecipeButton,"CreateRecipe",null);
     }
 
     private void initRecipes() {
-        int index = 1;
+        //recipesGridPane.getChildren().setAll(childrens);
+        childrens.clear();
+        ArrayList<String> attributs = new ArrayList<>();
+        attributs.add("Nom");
+        attributs.add("Description");
+        attributs.add("Type");
+        attributs.add("Time");
+        attributs.add("Creator");
+        attributs.add("Action");
+        int index = 0;
+        for(String attribut : attributs){
+            Label label = new Label(attribut);
+            label.setStyle("-fx-font-weight: bold");
+            recipesGridPane.add(label,index,0);
+            index++;
+        }
+        
+        index = 1;
         for(Recipe recipe : recipes){
             String nameCreator = recipe.getCreator().getFirstName() + " " + recipe.getCreator().getLastName().substring(0, 1);
             recipesGridPane.add(new Label(recipe.getName()),0,index);
@@ -72,10 +101,12 @@ public class FXMLRecipesController implements Initializable, UIController {
         }
     }
     
+    @FXML
     public void homePageButtonClicked(){
         navHelpers.changeScene(createRecipeButton, "HomePage", null);
     }
     
+    @FXML
     public void deconnectionButtonClicked(){
         navHelpers.changeScene(createRecipeButton,"UILogin",null);
         UserFacade.deconnection();
@@ -83,6 +114,12 @@ public class FXMLRecipesController implements Initializable, UIController {
 
     @Override
     public void receiveData(Object givenData) {
+    }
+
+    @FXML
+    private void searchButtonClicked(ActionEvent event) {
+        recipes = recipeFacade.getRecipes(searchField.getText());
+        initRecipes();
     }
     
 }

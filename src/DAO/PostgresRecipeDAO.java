@@ -105,35 +105,7 @@ public class PostgresRecipeDAO implements RecipeDAO{
 
     @Override
     public ArrayList<Recipe> getRecipes(){
-        ArrayList<Recipe> consumables = new ArrayList<>();
-        try {
-            String query = "SELECT DISTINCT(c.name), r.description, r.instructions, t.title, r.timerecipe, r.peopleamount, \n" +
-                "u.lastname, u.firstname, u.mail, u.pwd\n" +
-                "FROM public.recipe r, public.type t, public.consumable c, public.recipecontain rc, public.user u\n" +
-                "WHERE r.idtype = t.idtype  AND r.idconsumable = c.idconsumable AND r.iduser =u.iduser";
-            ResultSet res = jdbc.select(query);
-            String currentRecipe;
-            
-            while(res.next()){
-                User user = new User(res.getString("mail"),
-                        res.getString("pwd"),
-                        res.getString("lastname"),
-                        res.getString("firstname"));
-                Recipe recipe  = new Recipe(res.getString("name"),
-                        res.getString("description"),
-                        res.getString("instructions"),
-                        Integer.parseInt(res.getString("timeRecipe")),
-                        Integer.parseInt(res.getString("peopleAmount")),
-                        res.getString("title"),
-                        user); 
-                ArrayList<Ingredient> ingredients = getIngredients(recipe);
-                recipe.setIngredients(ingredients);
-                consumables.add(recipe);
-            }
-        }catch (SQLException ex) {
-            Logger.getLogger(PostgresRecipeDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return consumables;
+        return getRecipes("");
     }
     
     public ArrayList<Ingredient> getIngredients(Recipe recipe){
@@ -186,5 +158,38 @@ public class PostgresRecipeDAO implements RecipeDAO{
             Logger.getLogger(PostgresRecipeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return recipe;
+    }
+
+    @Override
+    public ArrayList<Recipe> getRecipes(String name) {
+ArrayList<Recipe> consumables = new ArrayList<>();
+        try {
+            String query = "SELECT DISTINCT(c.name), r.description, r.instructions, t.title, r.timerecipe, r.peopleamount, \n" +
+                "u.lastname, u.firstname, u.mail, u.pwd\n" +
+                "FROM public.recipe r, public.type t, public.consumable c, public.recipecontain rc, public.user u\n" +
+                "WHERE r.idtype = t.idtype  AND r.idconsumable = c.idconsumable AND r.iduser =u.iduser AND c.name LIKE '%" + name + "%'";
+            ResultSet res = jdbc.select(query);
+            String currentRecipe;
+            
+            while(res.next()){
+                User user = new User(res.getString("mail"),
+                        res.getString("pwd"),
+                        res.getString("lastname"),
+                        res.getString("firstname"));
+                Recipe recipe  = new Recipe(res.getString("name"),
+                        res.getString("description"),
+                        res.getString("instructions"),
+                        Integer.parseInt(res.getString("timeRecipe")),
+                        Integer.parseInt(res.getString("peopleAmount")),
+                        res.getString("title"),
+                        user); 
+                ArrayList<Ingredient> ingredients = getIngredients(recipe);
+                recipe.setIngredients(ingredients);
+                consumables.add(recipe);
+            }
+        }catch (SQLException ex) {
+            Logger.getLogger(PostgresRecipeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return consumables;
     }
 }

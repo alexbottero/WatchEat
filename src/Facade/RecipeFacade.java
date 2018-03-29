@@ -67,4 +67,8 @@ public class RecipeFacade {
     public ArrayList<Recipe> getRecipes() {
         return recipeDAO.getRecipes();
     }
+
+    public ArrayList<Recipe> getRecipes(String name) {
+        return recipeDAO.getRecipes(name);
+    }
 }

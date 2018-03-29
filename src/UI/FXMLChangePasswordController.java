@@ -42,8 +42,11 @@ public class FXMLChangePasswordController implements Initializable, UIController
 
     @FXML
     private void clickOnConfirm(ActionEvent event) {
+        System.out.println("test1");
         if(newPwd_textField.getText().equals(newPwd2_textField.getText())) {
+            System.out.println("test2");
             if(uf.updatePwd(newPwd_textField.getText(), newPwd2_textField.getText()) != null) {
+                System.out.println("test2");
                 new NavigationHelpers().changeScene(confirm_button, "HomePage", null);
             }
         }

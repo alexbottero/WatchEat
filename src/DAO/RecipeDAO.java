@@ -22,4 +22,6 @@ public interface RecipeDAO {
     public ArrayList<Recipe> getRecipes();
     
     public Recipe getRecipe(String name);
+
+    public ArrayList<Recipe> getRecipes(String name);
 }
