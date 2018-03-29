@@ -17,11 +17,13 @@ public class Menu {
     private String name;
     private String description;
     private Date date;
+    private User creator;
     
-        public Menu(String name, String description, Date date) {
+        public Menu(String name, String description, Date date, User user) {
         this.name = name;
         this.description = description;
         this.date = date;
+        this.creator=user;
 
     }
         
@@ -66,5 +68,13 @@ public class Menu {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    /**
+     * @return the creator
+     */
+    public User getCreator() {
+        return creator;
+    }
+
     
 }
