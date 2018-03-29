@@ -25,7 +25,7 @@ import javafx.scene.layout.GridPane;
 /**
  * FXML Controller class
  *
- * @author Polytech
+ * @author Marion
  */
 public class FXMLUserMenuManagementController implements Initializable {
 

@@ -50,14 +50,10 @@ public class PostgresMenuDAO implements MenuDAO {
                         res.getString("pwd"),
                         res.getString("lastname"),
                         res.getString("firstname"));
-                try {
                     Menu menu = new Menu(res.getString("name"),
                             res.getString("description"),
-                            (Date) df.parse(res.getString("datecreation")),
+                            res.getDate("datecreation"),
                             user);
-                } catch (ParseException ex) {
-                    Logger.getLogger(PostgresMenuDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }
             }
         }catch (SQLException ex) {
             Logger.getLogger(PostgresMenuDAO.class.getName()).log(Level.SEVERE, null, ex);

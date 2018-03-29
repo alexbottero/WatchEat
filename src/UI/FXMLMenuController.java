@@ -5,6 +5,7 @@
  */
 package UI;
 
+import Helpers.NavigationHelpers;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -15,7 +16,7 @@ import javafx.scene.control.Button;
 /**
  * FXML Controller class
  *
- * @author Polytech
+ * @author Marion
  */
 public class FXMLMenuController implements Initializable {
 
@@ -23,21 +24,24 @@ public class FXMLMenuController implements Initializable {
     private Button homePage_button;
     @FXML
     private Button returnMyMenus_button;
+    private NavigationHelpers navHelpers;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        navHelpers = new NavigationHelpers();
     }    
 
     @FXML
     private void clickOnHomePage(ActionEvent event) {
+        navHelpers.changeScene(homePage_button,"HomePage",null);
     }
 
     @FXML
     private void ClickOnReturn(ActionEvent event) {
+        navHelpers.changeScene(returnMyMenus_button,"UserMenuManagement",null);
     }
     
 }
