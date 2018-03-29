@@ -58,29 +58,32 @@ public class FXMLHomePageController implements Initializable, UIController {
     @FXML
     private MenuItem newRequestButton;
     
+    private NavigationHelpers navHelpers;
+    
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        uf = new UserFacade(); 
+        uf = new UserFacade();
+        navHelpers = new NavigationHelpers();
     }    
     
     @FXML
     private void deconnection(ActionEvent event){
         uf.deconnection();
-        new NavigationHelpers().changeScene(accueilLabel,"UILogin",null);
+        navHelpers.changeScene(accueilLabel,"UILogin",null);
     }
     
     @FXML
     private void recipesButtonClicked(ActionEvent event){
-        new NavigationHelpers().changeScene(accueilLabel,"Recipes",null);
+        navHelpers.changeScene(accueilLabel,"Recipes",null);
     }
 
     @FXML
     private void clickOnAccountButton(ActionEvent event) {
-        new NavigationHelpers().changeScene(accueilLabel, "UIUserAccountManager", null);
+        navHelpers.changeScene(accueilLabel, "UIUserAccountManager", null);
     }
 
     @Override
@@ -89,10 +92,14 @@ public class FXMLHomePageController implements Initializable, UIController {
     
    @FXML
     private void clickOnMyRequestsButton(ActionEvent event) {
-        new NavigationHelpers().changeScene(accueilLabel, "MyRequests", null);
+        navHelpers.changeScene(accueilLabel, "MyRequests", null);
     }
     @FXML
     private void clickNewRequestButton(ActionEvent event) {
-        new NavigationHelpers().changeScene(accueilLabel, "NewRequest", null);
+        navHelpers.changeScene(accueilLabel, "NewRequest", null);
+    }
+   @FXML
+    private void createRecipeButtonClicked(){
+        navHelpers.changeScene(accueilLabel, "CreateRecipe", null);
     }
 }

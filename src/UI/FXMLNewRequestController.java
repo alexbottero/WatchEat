@@ -23,7 +23,7 @@ import javafx.scene.control.TextArea;
  *
  * @author alexandre
  */
-public class FXMLNewRequestController extends AbstractUIController implements Initializable {
+public class FXMLNewRequestController implements Initializable, UIController {
 
     @FXML
     private Button sendButton;
@@ -50,5 +50,9 @@ public class FXMLNewRequestController extends AbstractUIController implements In
     @FXML
     private void clickBackButton(ActionEvent event) {
         new NavigationHelpers().changeScene(sendButton, "MyRequests", null);
+    }
+
+    @Override
+    public void receiveData(Object givenData) {
     }
 }

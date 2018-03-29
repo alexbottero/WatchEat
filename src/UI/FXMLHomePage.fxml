@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #00b826;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.FXMLHomePageController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #00b826;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.FXMLHomePageController">
    <children>
       <Label fx:id="accueilLabel" layoutX="253.0" layoutY="178.0" text="Home page" textAlignment="CENTER" textFill="#079a0c">
          <font>
@@ -17,16 +16,17 @@
          </font>
       </Label>
       <Button fx:id="decoButton" layoutX="467.0" layoutY="50.0" mnemonicParsing="false" onAction="#deconnection" style="-fx-background-color: #d6d6d6;" text="Déconnexion" textAlignment="CENTER" textFill="#141414" />
-      <MenuBar prefHeight="29.0" prefWidth="602.0">
+      <MenuBar prefHeight="29.0" prefWidth="602.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="Account">
             <items>
               <MenuItem fx:id="account" mnemonicParsing="false" onAction="#clickOnAccountButton" text="Account manager" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Recipe">
+          <Menu mnemonicParsing="false" text="Recipes">
             <items>
-              <MenuItem fx:id="createRecipeButton" mnemonicParsing="false" onAction="#createRecipeButtonClicked" text="new" />
+              <MenuItem fx:id="recipesButton" mnemonicParsing="false" onAction="#recipesButtonClicked" text="Recipes" />
+                  <MenuItem fx:id="createRecipeButton" mnemonicParsing="false" onAction="#createRecipeButtonClicked" text="Create Recipe" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Request">

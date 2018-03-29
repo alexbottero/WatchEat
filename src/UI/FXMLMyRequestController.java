@@ -24,7 +24,7 @@ import javafx.scene.layout.GridPane;
  *
  * @author alexandre
  */
-public class FXMLMyRequestController extends AbstractUIController implements Initializable {
+public class FXMLMyRequestController implements Initializable, UIController {
 
     @FXML
     private Button newRequestButton;
@@ -60,5 +60,9 @@ public class FXMLMyRequestController extends AbstractUIController implements Ini
     @FXML
     private void clickBackButton(ActionEvent event){
         new NavigationHelpers().changeScene(backButton, "HomePage", null);
+    }
+
+    @Override
+    public void receiveData(Object givenData) {
     }
 }
