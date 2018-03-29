@@ -168,7 +168,7 @@ public class PostgresRecipeDAO implements RecipeDAO{
                 "u.lastname, u.firstname, u.mail, u.pwd\n" +
                 "FROM public.recipe r, public.type t, public.consumable c, public.recipecontain rc, public.user u\n" +
                 "WHERE r.idtype = t.idtype  AND r.idconsumable = c.idconsumable AND r.iduser =u.iduser "
-                    + "AND c.name LIKE '%" + name + "%' AND t.title LIKE '%" + type + "%' AND r.timerecipe <= " + timeMax + ";";
+                    + "AND c.name LIKE '%" + name + "%' AND t.title LIKE '%" + type + "%' AND r.timerecipe <= " + timeMax ;
             ResultSet res = jdbc.select(query);
             String currentRecipe;
             
@@ -177,6 +177,36 @@ public class PostgresRecipeDAO implements RecipeDAO{
                         res.getString("pwd"),
                         res.getString("lastname"),
                         res.getString("firstname"));
+                Recipe recipe  = new Recipe(res.getString("name"),
+                        res.getString("description"),
+                        res.getString("instructions"),
+                        Integer.parseInt(res.getString("timeRecipe")),
+                        Integer.parseInt(res.getString("peopleAmount")),
+                        res.getString("title"),
+                        user); 
+                ArrayList<Ingredient> ingredients = getIngredients(recipe);
+                recipe.setIngredients(ingredients);
+                consumables.add(recipe);
+            }
+        }catch (SQLException ex) {
+            Logger.getLogger(PostgresRecipeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return consumables;
+    }
+
+    @Override
+    public ArrayList<Recipe> getRecipes(String name, String type, int timeMax, User user) {
+        ArrayList<Recipe> consumables = new ArrayList<>();
+        try {
+            String query = "SELECT DISTINCT(c.name), r.description, r.instructions, t.title, r.timerecipe, r.peopleamount, \n" +
+                "u.lastname, u.firstname, u.mail, u.pwd\n" +
+                "FROM public.recipe r, public.type t, public.consumable c, public.recipecontain rc, public.user u\n" +
+                "WHERE r.idtype = t.idtype  AND r.idconsumable = c.idconsumable AND r.iduser =u.iduser "
+                    + "AND c.name LIKE '%" + name + "%' AND t.title LIKE '%" + type + "%' AND r.timerecipe <= " + timeMax + " AND u.mail = '" + user.getMail() + "';";
+            ResultSet res = jdbc.select(query);
+            String currentRecipe;
+
+            while(res.next()){
                 Recipe recipe  = new Recipe(res.getString("name"),
                         res.getString("description"),
                         res.getString("instructions"),

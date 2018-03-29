@@ -9,6 +9,7 @@ import BL.Consumable;
 import BL.Food;
 import BL.Ingredient;
 import BL.Recipe;
+import BL.User;
 import DAO.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -68,10 +69,15 @@ public class RecipeFacade {
         return recipeDAO.getRecipes();
     }
 
-    public ArrayList<Recipe> getRecipes(String name, String type, int timeMax) {
+    public ArrayList<Recipe> getRecipes(String name, String type, int timeMax, User connectedUser) {
         name = (name == null ? "" : name);
         type = (type == null || type.equals("None") ? "" : type);
         timeMax = (timeMax == 0 ? 999 : timeMax);
-        return recipeDAO.getRecipes(name,type,timeMax);
+        if(connectedUser == null){
+            return recipeDAO.getRecipes(name,type,timeMax);
+        }
+        else{
+            return recipeDAO.getRecipes(name,type,timeMax,connectedUser);
+        }
     }
 }

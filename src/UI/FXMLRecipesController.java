@@ -134,6 +134,20 @@ public class FXMLRecipesController implements Initializable, UIController {
 
     @FXML
     private void searchButtonClicked(ActionEvent event) {
+        int time = verifSearch();
+        recipes = recipeFacade.getRecipes(searchField.getText(),typeComboBox.getValue(),time,null);
+        initRecipes();
+    }
+
+    @FXML
+    private void showOwnRecipesButton(ActionEvent event) {
+        int time = verifSearch();
+        recipes = recipeFacade.getRecipes(searchField.getText(),typeComboBox.getValue(),time,UserFacade.connectedUser);
+        
+        initRecipes();
+    }
+    
+    public int verifSearch(){
         errorMessageLabel.setText("");
         int time = 0;
         if(!timeMaxField.getText().equals("")){
@@ -144,9 +158,7 @@ public class FXMLRecipesController implements Initializable, UIController {
                 errorMessageLabel.setText("Time max field should be numeric.");
             }
         }
-        recipes = recipeFacade.getRecipes(searchField.getText(),typeComboBox.getValue(),time);
-        
-        initRecipes();
+        return time;
     }
     
 }
