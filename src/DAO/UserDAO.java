@@ -29,5 +29,6 @@ public interface UserDAO {
     public User create(String mail,String pwd, String lastName , String firstName , String gender , Date dateOfBirth);
     public User updateUserAccount(String firstName, String lastName, String height, String weight, String mailAdress);
     public String selectUser(String Mail);
+    public User updatePwd(String mail, String pwd);
     
 }
