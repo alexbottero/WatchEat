@@ -89,4 +89,3 @@ public class PostgresConsumableDAO implements ConsumableDAO {
 
 }
 
-}

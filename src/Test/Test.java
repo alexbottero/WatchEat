@@ -118,7 +118,7 @@ public class Test {
     public void fillConsumableFromMenu(ArrayList<Menu> listMenu){
         for (Menu m: listMenu){
             this.fillWithFoodFromMenu(m);
-            this.fillWithRecipeFromMenu(m);
+            //this.fillWithRecipeFromMenu(m);
             for(Consumable c: m.getConsumableList()){
                 this.fillNFQuantityFromFood(c);
                 this.fillIngredientFromRecipe(c);

@@ -21,7 +21,6 @@ import javafx.scene.control.Label;
  */
 public class FXMLMyMenusController implements Initializable {
 
-    private MenuManagerFacade mnf;
 
     @FXML
     private Label contenuMenu_label;
