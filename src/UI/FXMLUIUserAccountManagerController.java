@@ -76,5 +76,13 @@ public class FXMLUIUserAccountManagerController implements Initializable, UICont
     public void receiveData(Object givenData) {
     }
     
+        /**
+     * Lors du click sur le bouton retour, refait venir à la page précédente
+     * @param event
+     */
+    public void backClicked(ActionEvent event){
+        new NavigationHelpers().changeScene(Validate,"HomePage",null);
+    }
+    
 }
 

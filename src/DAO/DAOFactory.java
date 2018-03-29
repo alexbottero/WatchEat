@@ -12,6 +12,7 @@ public abstract class DAOFactory {
     UserDAO userDAO;
     RecipeDAO recipeDAO;
     ConsumableDAO consumableDAO;
+    RequestDAO requestDAO;
     
     /**
      * Default constructor
@@ -36,4 +37,6 @@ public abstract class DAOFactory {
     public abstract ConsumableDAO createConsumableDAO();
     
     public abstract FoodDAO createFoodDAO();
+    
+    public abstract RequestDAO createRequestDAO();
 }

@@ -63,4 +63,9 @@ public class PostgresDAOFactory extends DAOFactory {
         return new PostgresFoodDAO();
     }
 
+    @Override
+    public RequestDAO createRequestDAO() {
+        return new PostgresRequestDAO(); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
