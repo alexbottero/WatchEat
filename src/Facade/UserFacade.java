@@ -121,9 +121,20 @@ public class UserFacade {
     }
     
     public User updatePwd(String mail, String pwd) {
-        User user = userDAO.updatePwd(connectedUser.getMail(), pwd);
-        connectedUser = user;
-        return connectedUser;
+        User user = null;
+        try {
+            byte[] pwdBy = pwd.getBytes();
+            byte[] pwdHash = null;
+            String pwdFinal;
+            pwdHash = MessageDigest.getInstance("MD5").digest(pwdBy);
+            pwdFinal = new String(pwdHash);
+            user = userDAO.updatePwd(connectedUser.getMail(), pwdFinal);
+            connectedUser = user;
+            return connectedUser;
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(UserFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return user;
     }
 
      private static java.sql.Date convertUtilToSql(java.util.Date uDate) {
