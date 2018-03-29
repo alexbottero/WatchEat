@@ -40,6 +40,8 @@ public class FXMLUIUserAccountManagerController implements Initializable, UICont
     private UserFacade uf;
     @FXML
     private Label labelText;
+    @FXML
+    private Button backButton;
     /**
      * Initializes the controller class.
      */
@@ -80,8 +82,14 @@ public class FXMLUIUserAccountManagerController implements Initializable, UICont
      * Lors du click sur le bouton retour, refait venir à la page précédente
      * @param event
      */
+    @FXML
     public void backClicked(ActionEvent event){
         new NavigationHelpers().changeScene(Validate,"HomePage",null);
+    }
+
+    @FXML
+    private void clickOnChangePwd(ActionEvent event) {
+        new NavigationHelpers().changeScene(changePassword_button,"ChangePassword",null);
     }
     
 }
