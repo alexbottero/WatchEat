@@ -28,7 +28,7 @@ import java.util.logging.Logger;
 public class PostgresMenuDAO implements MenuDAO {
     
     private JDBC jdbc;
-    DateFormat df = new SimpleDateFormat("EEE MMM dd kk:mm:ss z yyyy", Locale.ENGLISH);
+    DateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.FRENCH);
     
     public PostgresMenuDAO(){
         jdbc = JDBC.getInstance();
