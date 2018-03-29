@@ -141,7 +141,7 @@ public class PostgresRecipeDAO implements RecipeDAO{
         
         ArrayList<Ingredient> ingredients = null;
         try {
-            String query = "SELECT name, quantity FROM public.recipecontain rc, public.recipe r, public.consumable c WHERE rc.idrecipe =" +
+            String query = "SELECT Distinct(name), quantity FROM public.recipecontain rc, public.recipe r, public.consumable c WHERE rc.idrecipe =" +
                 "(SELECT r2.idrecipe FROM public.recipe r2, public.consumable c2 WHERE r2.idconsumable = c2.idconsumable AND c2.name = '" + recipe.getName() + "')" +
                 "AND rc.idconsumable = c.idconsumable";
             ResultSet res = jdbc.select(query);

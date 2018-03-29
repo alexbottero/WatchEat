@@ -37,5 +37,10 @@
           </Menu>
         </menus>
       </MenuBar>
+      <Label fx:id="waitLabel" layoutX="479.0" layoutY="285.0" text="Wait..." textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -58,5 +58,7 @@
             </Label>
          </children>
       </GridPane>
+      <Button layoutX="157.0" layoutY="43.0" mnemonicParsing="false" onAction="#homePageButtonClicked" text="Home Page" />
+      <Button layoutX="262.0" layoutY="43.0" mnemonicParsing="false" onAction="#deconnectionButtonClicked" style="-fx-background-color: #202020;" text="Deconnection" textAlignment="CENTER" textFill="WHITE" />
    </children>
 </AnchorPane>

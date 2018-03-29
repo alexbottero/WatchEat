@@ -7,6 +7,7 @@ package UI;
 
 import BL.Recipe;
 import Facade.RecipeFacade;
+import Facade.UserFacade;
 import Helpers.NavigationHelpers;
 import java.net.URL;
 import java.util.ArrayList;
@@ -69,6 +70,15 @@ public class FXMLRecipesController implements Initializable, UIController {
             recipesGridPane.add(seeButton,5,index);
             index++;
         }
+    }
+    
+    public void homePageButtonClicked(){
+        navHelpers.changeScene(createRecipeButton, "HomePage", null);
+    }
+    
+    public void deconnectionButtonClicked(){
+        navHelpers.changeScene(createRecipeButton,"UILogin",null);
+        UserFacade.deconnection();
     }
 
     @Override

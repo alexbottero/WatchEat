@@ -59,6 +59,10 @@ public class FXMLHomePageController implements Initializable, UIController {
     private MenuItem newRequestButton;
     
     private NavigationHelpers navHelpers;
+    @FXML
+    private MenuItem recipesButton;
+    @FXML
+    private Label waitLabel;
     
     
     /**
@@ -68,16 +72,18 @@ public class FXMLHomePageController implements Initializable, UIController {
     public void initialize(URL url, ResourceBundle rb) {
         uf = new UserFacade();
         navHelpers = new NavigationHelpers();
+        waitLabel.setText("");
     }    
     
     @FXML
     private void deconnection(ActionEvent event){
-        uf.deconnection();
+        UserFacade.deconnection();
         navHelpers.changeScene(accueilLabel,"UILogin",null);
     }
     
     @FXML
     private void recipesButtonClicked(ActionEvent event){
+        waitLabel.setText("Wait...");
         navHelpers.changeScene(accueilLabel,"Recipes",null);
     }
 

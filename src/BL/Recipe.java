@@ -72,7 +72,7 @@ public class Recipe extends Consumable{
         return this.peopleAmount;
     }
 
-    public Iterable<Ingredient> getIngredients() {
+    public ArrayList<Ingredient> getIngredients() {
         return this.ingredients;
     }
 

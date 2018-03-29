@@ -99,7 +99,7 @@ public class UserFacade {
     /**
      * 
      */
-    public void deconnection() {
+    public static void deconnection() {
         UserFacade.connectedUser = null;
     }
     

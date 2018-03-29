@@ -52,6 +52,7 @@
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </Label>
-      <Button fx:id="rescipesReturn" layoutX="185.0" layoutY="17.0" mnemonicParsing="false" onAction="#recipesReturnClicked" text="Recipes Return" />
+      <Button fx:id="rescipesReturn" layoutX="139.0" layoutY="17.0" mnemonicParsing="false" onAction="#recipesReturnClicked" text="Recipes Return" />
+      <Button layoutX="250.0" layoutY="17.0" mnemonicParsing="false" onAction="#deconnectionButtonClicked" style="-fx-background-color: #202020;" text="Deconnection" textFill="WHITE" />
    </children>
 </AnchorPane>

@@ -91,6 +91,8 @@ public class FXMLCreateRecipeController implements Initializable, UIController {
     
     private ObservableList<String> consumables;
     
+    private NavigationHelpers navHelpers;
+    
     
     /**
      * Initializes the controller class.
@@ -99,6 +101,7 @@ public class FXMLCreateRecipeController implements Initializable, UIController {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        navHelpers = new NavigationHelpers();
         recipeFacade = new RecipeFacade();
         errorMessageLabel.setText("");
         ingredientsField = new ArrayList<ComboBox>();
@@ -155,7 +158,7 @@ public class FXMLCreateRecipeController implements Initializable, UIController {
      * @param event
      */
     public void backClicked(ActionEvent event){
-        new NavigationHelpers().changeScene(nameField,"HomePage",null);
+        navHelpers.changeScene(nameField,"HomePage",null);
     }
     
     /**
@@ -231,7 +234,12 @@ public class FXMLCreateRecipeController implements Initializable, UIController {
     }
     
     public void recipesReturnClicked(){
-        new NavigationHelpers().changeScene(timeField, "Recipes", null);
+        navHelpers.changeScene(timeField, "Recipes", null);
+    }
+    
+    public void deconnectionButtonClicked(){
+        navHelpers.changeScene(timeField, "UILogin", null);
+        UserFacade.deconnection();
     }
 
     @Override
