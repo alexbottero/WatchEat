@@ -21,7 +21,7 @@ import javafx.scene.control.TextField;
  *
  * @author Polytech
  */
-public class FXMLChangePasswordController implements Initializable {
+public class FXMLChangePasswordController implements Initializable, UIController {
 
     @FXML
     private TextField newPwd_textField;
@@ -47,6 +47,10 @@ public class FXMLChangePasswordController implements Initializable {
                 new NavigationHelpers().changeScene(confirm_button, "HomePage", null);
             }
         }
+    }
+
+    @Override
+    public void receiveData(Object givenData) {
     }
 
 }
