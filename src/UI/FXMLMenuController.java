@@ -5,13 +5,21 @@
  */
 package UI;
 
+import BL.Ingredient;
+import BL.Menu;
+import BL.Recipe;
 import Helpers.NavigationHelpers;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -25,6 +33,14 @@ public class FXMLMenuController implements Initializable {
     @FXML
     private Button returnMyMenus_button;
     private NavigationHelpers navHelpers;
+    @FXML
+    private Label name_label;
+    @FXML
+    private Label description_label;
+    @FXML
+    private Label date_label;
+    private Menu menu;
+    DateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.FRENCH);
 
     /**
      * Initializes the controller class.
@@ -44,4 +60,9 @@ public class FXMLMenuController implements Initializable {
         navHelpers.changeScene(returnMyMenus_button,"UserMenuManagement",null);
     }
     
+    public void initLabels(){
+        name_label.setText(menu.getName());
+        description_label.setText(menu.getDescription());
+        date_label.setText(menu.getDate());
+    }
 }
