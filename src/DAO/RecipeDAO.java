@@ -26,4 +26,6 @@ public interface RecipeDAO {
     public ArrayList<Recipe> getRecipes(String name, String type, int timeMax);
 
     public ArrayList<Recipe> getRecipes(String name, String type, int timeMax, User connectedUser);
+
+    public void deleteRecipe(Recipe recipe);
 }

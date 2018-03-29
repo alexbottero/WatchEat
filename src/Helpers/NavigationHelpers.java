@@ -35,12 +35,12 @@ public class NavigationHelpers {
     public void changeScene(Stage stage,String page, Object givenData){
         try {
             //A enlever pour les tests, sinon vous devrez vous reconnecter à chaque fois
-            /*if((page == "HomePage" 
+            if((page == "HomePage" 
                 || page == "CreateRecipe"
                 || page == "UIUserAccountManager")
                 && UserFacade.connectedUser == null){
                 page = "UILogin";
-            }*/
+            }
             
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../UI/FXML" + page + ".fxml"));
