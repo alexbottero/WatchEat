@@ -41,6 +41,8 @@ public class FXMLMenuController implements Initializable {
     private Label date_label;
     private Menu menu;
     DateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.FRENCH);
+    @FXML
+    private Label menuName_label;
 
     /**
      * Initializes the controller class.
@@ -61,8 +63,14 @@ public class FXMLMenuController implements Initializable {
     }
     
     public void initLabels(){
+        menuName_label.setText(menu.getName());
         name_label.setText(menu.getName());
         description_label.setText(menu.getDescription());
-        date_label.setText(menu.getDate());
+        date_label.setText(df.format(menu.getDate()));
+    }
+    
+    public void receiveData(Object givenData) {
+        this.menu = (Menu)givenData;
+        initLabels();
     }
 }
