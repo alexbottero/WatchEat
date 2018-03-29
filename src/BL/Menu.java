@@ -19,11 +19,18 @@ public class Menu {
     private Date date;
     private User creator;
     
-        public Menu(String name, String description, Date date, User user) {
-        this.name = name;
-        this.description = description;
-        this.date = date;
-        this.creator=user;
+    public Menu(String name, String description, Date date, User user) {
+    this.name = name;
+    this.description = description;
+    this.date = date;
+    this.creator=user;
+
+    }
+    
+    public Menu(String name, String description, Date date) {
+    this.name = name;
+    this.description = description;
+    this.date = date;
 
     }
         

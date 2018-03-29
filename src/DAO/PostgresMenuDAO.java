@@ -7,6 +7,7 @@ package DAO;
 
 
 import BL.Menu;
+import BL.Recipe;
 import BL.User;
 import JDBC.JDBC;
 import java.sql.Date;
@@ -59,7 +60,7 @@ public class PostgresMenuDAO implements MenuDAO {
                 }
             }
         }catch (SQLException ex) {
-            Logger.getLogger(PostgresRecipeDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PostgresMenuDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return menus;
     }
@@ -67,6 +68,25 @@ public class PostgresMenuDAO implements MenuDAO {
 
     @Override
     public Menu getMenu(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Menu menu = null;
+        try {
+            String query = "SELECT m.name, m.description, m.date " +
+                    "FROM public.menu m " +
+                    "WHERE m.name = '" + name + "';";
+            ResultSet res = jdbc.select(query);
+            if(res.next()){
+                try {
+                    menu = new Menu(name,
+                            res.getString("description"),
+                            (Date) df.parse(res.getString("date")));
+                } catch (ParseException ex) {
+                    Logger.getLogger(PostgresMenuDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                System.out.println("test");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PostgresMenuDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return menu;
     }
 }
