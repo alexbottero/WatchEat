@@ -71,6 +71,13 @@ public class User {
         this.mail=mail;
         this.pwd=password;
     }
+    
+    public User(String mail,String password, String lastName, String firstName) {
+        this.mail=mail;
+        this.pwd=password;
+        this.lastName = lastName;
+        this.firstName = firstName;
+    }
      
     public User(String mail,String password, String firstName, String lastName, int height, int weight) {
         this.mail=mail;
@@ -242,7 +249,6 @@ public class User {
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-
 
     
    /** public static void main(String[] args) throws SQLException{

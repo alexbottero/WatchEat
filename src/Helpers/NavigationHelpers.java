@@ -7,7 +7,7 @@ package Helpers;
 
 import BL.User;
 import Facade.UserFacade;
-import UI.AbstractUIController;
+import UI.UIController;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,10 +45,11 @@ public class NavigationHelpers {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../UI/FXML" + page + ".fxml"));
             Parent parent = loader.load();
+            UIController nextController = loader.getController();
+            nextController.receiveData(givenData);
+            nextController.receiveData(givenData);
             Scene scene = new Scene(parent);
             stage.setScene(scene);
-            AbstractUIController nextController = loader.getController();
-            nextController.setGivenData(givenData);
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(NavigationHelpers.class.getName()).log(Level.SEVERE, null, ex);

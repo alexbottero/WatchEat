@@ -40,7 +40,7 @@ import javafx.stage.Stage;
  *
  * @author alexandre
  */
-public class FXMLUILoginController extends AbstractUIController implements Initializable {
+public class FXMLUILoginController implements Initializable,UIController {
     
     private UserFacade uf;
 
@@ -83,5 +83,9 @@ public class FXMLUILoginController extends AbstractUIController implements Initi
     public void initialize(URL url, ResourceBundle rb) {
         uf = new UserFacade();
     }    
+
+    @Override
+    public void receiveData(Object givenData) {
+    }
     
 }

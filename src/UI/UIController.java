@@ -5,16 +5,11 @@
  */
 package UI;
 
-import javafx.fxml.Initializable;
-
 /**
  *
  * @author fabaz
  */
-public abstract class AbstractUIController implements Initializable {
-    private Object givenData;
+public interface UIController {
     
-    public void setGivenData(Object givenData){
-        this.givenData = givenData;
-    }
+    public void receiveData(Object givenData);
 }

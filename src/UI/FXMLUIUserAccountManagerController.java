@@ -22,7 +22,7 @@ import javafx.scene.control.TextField;
  *
  * @author Polytech
  */
-public class FXMLUIUserAccountManagerController extends AbstractUIController implements Initializable {
+public class FXMLUIUserAccountManagerController implements Initializable, UIController {
 
     @FXML
     private Button Validate;
@@ -70,6 +70,10 @@ public class FXMLUIUserAccountManagerController extends AbstractUIController imp
         else{
                 labelText.setText("Erreur");
                 }
+    }
+
+    @Override
+    public void receiveData(Object givenData) {
     }
     
 }

@@ -36,7 +36,7 @@ import javafx.scene.control.TextField;
  *
  * @author fabaz
  */
-public class FXMLCreateRecipeController extends AbstractUIController implements Initializable {
+public class FXMLCreateRecipeController implements Initializable, UIController {
     
     private UserFacade uf;
     
@@ -108,8 +108,8 @@ public class FXMLCreateRecipeController extends AbstractUIController implements 
         ObservableList<String> types = recipeFacade.getTypes();
         typeField.setItems(types);
         consumables = recipeFacade.getConsumables();
-        ingredientsField.get(0).setItems(consumables);     
-
+        ingredientsField.get(0).setItems(consumables); 
+        System.out.print(typeField.getValue());
     }
     
     /**
@@ -127,15 +127,15 @@ public class FXMLCreateRecipeController extends AbstractUIController implements 
     public void addRowIngredient(){
         int indexIngredient = ingredientsField.size();
         ComboBox ingredientField = new ComboBox();
-        ingredientField.setPromptText("Ingrédients");
+        ingredientField.setPromptText("Ingredients");
         ingredientsPane.add(ingredientField, 0, indexIngredient);
         ingredientField.setItems(consumables);
         
         TextField quantityField = new TextField();
-        quantityField.setPromptText("Quantité (g / ml)");
+        quantityField.setPromptText("Quantity (g / ml)");
         ingredientsPane.add(quantityField, 1, indexIngredient);
         
-        Button deleteButton = new Button("Supprimer");
+        Button deleteButton = new Button("Delete");
         ingredientsPane.add(deleteButton, 2, indexIngredient);
         
         deleteButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -143,8 +143,6 @@ public class FXMLCreateRecipeController extends AbstractUIController implements 
                 int index  = deleteButtons.indexOf(e.getSource());
                 deleteRow(index);
             }
-
-            
         });
         
         ingredientsField.add(ingredientField);
@@ -171,13 +169,23 @@ public class FXMLCreateRecipeController extends AbstractUIController implements 
         String timeString = timeField.getText();
         String peopleAmountString = peopleAmountField.getText();
         String instructions = instructionsField.getText();
+        boolean allConsumablesOk = true;
+        for(ComboBox ingredientField : ingredientsField){
+            if(ingredientField.getValue() == null){
+                allConsumablesOk = false;
+            }
+        }
         if("".equals(name) 
             || "".equals(description) 
             || type == null
             || "".equals(timeString)
             || "".equals(peopleAmountString)
-            || "".equals(instructions)){
-            errorMessageLabel.setText("Des champs obligatoirs sont vides.");
+            || "".equals(instructions)
+            || !allConsumablesOk){
+            errorMessageLabel.setText("Compulsory fields are empty.");
+        }
+        else if(consumables.indexOf(name) >= 0){
+            errorMessageLabel.setText("This recipe name is unavailable.");
         }
         else{
             try {
@@ -191,10 +199,10 @@ public class FXMLCreateRecipeController extends AbstractUIController implements 
                 int peopleAmount = Integer.parseInt(peopleAmountString);
                 
                 this.recipeFacade.createRecipe(name,description,type,timeString,peopleAmountString,instructions,ingredientsName,ingredientsQuantity);
-                errorMessageLabel.setText("Recette créée.");
+                errorMessageLabel.setText("Recipe created.");
             } 
             catch (NumberFormatException e) { 
-                errorMessageLabel.setText("Le nombre de personne et le temps de la recette doit être un nombre entier représentant le nombre de minute."); 
+                errorMessageLabel.setText("Recipe people amount and recipe time should be numerics."); 
             }
         }
     }
@@ -220,5 +228,13 @@ public class FXMLCreateRecipeController extends AbstractUIController implements 
                 index++;
             }
         }
+    }
+    
+    public void recipesReturnClicked(){
+        new NavigationHelpers().changeScene(timeField, "Recipes", null);
+    }
+
+    @Override
+    public void receiveData(Object givenData) {
     }
 }

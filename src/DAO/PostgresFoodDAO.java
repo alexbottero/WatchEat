@@ -35,11 +35,13 @@ public class PostgresFoodDAO implements FoodDAO {
             ResultSet res = jdbc.select(query);
             if(res.next()){
                 String foodName = res.getString("namefood");
-                res.beforeFirst();
                 ArrayList<NFQuantity> nutritiveValues = new ArrayList<>();
+                NutritiveValue nutritiveValue = new NutritiveValue(res.getString("nameNv"), res.getString("unity"));
+                NFQuantity nfQuantity = new NFQuantity(nutritiveValue,Integer.parseInt(res.getString("quantity")));
+                nutritiveValues.add(nfQuantity);
                 while(res.next()){
-                    NutritiveValue nutritiveValue = new NutritiveValue(res.getString("nameNv"), res.getString("unity"));
-                    NFQuantity nfQuantity = new NFQuantity(nutritiveValue,Integer.parseInt(res.getString("quantity")));
+                    nutritiveValue = new NutritiveValue(res.getString("nameNv"), res.getString("unity"));
+                    nfQuantity = new NFQuantity(nutritiveValue,Integer.parseInt(res.getString("quantity")));
                     nutritiveValues.add(nfQuantity);
                 }
                 food = new Food(foodName,nutritiveValues);

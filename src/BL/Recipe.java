@@ -20,6 +20,7 @@ public class Recipe extends Consumable{
     private int peopleAmount;
     private String type;
     private ArrayList<Ingredient> ingredients;
+    private User creator;
     
 
     public Recipe(String name, String description, String instructions, int time, int peopleAmount, String type, ArrayList<Ingredient> ingredients) {
@@ -40,6 +41,17 @@ public class Recipe extends Consumable{
         this.peopleAmount = peopleAmount;
         this.type = type;
         this.ingredients = null;
+    }
+
+    public Recipe(String name, String description, String instructions, int time, int peopleAmount, String type, User user) {
+ super(name);
+        this.description = description;
+        this.instructions = instructions;
+        this.time = time;
+        this.peopleAmount = peopleAmount;
+        this.type = type;
+        this.creator = user;
+        this.ingredients = null;    
     }
     
 
@@ -70,5 +82,9 @@ public class Recipe extends Consumable{
 
     public String getDescription() {
         return this.description;
+    }
+
+    public User getCreator() {
+        return this.creator; 
     }
 }

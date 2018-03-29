@@ -38,7 +38,7 @@ import javafx.stage.Stage;
  *
  * @author fabaz
  */
-public class FXMLHomePageController extends AbstractUIController implements Initializable {
+public class FXMLHomePageController implements Initializable, UIController {
     
     private UserFacade uf;
 
@@ -70,13 +70,17 @@ public class FXMLHomePageController extends AbstractUIController implements Init
     }
     
     @FXML
-    private void createRecipeButtonClicked(ActionEvent event){
-        new NavigationHelpers().changeScene(accueilLabel,"CreateRecipe",null);
+    private void recipesButtonClicked(ActionEvent event){
+        new NavigationHelpers().changeScene(accueilLabel,"Recipes",null);
     }
 
     @FXML
     private void clickOnAccountButton(ActionEvent event) {
         new NavigationHelpers().changeScene(account, "UIUserAccountManager", null);
+    }
+
+    @Override
+    public void receiveData(Object givenData) {
     }
     
 }

@@ -36,7 +36,7 @@ import javafx.stage.Stage;
  *
  * @author alexandre
  */
-public class FXMLUISignUpController extends AbstractUIController implements Initializable {
+public class FXMLUISignUpController implements Initializable, UIController {
 
     @FXML
     private TextField firstName;
@@ -87,6 +87,10 @@ public class FXMLUISignUpController extends AbstractUIController implements Init
         if (event.getSource()== cancelButton){
             new NavigationHelpers().changeScene(firstName,"UILogin",null);
         }
+    }
+
+    @Override
+    public void receiveData(Object givenData) {
     }
     
 }

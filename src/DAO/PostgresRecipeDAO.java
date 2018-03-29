@@ -81,10 +81,21 @@ public class PostgresRecipeDAO implements RecipeDAO{
             jdbc.update(query);
             
             for(Ingredient ingredient : recipe.getIngredients()){
-                query = "INSERT INTO public.recipecontain (idconsumbale,idrecipe,quantity)VALUES("
-                        + "(SELECT idconsumable FROM public.consumable WHERE name = '" + ingredient.getConsumable().getName() + "'),"
-                        + "(SELECT idrecipe FROM public.recipe r, public.consumable c WHERE r.idconsumable = " + idconsumable + "),"
+                query = "SELECT idconsumable FROM public.consumable WHERE name = '" + ingredient.getConsumable().getName() + "'";
+                res = jdbc.select(query);
+                res.next();
+                int idIngredientConsumable = res.getInt("idconsumable");
+                
+                query = "SELECT idrecipe FROM public.recipe r, public.consumable c WHERE r.idconsumable = " + idconsumable;
+                res = jdbc.select(query);
+                res.next();
+                int idrecipe = res.getInt("idrecipe");
+                
+                query = "INSERT INTO public.recipecontain (idconsumable,idrecipe,quantity)VALUES("
+                        + idIngredientConsumable + ","
+                        + idrecipe + ","
                         + ingredient.getQuantity() + ")";
+                jdbc.update(query);
             }
         } catch (SQLException ex) {
             Logger.getLogger(PostgresRecipeDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -95,18 +106,25 @@ public class PostgresRecipeDAO implements RecipeDAO{
     public ArrayList<Recipe> getRecipes(){
         ArrayList<Recipe> consumables = new ArrayList<>();
         try {
-            String query = "SELECT * FROM public.recipe r, public.type t, public.consumable c, public.recipecontain rc "
-                    + "WHERE r.idtype = t.idtype  AND r.idrecipe = c.idrecipe";
+            String query = "SELECT DISTINCT(c.name), r.description, r.instructions, t.title, r.timerecipe, r.peopleamount, \n" +
+                "u.lastname, u.firstname, u.mail, u.pwd\n" +
+                "FROM public.recipe r, public.type t, public.consumable c, public.recipecontain rc, public.user u\n" +
+                "WHERE r.idtype = t.idtype  AND r.idconsumable = c.idconsumable AND r.iduser =u.iduser";
             ResultSet res = jdbc.select(query);
             String currentRecipe;
             
             while(res.next()){
+                User user = new User(res.getString("mail"),
+                        res.getString("pwd"),
+                        res.getString("lastname"),
+                        res.getString("firstname"));
                 Recipe recipe  = new Recipe(res.getString("name"),
                         res.getString("description"),
                         res.getString("instructions"),
                         Integer.parseInt(res.getString("timeRecipe")),
                         Integer.parseInt(res.getString("peopleAmount")),
-                        res.getString("title")); 
+                        res.getString("title"),
+                        user); 
                 ArrayList<Ingredient> ingredients = getIngredients(recipe);
                 recipe.setIngredients(ingredients);
                 consumables.add(recipe);

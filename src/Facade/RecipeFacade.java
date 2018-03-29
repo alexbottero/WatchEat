@@ -64,4 +64,8 @@ public class RecipeFacade {
         Recipe recipe = new Recipe(name,description,instructions,time,peopleAmount,type,ingredients);
         recipeDAO.createRecipe(recipe,UserFacade.connectedUser);
     }
+
+    public ArrayList<Recipe> getRecipes() {
+        return recipeDAO.getRecipes();
+    }
 }
