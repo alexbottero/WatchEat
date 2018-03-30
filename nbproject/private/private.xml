@@ -3,10 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/Polytech/Desktop/WatchEat/src/Facade/UserFacade.java</file>
-            <file>file:/Users/Polytech/Desktop/WatchEat/src/UI/FXMLUIUserAccountManagerController.java</file>
-            <file>file:/Users/Polytech/Desktop/WatchEat/src/DAO/PostgresMenuDAO.java</file>
-            <file>file:/Users/Polytech/Desktop/WatchEat/src/UI/FXMLChangePasswordController.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/BL/User.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/BL/Request.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/BL/Recipe.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/DAO/ConsumableDAO.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/DAO/PostgresRequestDAO.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/DAO/PostgresRecipeDAO.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/DAO/RecipeDAO.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/Facade/RecipeFacade.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/DAO/PostgresUserDAO.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/UI/FXMLNewRequestController.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/UI/FXMLUIUserAccountManagerController.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/UI/FXMLCreateRecipeController.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/DAO/UserDAO.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/UI/FXMLMyRequestController.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/UI/FXMLHomePageController.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/Facade/RequestFacade.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/DAO/RequestDAO.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/DAO/PostgresDAOFactory.java</file>
+            <file>file:/Users/alexandre/WatchEat/src/BL/Consumable.java</file>
         </group>
     </open-files>
 </project-private>

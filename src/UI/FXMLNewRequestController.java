@@ -35,11 +35,16 @@ public class FXMLNewRequestController implements Initializable, UIController {
     /**
      * Initializes the controller class.
      */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         rf = new RequestFacade();// TODO
     }    
     
+    /**
+     * when you use send button
+     * @param event 
+     */
     @FXML
     private void clickSendButton(ActionEvent event) {;
         if (!descRequ.getText().equals("")){
@@ -47,6 +52,10 @@ public class FXMLNewRequestController implements Initializable, UIController {
             new NavigationHelpers().changeScene(sendButton, "MyRequests", null);
         }
     }
+    /**
+     * when you use back button
+     * @param event 
+     */
     @FXML
     private void clickBackButton(ActionEvent event) {
         new NavigationHelpers().changeScene(sendButton, "MyRequests", null);

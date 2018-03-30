@@ -29,13 +29,23 @@ public class RequestFacade {
         userDAO=daoFactory.createUserDAO();
         
    }
-   public void create(String desc,String etat){
+
+    /**
+     *create a request
+     * @param desc String description of the request 
+     * @param etat Sting state of the request
+     */
+    public void create(String desc,String etat){
        Request request = new Request(desc,etat);       
        String id = userDAO.selectUser(UserFacade.connectedUser.getMail());
        requestDAO.createRequest(request,id);
    }
    
-   public ObservableList<Request> getRequests(){
+    /**
+     * get all user's request 
+     * @return ObservableList<Request>
+     */
+    public ObservableList<Request> getRequests(){
         String id = userDAO.selectUser(UserFacade.connectedUser.getMail());
         ArrayList<Request> requests = requestDAO.getRequests(id);
         return FXCollections.observableArrayList(requests);
