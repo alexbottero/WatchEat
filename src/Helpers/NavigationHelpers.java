@@ -27,10 +27,10 @@ import javafx.stage.Stage;
 public class NavigationHelpers {
     
     /**
-     * Change de page
-     * @param stage stage de la page
-     * @param page le nom de la page sans FXML ni .fxml
-     * @param givenData la donnée à transmettre à la page suivante
+     * Change the scene
+     * @param stage Stage : stage of the controller it come from
+     * @param page String the name of the target scene without FXML and .fxml
+     * @param givenData Object : the data to give to the next controller
      */
     public void changeScene(Stage stage,String page, Object givenData){
         try {
@@ -55,6 +55,12 @@ public class NavigationHelpers {
         }
     }
     
+    /**
+     * Change scene with a Control instead of a stage
+     * @param control Control a item of your scene however the one
+     * @param page String the name of the target scene without FXML and .fxml
+     * @param givenData Object : the data to give to the next controller
+     */
     public void changeScene(Control control,String page, Object givenData){
         Stage stage = (Stage) ((Node) control).getScene().getWindow();
         changeScene(stage,page,givenData);

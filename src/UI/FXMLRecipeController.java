@@ -31,6 +31,9 @@ public class FXMLRecipeController implements Initializable, UIController {
     @FXML
     private Label recipeNameLabel;
     
+    /**
+     * The recipe of the scene
+     */
     private Recipe recipe;
     
     private NavigationHelpers navHelpers;
@@ -59,22 +62,34 @@ public class FXMLRecipeController implements Initializable, UIController {
         navHelpers = new NavigationHelpers();
     }    
     
+    /**
+     * When the home page button is clicked
+     */
     @FXML
     public void homePageButtonClicked(){
         navHelpers.changeScene(recipeNameLabel,"HomePage",null);
     }
     
+    /**
+     * When the recipes button is clicked
+     */
     @FXML
     public void recipesButtonClicked(){
         navHelpers.changeScene(recipeNameLabel,"Recipes",null);
     }
     
+    /**
+     * When the deconnection button is clicked
+     */
     @FXML
     public void deconnectionButtonClicked(){
         navHelpers.changeScene(recipeNameLabel,"UILogin",null);
         UserFacade.deconnection();
     }
     
+    /**
+     * Init the differents label of the scene according to the recipe scene
+     */
     public void initLabels(){
         //les informations
         recipeNameLabel.setText(recipe.getName());

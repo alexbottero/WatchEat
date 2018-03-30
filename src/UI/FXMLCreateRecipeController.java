@@ -88,7 +88,9 @@ public class FXMLCreateRecipeController implements Initializable, UIController {
     private ArrayList<Button> deleteButtons;
     
     private RecipeFacade recipeFacade;
-    
+    /**
+     * La liste des consomables
+     */
     private ObservableList<String> consumables;
     
     private NavigationHelpers navHelpers;
@@ -116,6 +118,7 @@ public class FXMLCreateRecipeController implements Initializable, UIController {
     }
     
     /**
+     * When the user click on the add ingredient button
      * @param event
      */
     public void addIngredientButtonClicked(ActionEvent event){
@@ -125,7 +128,7 @@ public class FXMLCreateRecipeController implements Initializable, UIController {
     }
     
     /**
-     * Rajoute une ligne au formulaire des ingrédients
+     * Add a row to the ingredient tab
      */
     public void addRowIngredient(){
         int indexIngredient = ingredientsField.size();
@@ -154,7 +157,7 @@ public class FXMLCreateRecipeController implements Initializable, UIController {
     }
     
     /**
-     * Lors du click sur le bouton retour, refait venir à la page précédente
+     * Return to home page when click on back button
      * @param event
      */
     public void backClicked(ActionEvent event){
@@ -162,8 +165,8 @@ public class FXMLCreateRecipeController implements Initializable, UIController {
     }
     
     /**
-     * Vérification et création de la recette
-     * @param event clique sur le bouton créer recette
+     * Try to create the recipe with elementFields
+     * @param event Click on the create recipe button
      */
     public void createRecipeClicked(ActionEvent event){
         String name = nameField.getText();
@@ -212,8 +215,8 @@ public class FXMLCreateRecipeController implements Initializable, UIController {
     }
     
     /**
-     * Supprime une ligne du tableau des ingrédients
-     * @param index 
+     * Delete a row of the ingredients table
+     * @param index int of the row
      */
     private void deleteRow(int index) {
         if(deleteButtons.size() > 1){
@@ -234,10 +237,16 @@ public class FXMLCreateRecipeController implements Initializable, UIController {
         }
     }
     
+    /**
+     *  Click on the return to recipe button 
+     */
     public void recipesReturnClicked(){
         navHelpers.changeScene(timeField, "Recipes", null);
     }
     
+    /**
+     * Click on the deconnection button
+     */
     public void deconnectionButtonClicked(){
         navHelpers.changeScene(timeField, "UILogin", null);
         UserFacade.deconnection();

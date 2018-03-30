@@ -63,6 +63,10 @@ public class FXMLUIUserAccountManagerController implements Initializable, UICont
         
     }    
 
+    /**
+     * Changes the page when we click on the validate button if the updateUserAccount method is executed
+     * @param event ActionEvent : event that triggers the action
+     */
     @FXML
     private void click_validate(ActionEvent event) {
         if(uf.updateUserAccount(firstName_textField.getText(), lastName_textField.getText(), height_textField.getText(), weight_textField.getText())!= null){
@@ -78,15 +82,19 @@ public class FXMLUIUserAccountManagerController implements Initializable, UICont
     public void receiveData(Object givenData) {
     }
     
-        /**
+    /**
      * Lors du click sur le bouton retour, refait venir à la page précédente
-     * @param event
+     * @param event Action event : event that triggers the action
      */
     @FXML
     public void backClicked(ActionEvent event){
         new NavigationHelpers().changeScene(Validate,"HomePage",null);
     }
 
+    /**
+     * Changes the page when we click on the change password button
+     * @param event ActionEvent : events that triggers the action
+     */
     @FXML
     private void clickOnChangePwd(ActionEvent event) {
         new NavigationHelpers().changeScene(changePassword_button,"ChangePassword",null);

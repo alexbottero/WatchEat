@@ -40,13 +40,15 @@ public class FXMLChangePasswordController implements Initializable, UIController
         User user = UserFacade.connectedUser;
     }    
 
+    /**
+     * When we click on the confirm button, verifies if the fields are equals and that the updatePwd method is executed.
+     * If that, update the password and changes the page.
+     * @param event ActionEvent : event that triggers the action
+     */
     @FXML
     private void clickOnConfirm(ActionEvent event) {
-        System.out.println("test1");
         if(newPwd_textField.getText().equals(newPwd2_textField.getText())) {
-            System.out.println("test2");
             if(uf.updatePwd(newPwd_textField.getText(), newPwd2_textField.getText()) != null) {
-                System.out.println("test2");
                 new NavigationHelpers().changeScene(confirm_button, "HomePage", null);
             }
         }
