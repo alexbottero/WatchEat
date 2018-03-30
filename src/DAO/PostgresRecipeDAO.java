@@ -104,15 +104,12 @@ public class PostgresRecipeDAO implements RecipeDAO{
         }
     }
 
-    /**
-     * Return all recipes of the database
-     * @return ArrayList<Recipe>
-     */
     @Override
     public ArrayList<Recipe> getRecipes(){
         return getRecipes("","",999);
     }
     
+    @Override
     public ArrayList<Ingredient> getIngredients(Recipe recipe){
         PostgresFoodDAO foodDAO = new PostgresFoodDAO();
         PostgresRecipeDAO recipeDAO = new PostgresRecipeDAO();
@@ -141,11 +138,6 @@ public class PostgresRecipeDAO implements RecipeDAO{
         return ingredients;
     }
     
-    /**
-     * Get a recipe by name in the database
-     * @param name String : name of the recipe
-     * @return Recipe : the recipe found
-     */
     @Override
     public Recipe getRecipe(String name) {
         Recipe recipe = null;
@@ -169,13 +161,7 @@ public class PostgresRecipeDAO implements RecipeDAO{
         }
         return recipe;
     }
-    
-    /**
-     * Get all the recipe of a menu in the database
-     * @param menu Menu : the menu in whih we want to find recipes
-     * @return ArrayList <Recipe>
-     * @throws SQLException
-     */
+  
     @Override
     public ArrayList <Recipe> getAllRecipeFromMenu (Menu menu) throws SQLException{
         ArrayList <Recipe> recipes;
@@ -197,13 +183,6 @@ public class PostgresRecipeDAO implements RecipeDAO{
         return recipes;
     }
     
-    /**
-     * Get the recipes that correspond to this name (a part of), type and time max from database
-     * @param name String : the string that should contain the name of the recipe
-     * @param type String : the type of the recipe found
-     * @param timeMax int : the maximum time recipes found
-     * @return ArrayList<Recipe>
-     */
     @Override
     public ArrayList<Recipe> getRecipes(String name, String type, int timeMax) {
         ArrayList<Recipe> consumables = new ArrayList<>();
@@ -238,14 +217,6 @@ public class PostgresRecipeDAO implements RecipeDAO{
         return consumables;
     }
 
-    /**
-     * Get recipes with a part of the name, a type, a time max and an user author from database
-     * @param name String : the name of the recipe should contain this string
-     * @param type String : the type of the recipes
-     * @param timeMax int : the max time of the recipes
-     * @param user User : the author of the recipes
-     * @returnArrayList<Recipe> : found recipes
-     */
     @Override
     public ArrayList<Recipe> getRecipes(String name, String type, int timeMax, User user) {
         ArrayList<Recipe> consumables = new ArrayList<>();
@@ -275,11 +246,7 @@ public class PostgresRecipeDAO implements RecipeDAO{
         }
         return consumables;
     }
-
-    /**
-     * Delete from the database the recipe
-     * @param recipe Recipe
-     */
+    
     @Override
     public void deleteRecipe(Recipe recipe) {
         try {
@@ -302,10 +269,6 @@ public class PostgresRecipeDAO implements RecipeDAO{
         }
     }
 
-    /**
-     * Delete from database the ingredients of this recipe
-     * @param recipe Recipe
-     */
     @Override
     public void deleteIngredients(Recipe recipe) {
         try {
@@ -318,10 +281,6 @@ public class PostgresRecipeDAO implements RecipeDAO{
         }
     }
 
-    /**
-     * Upate the recipe with this new caracteristics without ingredients into the database
-     * @param recipe Recipe
-     */
     @Override
     public void editRecipe(Recipe recipe) {
         try {
@@ -339,10 +298,6 @@ public class PostgresRecipeDAO implements RecipeDAO{
         }
     }
 
-    /**
-     * Insert the ingredients of this recipe into the database
-     * @param recipe Recipe
-     */
     @Override
     public void insertIngredients(Recipe recipe) {
         String query;

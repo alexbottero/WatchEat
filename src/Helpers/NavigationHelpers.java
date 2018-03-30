@@ -66,7 +66,9 @@ public class NavigationHelpers {
         changeScene(stage,page,givenData);
     }
     
+    /**
+     *
+     */
     public NavigationHelpers(){
-        
     }
 }
