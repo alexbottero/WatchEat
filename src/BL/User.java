@@ -18,8 +18,6 @@ import java.util.logging.Logger;
  */
 public class User {
 
-    private static User connectedUser = null;
-
     /**
      * L'adresse mail de l'utilisateur.
      */
@@ -187,6 +185,12 @@ public class User {
         this.weight = weight;
     }
 
+    /**
+     * Test if the user can login with this identifiants
+     * @param mail String
+     * @param pwd String
+     * @return boolean
+     */
     public boolean login(String mail, String pwd) {
         byte[] pwdBy = pwd.getBytes();
         byte[] pwdHash = null;
@@ -195,35 +199,15 @@ public class User {
             pwdHash = MessageDigest.getInstance("MD5").digest(pwdBy);
             pwdFinal = new String(pwdHash);
             if(this.getMail().equals(mail) && this.getPwd().equals(pwdFinal)){
-                setConnectedUser(this);
                 return true;
             }
             else{
-                setConnectedUser(null);
                 return false;
             }
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
-    }
-    
-    public void deconnection() {
-        setConnectedUser(null);
-    }
-
-    /**
-     * @return the connectedUser
-     */
-    public static User getConnectedUser() {
-        return connectedUser;
-    }
-
-    /**
-     * @param aConnectedUser the connectedUser to set
-     */
-    public static void setConnectedUser(User aConnectedUser) {
-        connectedUser = aConnectedUser;
     }
 
     /**
@@ -254,15 +238,12 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
+    /**
+     * Get the full name ( lastname + firstname)
+     * @return String
+     */
     public String getFullName() {
         return this.lastName + " " + this.firstName;
     }
-
-    
-   /** public static void main(String[] args) throws SQLException{
-        User user = new User("fabazad@live.fr","chocolat");
-        
-        System.out.print(user.login());
-    }**/
 
 }

@@ -10,7 +10,14 @@ package BL;
  * @author fabaz
  */
 public class NutritiveValue {
+    /**
+     * The name of the nutritive value
+     */
     private String name;
+    
+    /**
+     * The unité link to this nutritive value
+     */
     private String unity;
     
     public NutritiveValue(String name, String unity){

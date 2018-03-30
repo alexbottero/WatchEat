@@ -13,6 +13,9 @@ import java.util.ArrayList;
  */
 public class Food extends Consumable{
     
+    /**
+     * The nutritive values of a food
+     */
     private ArrayList<NFQuantity> nutritiveValues;
     
     public Food(String name, ArrayList<NFQuantity> nutritiveValues) {
@@ -23,10 +26,6 @@ public class Food extends Consumable{
     public Food(String name) {
         super(name);
         this.nutritiveValues = new ArrayList<>();
-    }
-
-    @Override
-    public void setIngredients(ArrayList<Ingredient> ingredients) {
     }
 
     @Override

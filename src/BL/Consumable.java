@@ -12,9 +12,11 @@ import java.util.ArrayList;
  * @author fabaz
  */
 public abstract class Consumable implements Comparable {
+    
+    /**
+     * The name of the consumable
+     */
     String name;
-    Food food;
-    Recipe recipe;
     
     public Consumable(String name){
         this.name = name;
@@ -28,8 +30,10 @@ public abstract class Consumable implements Comparable {
     public int compareTo(Object c){
         return (this.name.compareTo(((Consumable)c).getName()));
     }
-
-    public abstract void setIngredients(ArrayList<Ingredient> ingredients);
     
+    /**
+     * Return the nutritive values of the consumable
+     * @return ArrayList<NFQuantity>
+     */
     public abstract ArrayList<NFQuantity> getNutritiveValues();
 }

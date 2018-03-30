@@ -57,8 +57,6 @@ public class Recipe extends Consumable{
         super(name);
     }
     
-
-    @Override
     public void setIngredients(ArrayList<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
@@ -90,6 +88,7 @@ public class Recipe extends Consumable{
     public User getCreator() {
         return this.creator; 
     }
+    
     
     @Override
     public ArrayList<NFQuantity> getNutritiveValues(){
