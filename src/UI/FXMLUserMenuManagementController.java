@@ -50,7 +50,10 @@ public class FXMLUserMenuManagementController implements Initializable {
         menus = menuFacade.getMenus();
         initMenus();
     }
-
+    /**
+     * Init the grid pane on the menu page by adding the information of all the database menus
+     * Creates a see button and changes the page when we click on it
+     */
     private void initMenus() {
         int index = 1;
         for(Menu menu : menus){
@@ -69,12 +72,19 @@ public class FXMLUserMenuManagementController implements Initializable {
             index++;
         }
     }    
-
+    /**
+     * Changes the page when we click on the home page button
+     * @param event Action event : event that triggers the action
+     */
     @FXML
     private void clickOnHomePage(ActionEvent event) {
        navHelpers.changeScene(homePage_button, "HomePage", null);
     }
 
+    /**
+     * Changes the page when we click on the my proposals button
+     * @param event ActionEvent : event that triggers the action
+     */
     @FXML
     private void clickOnMyProposals(ActionEvent event) {
     }

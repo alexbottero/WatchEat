@@ -36,22 +36,19 @@ public class MenuFacade {
         consumableDAO = daoFactory.createConsumableDAO();
         foodDAO = daoFactory.createFoodDAO();
     }
-        
-    public ObservableList<String> getTypes(){
-        ArrayList<String> types = recipeDAO.getTypes();
-        return FXCollections.observableArrayList(types);
-    }
-    
-        public ObservableList<String> getConsumables(){
-        ArrayList<String> consumables = consumableDAO.getStringConsumables();
-        Collections.sort(consumables);
-        return FXCollections.observableArrayList(consumables);
-    }
-        
+
+    /**
+     * return all the recipes
+     * @return ArrayList<Recipe>
+     */
     public ArrayList<Recipe> getRecipes() {
         return recipeDAO.getRecipes();
     }
     
+    /**
+     * return all the menus
+     * @return ArrayList<Menu>
+     */
     public ArrayList<Menu> getMenus() {
         return menuDAO.getMenus();
     }

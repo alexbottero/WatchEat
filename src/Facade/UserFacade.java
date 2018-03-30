@@ -54,13 +54,13 @@ public class UserFacade {
     }
     
     /**
-     * TO DO
-     * @param mail
-     * @param pwd
-     * @param lastName
-     * @param firstName
-     * @param gender
-     * @param dateOfBirth
+     * Creates a new user with this parameters
+     * @param mail String
+     * @param pwd String
+     * @param lastName String
+     * @param firstName String
+     * @param gender String
+     * @param dateOfBirth Date
      * @return boolean
      * @throws SQLException
      */
@@ -116,9 +116,9 @@ public class UserFacade {
     }
     
     /**
-     * TO DO
-     * @param mail
-     * @param pwd
+     * Update the user password whose mail is in parameter
+     * @param mail String
+     * @param pwd String
      * @return
      */
     public User updatePwd(String mail, String pwd) {
