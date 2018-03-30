@@ -53,10 +53,18 @@ public class FXMLMyRequestController implements Initializable, UIController {
             i++;
         }// TODO
     }    
+    /**
+     * when you use the new request button
+     * @param event  ActionEvent
+     */
     @FXML
     private void clickNewRequestButton(ActionEvent event) {
         new NavigationHelpers().changeScene(newRequestButton, "NewRequest", null);
     }
+    /**
+     * when you use back button
+     * @param event ActionEvent
+     */
     @FXML
     private void clickBackButton(ActionEvent event){
         new NavigationHelpers().changeScene(backButton, "HomePage", null);
