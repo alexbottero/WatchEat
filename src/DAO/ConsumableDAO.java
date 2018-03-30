@@ -17,7 +17,5 @@ import java.util.ArrayList;
  */
 public interface ConsumableDAO {
     
-    public Consumable getConsumable(String name);
-
     public ArrayList<String> getStringConsumables();
 }

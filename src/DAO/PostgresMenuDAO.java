@@ -35,6 +35,10 @@ public class PostgresMenuDAO implements MenuDAO {
         jdbc = JDBC.getInstance();
     }
 
+    /**
+     * get all menus
+     * @return ArrayList<Menu>
+     */
     @Override
     public ArrayList<Menu> getMenus() {
         // Hamelina : ajoute liens avec les autres classes
@@ -62,7 +66,11 @@ public class PostgresMenuDAO implements MenuDAO {
         return menus;
     }
     
-
+    /**
+     * Get a menu with his name
+     * @param name of the menu
+     * @return Menu
+     */
     @Override
     public Menu getMenu(String name) {
         // Hamelina : ajoute liens avec les autres classes
@@ -83,29 +91,25 @@ public class PostgresMenuDAO implements MenuDAO {
         return menu;
     }
     
-    
-    //JULIA 
+    /**
+     * Get the menu link to this name and this user author
+     * @param name of the menu
+     * @param user creator of menu
+     * @return
+     */
     public Menu getMenu(String name, User user) {
-        //System.out.print("Bonjour");
         Menu menu = null;
         try {
-            //System.out.println("test");
-            //System.out.println(name);
-            //System.out.println(user.getFirstName());
             String query = "SELECT m.name, m.description, m.datecreation " +
                     "FROM public.menu m, public.user u " +
                     "WHERE m.name = '"+ name+ "' AND u.mail = '" + user.getMail()+ "' AND m.iduser = u.iduser";
-            System.out.println("query declared");
             ResultSet res = jdbc.select(query);
-            System.out.println("query passed");
-            //System.out.println("result set ok");
             while(res.next()){
                 System.out.println("enter while");
                 System.out.print(res.getDate("datecreation"));
                 menu = new Menu(name,
                         res.getString("description"),
                         res.getDate("datecreation"), user);
-                //System.out.println("test");
                 
             }
         } catch (SQLException ex) {
@@ -123,9 +127,9 @@ public class PostgresMenuDAO implements MenuDAO {
     //pour un nutri
 
     /**
-     *
-     * @param user
-     * @return
+     * Get all menus written by this user
+     * @param user User
+     * @return ArrayList<Menu>
      */
     @Override
     public ArrayList<Menu> getAllMenusFromUser(User user) {
@@ -158,6 +162,7 @@ public class PostgresMenuDAO implements MenuDAO {
     }
 
      /**
+     * Delete this menu from database
      * @param Menu
      */
     @Override
@@ -168,9 +173,10 @@ public class PostgresMenuDAO implements MenuDAO {
     
 
     /**
-     * @param name 
-     * @param desc 
-     * @param consumables
+     * Update the menu with this parameters
+     * @param name String
+     * @param desc String
+     * @param consumables ArrayList<Consumable>
      */
     @Override
     public void updateMenu(String name, String desc, ArrayList<Consumable> consumables) {
@@ -178,12 +184,12 @@ public class PostgresMenuDAO implements MenuDAO {
     }
 
     /**
-     * @param name 
-     * @param desc 
-     * @param consumables 
-     * @param dateMenu 
-     * @param author;Nutritionist 
-     * @return
+     * Create a menu with this caracteristics
+     * @param name  String : name of the menu
+     * @param desc String : the description
+     * @param consumables ArrayList<Consumable> consumables : consumables menu
+     * @param dateMenu Date
+     * @param author Nutritionist 
      */
     @Override
     public void createMenu(String name, String desc, ArrayList<Consumable> consumables, java.util.Date dateMenu, User author) {

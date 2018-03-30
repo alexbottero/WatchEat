@@ -32,46 +32,10 @@ public class PostgresConsumableDAO implements ConsumableDAO {
         jdbc = JDBC.getInstance();
     }    
     
-    @Override
-    public Consumable getConsumable(String name){
-        /*Consumable consumable = null;
-        try {
-            
-            //Cherche dans la table food
-            Food food = getFood(name);
-            if(food != null){
-                return food;
-            }
-            else{
-                getRecipe(name);
-            }
-            
-            String query = "SELECT name, description, instructions, timerecipe, peopleamount, title, c.idfood "
-                    + "FROM public.recipe r, public.type t, public.consumable c, public.recipecontain rc "
-                    + "WHERE r.idtype = t.idtype AND rc.idrecipe = r.idrecipe AND c.name = '" + name + "'";
-            ResultSet res = jdbc.select(query);
-            if(res.next()){
-                if(res.getString("idfood") == null){
-                    consumable  = new Recipe(res.getString("name"),
-                            res.getString("description"),
-                            res.getString("instructions"),
-                            Integer.parseInt(res.getString("timerecipe")),
-                            Integer.parseInt(res.getString("peopleamount")),
-                            res.getString("title")); 
-                    ArrayList<Ingredient> ingredients = getIngredients((Recipe)consumable);
-                    consumable.setIngredients(ingredients);
-                }
-                else{
-                    consumable = new Food(res.getString("name"));
-                }
-            }
-        }catch (SQLException ex) {
-            Logger.getLogger(PostgresRecipeDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return consumable;*/
-        return null;
-    }
-
+    /**
+     * get all consumables in string array
+     * @return ArrayList<String>
+     */
     @Override
     public ArrayList<String> getStringConsumables() {
         ArrayList<String> consumables = new ArrayList<>();

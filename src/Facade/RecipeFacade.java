@@ -34,17 +34,36 @@ public class RecipeFacade {
         foodDAO = daoFactory.createFoodDAO();
     }
     
+    /**
+     * get all the types names into string array
+     * @return ObservableList<String>
+     */
     public ObservableList<String> getTypes(){
         ArrayList<String> types = recipeDAO.getTypes();
         return FXCollections.observableArrayList(types);
     }
     
+    /**
+     * Get all the consumables names into string array
+     * @return ObservableList<String>
+     */
     public ObservableList<String> getConsumables(){
         ArrayList<String> consumables = consumableDAO.getStringConsumables();
         Collections.sort(consumables);
         return FXCollections.observableArrayList(consumables);
     }
     
+    /**
+     * Create a new recipe with this caracteristics
+     * @param name String
+     * @param description String
+     * @param type String
+     * @param timeString int
+     * @param peopleAmountString int
+     * @param instructions String
+     * @param ingredientsName ArrayList<String>
+     * @param ingredientsQuantity ArrayList<String>
+     */
     public void createRecipe(String name, String description, String type, String timeString, String peopleAmountString, String instructions, ArrayList<String> ingredientsName, ArrayList<Integer> ingredientsQuantity) {
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         for(String ingredientName : ingredientsName){
@@ -65,10 +84,22 @@ public class RecipeFacade {
         recipeDAO.createRecipe(recipe,UserFacade.connectedUser);
     }
 
+    /**
+     * get all the recipes
+     * @return ArrayList<Recipe>
+     */
     public ArrayList<Recipe> getRecipes() {
         return recipeDAO.getRecipes();
     }
 
+    /**
+     * Get the recipes wich contain this string in name, this type, under this time max and written by this user
+     * @param name String
+     * @param type String
+     * @param timeMax int 
+     * @param connectedUser User
+     * @return
+     */
     public ArrayList<Recipe> getRecipes(String name, String type, int timeMax, User connectedUser) {
         name = (name == null ? "" : name);
         type = (type == null || type.equals("None") ? "" : type);
@@ -81,10 +112,25 @@ public class RecipeFacade {
         }
     }
 
+    /**
+     * Delete this recipe
+     * @param recipe Recipe 
+     */
     public void deleteRecipe(Recipe recipe) {
         recipeDAO.deleteRecipe(recipe);
     }
 
+    /**
+     * Edit the recipe of this name with the other paramaters
+     * @param name String
+     * @param description String
+     * @param type String
+     * @param time int
+     * @param peopleAmount int
+     * @param instructions String
+     * @param ingredientsName ArrayList<String>
+     * @param ingredientsQuantity ArrayList<Integer>
+     */
     public void editRecipe(String name, String description, String type, int time, int peopleAmount, String instructions, ArrayList<String> ingredientsName, ArrayList<Integer> ingredientsQuantity) {
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         for(String ingredientName : ingredientsName){

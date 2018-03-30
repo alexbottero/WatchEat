@@ -32,9 +32,10 @@ public class UserFacade {
 
 
     /**
-     * @param mail 
-     * @param pwd
-     * @return 
+     * Try to connect the user with his email and password, true if succeed
+     * @param mail String
+     * @param pwd String
+     * @return boolean
      * @throws java.sql.SQLException
      */
     public boolean login(String mail, String pwd) throws SQLException{
@@ -52,6 +53,17 @@ public class UserFacade {
         
     }
     
+    /**
+     * TO DO
+     * @param mail
+     * @param pwd
+     * @param lastName
+     * @param firstName
+     * @param gender
+     * @param dateOfBirth
+     * @return boolean
+     * @throws SQLException
+     */
     public boolean signUp(String mail,String pwd,String lastName , String firstName , String gender , Date dateOfBirth ) throws SQLException{
         java.sql.Date sDate = convertUtilToSql(dateOfBirth);
         User user= userDAO.find(mail);
@@ -81,34 +93,21 @@ public class UserFacade {
         }
                 
     }
-
-    /**
-     * @param mail
-     */
-    public void getFirstNameByMail(String mail) {
-        // TODO implement here
-    }
-
-    /**
-     * @param mail
-     */
-    public void getLastNameByMail(String mail) {
-        // TODO implement here
-    }
     
     /**
-     * 
+     * Deconnect the user
      */
     public static void deconnection() {
         UserFacade.connectedUser = null;
     }
     
     /**
-     * @param firstName 
-     * @param lastName 
-     * @param height 
-     * @param weight 
-     * @return  
+     * Update the user with this caracteristics and return it
+     * @param firstName String
+     * @param lastName String
+     * @param height String
+     * @param weight String
+     * @return User
      */
     public User updateUserAccount(String firstName, String lastName, String height, String weight) {
         User user = userDAO.updateUserAccount(firstName, lastName, height, weight, connectedUser.getMail());
@@ -116,10 +115,12 @@ public class UserFacade {
         return connectedUser;
     }
     
-    public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException, SQLException{
-        
-    }
-    
+    /**
+     * TO DO
+     * @param mail
+     * @param pwd
+     * @return
+     */
     public User updatePwd(String mail, String pwd) {
         User user = null;
         try {

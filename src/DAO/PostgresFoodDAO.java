@@ -28,6 +28,11 @@ public class PostgresFoodDAO implements FoodDAO {
         jdbc = JDBC.getInstance();
     }
 
+    /**
+     * get the food with this name
+     * @param name of the food
+     * @return Food 
+     */
     @Override
     public Food getFood(String name) {
         Food food = null;
