@@ -15,7 +15,7 @@ public interface UserDAO {
      * Find an user in the database thanks to his mail, if nothing return null
      * @param mail mail address of the searching user
      * @return the user found
-     * @throws java.sql.SQLException 
+     * @throws java.sql.SQLException .
      */
     public User find(String mail) throws SQLException;
 
@@ -23,7 +23,7 @@ public interface UserDAO {
      * Update the password of the user whose mail is on parameter
      * @param mail String
      * @param pwd String
-     * @return 
+     * @return User
      */
     public User update(String mail, String pwd);
     
@@ -35,7 +35,7 @@ public interface UserDAO {
      * @param firstName String
      * @param gender String
      * @param dateOfBirth Date
-     * @return
+     * @return User
      */
     public User create(String mail,String pwd, String lastName , String firstName , String gender , Date dateOfBirth);
     
@@ -46,7 +46,7 @@ public interface UserDAO {
      * @param height String
      * @param weight String
      * @param mailAdress String
-     * @return
+     * @return User
      */
     public User updateUserAccount(String firstName, String lastName, String height, String weight, String mailAdress);
     
@@ -57,7 +57,7 @@ public interface UserDAO {
      * Update the password of the user whose mail is on parameter
      * @param mail String
      * @param pwd String
-     * @return
+     * @return User
      */
     public User updatePwd(String mail, String pwd);
     

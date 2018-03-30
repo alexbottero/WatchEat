@@ -20,20 +20,20 @@ public interface RecipeDAO {
     
     /**
      * Get the all the type in database into array string
-     * @return ArrayList<String>
+     * @return ArrayList String
      */
     public ArrayList<String> getTypes();
 
     /**
      * Insert the recipe into the database
-     * @param recipe 
+     * @param recipe Recipe
      * @param user User : author of the recipe
      */
     public void createRecipe(Recipe recipe, User user);
     
     /**
      * Return all recipes of the database
-     * @return ArrayList<Recipe>
+     * @return ArrayList Recipe
      */
     public ArrayList<Recipe> getRecipes();
     
@@ -49,7 +49,7 @@ public interface RecipeDAO {
      * @param name String : the string that should contain the name of the recipe
      * @param type String : the type of the recipe found
      * @param timeMax int : the maximum time recipes found
-     * @return ArrayList<Recipe>
+     * @return ArrayList Recipe
      */
     public ArrayList<Recipe> getRecipes(String name, String type, int timeMax);
 
@@ -59,15 +59,15 @@ public interface RecipeDAO {
      * @param type String : the type of the recipes
      * @param timeMax int : the max time of the recipes
      * @param user User : the author of the recipes
-     * @returnArrayList<Recipe> : found recipes
+     * @return ArrayList Recipe : found recipes
      */
     public ArrayList<Recipe> getRecipes(String name, String type, int timeMax, User user);
     
     /**
      * Get all the recipe of a menu in the database
      * @param menu Menu : the menu in whih we want to find recipes
-     * @return ArrayList <Recipe>
-     * @throws SQLException
+     * @return ArrayList Recipe 
+     * @throws SQLException .
      */
     public ArrayList<Recipe> getAllRecipeFromMenu(Menu menu) throws SQLException;
 
@@ -98,7 +98,7 @@ public interface RecipeDAO {
     /**
      * Get all the indregients of a recipe
      * @param recipe Recipe
-     * @return ArrayList<Ingredient>
+     * @return ArrayList Ingredient
      */
     public ArrayList<Ingredient> getIngredients(Recipe recipe);
 }

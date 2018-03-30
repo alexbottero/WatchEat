@@ -34,7 +34,7 @@ public class PostgresConsumableDAO implements ConsumableDAO {
     
     /**
      * get all consumables in string array
-     * @return ArrayList<String>
+     * @return ArrayList String 
      */
     @Override
     public ArrayList<String> getStringConsumables() {

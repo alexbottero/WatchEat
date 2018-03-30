@@ -36,7 +36,7 @@ public class UserFacade {
      * @param mail String
      * @param pwd String
      * @return boolean
-     * @throws java.sql.SQLException
+     * @throws java.sql.SQLException .
      */
     public boolean login(String mail, String pwd) throws SQLException{
         User user = userDAO.find(mail);
@@ -62,7 +62,7 @@ public class UserFacade {
      * @param gender String
      * @param dateOfBirth Date
      * @return boolean
-     * @throws SQLException
+     * @throws SQLException    . 
      */
     public boolean signUp(String mail,String pwd,String lastName , String firstName , String gender , Date dateOfBirth ) throws SQLException{
         java.sql.Date sDate = convertUtilToSql(dateOfBirth);
@@ -119,7 +119,7 @@ public class UserFacade {
      * Update the user password whose mail is in parameter
      * @param mail String
      * @param pwd String
-     * @return
+     * @return User
      */
     public User updatePwd(String mail, String pwd) {
         User user = null;

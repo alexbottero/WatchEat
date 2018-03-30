@@ -42,8 +42,10 @@ public class MenuManagerFacade {
     //}
 
     /**
-     * @param nutritionist 
-     * @return
+     * 
+     * @param user User : nutritionist 
+     * @return ArrayList Menu
+     * @throws java.sql.SQLException .
      */
     public ArrayList<Menu> getAllMenu(User user) throws SQLException {
         ArrayList<Menu> menus = menuDAO.getAllMenusFromUser(user);
@@ -51,8 +53,7 @@ public class MenuManagerFacade {
                 m.addListFood(foodDAO.getAllFoodFromMenu(m));
                 m.addListRecipe(recipeDAO.getAllRecipeFromMenu(m));
         }
-        // TODO implement here
-        return null;
+        return menus;
     }
 
 }

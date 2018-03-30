@@ -43,7 +43,7 @@ public class RequestFacade {
    
     /**
      * get all user's request 
-     * @return ObservableList<Request>
+     * @return ObservableList Request
      */
     public ObservableList<Request> getRequests(){
         String id = userDAO.selectUser(UserFacade.connectedUser.getMail());

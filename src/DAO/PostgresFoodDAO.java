@@ -83,14 +83,6 @@ public class PostgresFoodDAO implements FoodDAO {
         return consumables;
     }
     
-    //Julia pour avoir les food d'un menu
-
-    /**
-     *
-     * @param menu
-     * @return
-     * @throws SQLException
-     */
     @Override
     public ArrayList <Food> getAllFoodFromMenu(Menu menu) throws SQLException{
         ArrayList <Food> food = new ArrayList <Food>();

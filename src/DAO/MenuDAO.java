@@ -18,7 +18,7 @@ public interface MenuDAO {
     
     /**
      * get all menus
-     * @return ArrayList<Menu>
+     * @return ArrayList Menu
      */
     public ArrayList<Menu> getMenus();
     
@@ -32,7 +32,7 @@ public interface MenuDAO {
     /**
      * Get all menus written by this user
      * @param user User
-     * @return ArrayList<Menu>
+     * @return ArrayList Menu
      */
     public ArrayList<Menu> getAllMenusFromUser(User user);
     
@@ -46,7 +46,7 @@ public interface MenuDAO {
     
     /**
      * Delete the menu in param from the database
-     * @param Menu to delete
+     * @param menu Menu
      */
     public void deleteMenu(Menu menu);
 
@@ -56,7 +56,7 @@ public interface MenuDAO {
      * Update the menu with this parameters
      * @param name String
      * @param desc String
-     * @param consumables ArrayList<Consumable>
+     * @param consumables ArrayList Consumable
      */
     public void updateMenu(String name, String desc, ArrayList<Consumable> consumables) ;
 
@@ -64,10 +64,9 @@ public interface MenuDAO {
      * Create a menu with this parameters
      * @param name String : name of the menu
      * @param desc String : the description
-     * @param consumables ArrayList<Consumable>
+     * @param consumables ArrayList Consumable
      * @param dateMenu Date
      * @param author Nutritionist 
-     * @return
      */
     public void createMenu(String name, String desc, ArrayList<Consumable> consumables, Date dateMenu, User author);
     

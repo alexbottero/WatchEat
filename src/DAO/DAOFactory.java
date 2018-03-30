@@ -23,13 +23,12 @@ public abstract class DAOFactory {
 
     /**
      * 
-     * @return 
+     * @return userDAO
      */
     public abstract UserDAO createUserDAO();
 
     /**
-     * @param type
-     * @return 
+     * @return DAOFactory
      */
     public abstract DAOFactory getFactory();
 

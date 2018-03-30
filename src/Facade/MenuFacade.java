@@ -39,7 +39,7 @@ public class MenuFacade {
 
     /**
      * return all the recipes
-     * @return ArrayList<Recipe>
+     * @return ArrayList Recipe
      */
     public ArrayList<Recipe> getRecipes() {
         return recipeDAO.getRecipes();
@@ -47,7 +47,7 @@ public class MenuFacade {
     
     /**
      * return all the menus
-     * @return ArrayList<Menu>
+     * @return ArrayList Menu
      */
     public ArrayList<Menu> getMenus() {
         return menuDAO.getMenus();

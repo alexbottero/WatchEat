@@ -36,7 +36,7 @@ public class RecipeFacade {
     
     /**
      * get all the types names into string array
-     * @return ObservableList<String>
+     * @return ObservableList String
      */
     public ObservableList<String> getTypes(){
         ArrayList<String> types = recipeDAO.getTypes();
@@ -45,7 +45,7 @@ public class RecipeFacade {
     
     /**
      * Get all the consumables names into string array
-     * @return ObservableList<String>
+     * @return ObservableList String
      */
     public ObservableList<String> getConsumables(){
         ArrayList<String> consumables = consumableDAO.getStringConsumables();
@@ -61,8 +61,8 @@ public class RecipeFacade {
      * @param timeString int
      * @param peopleAmountString int
      * @param instructions String
-     * @param ingredientsName ArrayList<String>
-     * @param ingredientsQuantity ArrayList<String>
+     * @param ingredientsName ArrayList String
+     * @param ingredientsQuantity ArrayList String
      */
     public void createRecipe(String name, String description, String type, String timeString, String peopleAmountString, String instructions, ArrayList<String> ingredientsName, ArrayList<Integer> ingredientsQuantity) {
         ArrayList<Ingredient> ingredients = new ArrayList<>();
@@ -86,7 +86,7 @@ public class RecipeFacade {
 
     /**
      * get all the recipes
-     * @return ArrayList<Recipe>
+     * @return ArrayList Recipe
      */
     public ArrayList<Recipe> getRecipes() {
         return recipeDAO.getRecipes();
@@ -98,7 +98,7 @@ public class RecipeFacade {
      * @param type String
      * @param timeMax int 
      * @param connectedUser User
-     * @return
+     * @return ArrayList Recipe
      */
     public ArrayList<Recipe> getRecipes(String name, String type, int timeMax, User connectedUser) {
         name = (name == null ? "" : name);
@@ -128,8 +128,8 @@ public class RecipeFacade {
      * @param time int
      * @param peopleAmount int
      * @param instructions String
-     * @param ingredientsName ArrayList<String>
-     * @param ingredientsQuantity ArrayList<Integer>
+     * @param ingredientsName ArrayList Strin 
+     * @param ingredientsQuantity ArrayList Integer
      */
     public void editRecipe(String name, String description, String type, int time, int peopleAmount, String instructions, ArrayList<String> ingredientsName, ArrayList<Integer> ingredientsQuantity) {
         ArrayList<Ingredient> ingredients = new ArrayList<>();

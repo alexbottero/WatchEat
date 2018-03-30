@@ -39,7 +39,7 @@ public class PostgresMenuDAO implements MenuDAO {
 
     /**
      * get all menus
-     * @return ArrayList<Menu>
+     * @return ArrayList Menu
      */
     @Override
     public ArrayList<Menu> getMenus() {
@@ -95,9 +95,9 @@ public class PostgresMenuDAO implements MenuDAO {
     
     /**
      * Get the menu link to this name and this user author
-     * @param name of the menu
-     * @param user creator of menu
-     * @return
+     * @param name String of the menu
+     * @param user User creator of menu
+     * @return Menu
      */
     public Menu getMenu(String name, User user) {
         Menu menu = null;
@@ -131,7 +131,7 @@ public class PostgresMenuDAO implements MenuDAO {
     /**
      * Get all menus written by this user
      * @param user User
-     * @return ArrayList<Menu>
+     * @return ArrayList Menu
      */
     @Override
     public ArrayList<Menu> getAllMenusFromUser(User user) {
@@ -164,35 +164,19 @@ public class PostgresMenuDAO implements MenuDAO {
     }
 
      /**
-     * Delete this menu from database
-     * @param Menu
-     */
+      * 
+      * @param menu Menu
+      */
     @Override
     public void deleteMenu(Menu menu) {
         // TODO implement here
     }
 
-    
-
-    /**
-     * Update the menu with this parameters
-     * @param name String
-     * @param desc String
-     * @param consumables ArrayList<Consumable>
-     */
     @Override
     public void updateMenu(String name, String desc, ArrayList<Consumable> consumables) {
         // TODO implement here
     }
-
-    /**
-     * Create a menu with this caracteristics
-     * @param name  String : name of the menu
-     * @param desc String : the description
-     * @param consumables ArrayList<Consumable> consumables : consumables menu
-     * @param dateMenu Date
-     * @param author Nutritionist 
-     */
+    
     @Override
     public void createMenu(String name, String desc, ArrayList<Consumable> consumables, java.util.Date dateMenu, User author) {
         // TODO implement here

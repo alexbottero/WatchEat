@@ -95,12 +95,6 @@ public class FXMLCreateRecipeController implements Initializable, UIController {
     
     private NavigationHelpers navHelpers;
     
-    
-    /**
-     * Initializes the controller class.
-     * @param url
-     * @param rb
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         navHelpers = new NavigationHelpers();
@@ -119,7 +113,7 @@ public class FXMLCreateRecipeController implements Initializable, UIController {
     
     /**
      * When the user click on the add ingredient button
-     * @param event
+     * @param event ActionEvent
      */
     public void addIngredientButtonClicked(ActionEvent event){
         if(deleteButtons.size() < 11){
@@ -158,7 +152,7 @@ public class FXMLCreateRecipeController implements Initializable, UIController {
     
     /**
      * Return to home page when click on back button
-     * @param event
+     * @param event ActionEvent
      */
     public void backClicked(ActionEvent event){
         navHelpers.changeScene(nameField,"HomePage",null);

@@ -24,7 +24,7 @@ public interface RequestDAO {
     /**
      *get all user's request in db
      * @param id String user id
-     * @return ArrayList<Request>
+     * @return ArrayList Request
      */
     public ArrayList<Request> getRequests(String id);
 

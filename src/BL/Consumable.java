@@ -33,7 +33,7 @@ public abstract class Consumable implements Comparable {
     
     /**
      * Return the nutritive values of the consumable
-     * @return ArrayList<NFQuantity>
+     * @return ArrayList NFQuantity
      */
     public abstract ArrayList<NFQuantity> getNutritiveValues();
 }
