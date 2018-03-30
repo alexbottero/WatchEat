@@ -85,7 +85,24 @@ public class RecipeFacade {
         recipeDAO.deleteRecipe(recipe);
     }
 
-    public void editRecipe(String name, String description, String type, String timeString, String peopleAmountString, String instructions, ArrayList<String> ingredientsName, ArrayList<Integer> ingredientsQuantity) {
+    public void editRecipe(String name, String description, String type, int time, int peopleAmount, String instructions, ArrayList<String> ingredientsName, ArrayList<Integer> ingredientsQuantity) {
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
+        for(String ingredientName : ingredientsName){
+            Consumable consumable;
+            Food food = foodDAO.getFood(ingredientName);
+            if(food != null){
+                consumable = food;
+                
+            }else{
+                consumable = recipeDAO.getRecipe(ingredientName);
+            }
+            int quantity = ingredientsQuantity.get(ingredientsName.indexOf(ingredientName));
+            ingredients.add(new Ingredient(consumable,quantity));
+        }
+        Recipe recipe = new Recipe(name,description,instructions,time,peopleAmount,type,ingredients);
         
+        recipeDAO.deleteIngredients(recipe);
+        recipeDAO.editRecipe(recipe);
+        recipeDAO.insertIngredients(recipe);
     }
 }

@@ -32,4 +32,10 @@ public interface RecipeDAO {
     public ArrayList<Recipe> getAllRecipeFromMenu(Menu menu) throws SQLException;
 
     public void deleteRecipe(Recipe recipe);
+
+    public void deleteIngredients(Recipe recipe);
+
+    public void editRecipe(Recipe recipe);
+
+    public void insertIngredients(Recipe recipe);
 }

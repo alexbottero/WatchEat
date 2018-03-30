@@ -277,4 +277,51 @@ public class PostgresRecipeDAO implements RecipeDAO{
             Logger.getLogger(PostgresRecipeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @Override
+    public void deleteIngredients(Recipe recipe) {
+        try {
+            String query = "DELETE FROM public.recipecontain WHERE idrecipe="
+                    + "(SELECT r.idrecipe FROM public.recipe r, public.consumable c "
+                    + "WHERE r.idconsumable = c.idconsumable AND c.name = '" + recipe.getName() +"')";
+            jdbc.update(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(PostgresRecipeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void editRecipe(Recipe recipe) {
+        try {
+            String query = "UPDATE public.recipe SET "
+                    + "description = '" + recipe.getDescription() + "', "
+                    + "instructions = '" + recipe.getInstructions() + "', "
+                    + "timeRecipe = " + recipe.getTimeRecipe() + ", "
+                    + "peopleamount = " + recipe.getPeopleAmount() + " "
+                    + "WHERE idrecipe = "
+                    + "(SELECT r.idrecipe FROM public.recipe r, public.consumable c "
+                    + "WHERE r.idconsumable = c.idconsumable AND c.name= '" + recipe.getName() + "')";
+            jdbc.update(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(PostgresRecipeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void insertIngredients(Recipe recipe) {
+        String query;
+        for(Ingredient ingredient : recipe.getIngredients()){
+            try {
+                query = "INSERT INTO public.recipecontain (idrecipe,idconsumable,quantity)VALUES("
+                        + "(SELECT r.idrecipe FROM public.recipe r, public.consumable c "
+                        + "WHERE r.idconsumable = c.idconsumable AND c.name = '" + recipe.getName() + "'),"
+                        + "(SELECT idconsumable FROM public.consumable "
+                        + "WHERE name = '" + ingredient.getConsumable().getName() + "'),"
+                        + ingredient.getQuantity() + ");";
+                jdbc.update(query);
+            } catch (SQLException ex) {
+                Logger.getLogger(PostgresRecipeDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 }

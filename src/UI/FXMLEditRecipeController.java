@@ -123,11 +123,11 @@ public class FXMLEditRecipeController implements Initializable, UIController {
                 int time = Integer.parseInt(timeField.getText());
                 int peopleAmount = Integer.parseInt(peopleAmountString);
                 
-                this.recipeFacade.editRecipe(recipe.getName(),description,type,timeString,peopleAmountString,instructions,ingredientsName,ingredientsQuantity);
+                this.recipeFacade.editRecipe(recipe.getName(),description,type,time,peopleAmount,instructions,ingredientsName,ingredientsQuantity);
                 errorMessageLabel.setText("Recipe edited.");
             } 
             catch (NumberFormatException e) { 
-                errorMessageLabel.setText("Recipe people amount and recipe time should be numerics."); 
+                errorMessageLabel.setText("Recipe people amount, ingredient quantities and recipe time should be numerics."); 
             }
         }
         navHelpers.changeScene(errorMessageLabel, "Recipes", null);
