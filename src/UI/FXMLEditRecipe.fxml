@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #00B628;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.FXMLEditRecipeController">
+   <children>
+      <Label layoutX="477.0" layoutY="15.0" text="Recipe edition" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="descriptionField" layoutX="71.0" layoutY="138.0" prefHeight="58.0" prefWidth="375.0" promptText="Short recipe description" />
+      <TextArea fx:id="instructionsField" layoutX="71.0" layoutY="346.0" prefHeight="145.0" prefWidth="375.0" promptText="Recipe instructions" />
+      <Button layoutX="452.0" layoutY="525.0" mnemonicParsing="false" onAction="#editRecipeClicked" text="Edit Recipe" />
+      <ComboBox fx:id="typeField" layoutX="71.0" layoutY="214.0" prefWidth="150.0" promptText="Recipe type" />
+      <Label layoutX="71.0" layoutY="257.0" text="Recipe time" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="71.0" layoutY="303.0" text="People amount" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <GridPane fx:id="ingredientsPane" hgap="10.0" layoutX="518.0" layoutY="85.0" prefHeight="48.0" prefWidth="353.0" vgap="10.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="10.0" prefWidth="146.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="107.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="81.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+      <Button fx:id="addIngredientButton" layoutX="529.0" layoutY="466.0" mnemonicParsing="false" onAction="#addIngredientButtonClicked" text="Add Ingredient" />
+      <TextField fx:id="timeField" layoutX="259.0" layoutY="255.0" promptText="Of minute" />
+      <TextField fx:id="peopleAmountField" layoutX="259.0" layoutY="301.0" />
+      <Button layoutX="45.0" layoutY="17.0" mnemonicParsing="false" onAction="#backClicked" text="Home Page" />
+      <Label fx:id="errorMessageLabel" layoutX="454.0" layoutY="569.0" text="Message d'erreur" textFill="RED" AnchorPane.leftAnchor="50.0">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="rescipesReturn" layoutX="139.0" layoutY="17.0" mnemonicParsing="false" onAction="#recipesReturnClicked" text="Recipes Return" />
+      <Button layoutX="250.0" layoutY="17.0" mnemonicParsing="false" onAction="#deconnectionButtonClicked" style="-fx-background-color: #202020;" text="Deconnection" textFill="WHITE" />
+      <Label fx:id="nameRecipeLabel" layoutX="70.0" layoutY="101.0" text="Recipe name" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

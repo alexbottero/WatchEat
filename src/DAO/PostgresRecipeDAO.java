@@ -190,7 +190,7 @@ public class PostgresRecipeDAO implements RecipeDAO{
         }
         return recipes;
     }
-               System.out.println(res.getString("name"));
+    
 
     @Override
     public ArrayList<Recipe> getRecipes(String name, String type, int timeMax) {
@@ -267,7 +267,8 @@ public class PostgresRecipeDAO implements RecipeDAO{
             System.out.println("idrecipe : " + idrecipe);
             System.out.println("idconsumable : " + idconsumable);
             
-            query = "DELETE FROM public.recipecontain WHERE idrecipe = " + idrecipe + ";"
+            query = "DELETE FROM public.recipecontain WHERE idrecipe = " + idrecipe + " OR idconsumable = " + idconsumable + ";"
+                    + "DELETE FROM public.comment WHERE idconsumable = " + idconsumable + ";"
                     + "DELETE FROM public.recipe WHERE idrecipe = " + idrecipe + ";"
                     + "DELETE FROM public.consumable WHERE idconsumable = " + idconsumable + ";";
             jdbc.update(query);

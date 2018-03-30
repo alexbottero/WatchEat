@@ -119,7 +119,7 @@ public class FXMLRecipesController implements Initializable, UIController {
                 Button editButton = new Button("Edit");
                 editButton.setOnAction(new EventHandler<ActionEvent>() {
                     @Override public void handle(ActionEvent e) {
-                        //navHelpers.changeScene(createRecipeButton, "EditRecipe", recipe);
+                        navHelpers.changeScene(createRecipeButton, "EditRecipe", recipe);
                     }
                 });
                 editButton.setStyle("-fx-background-color: #ffb200");

@@ -84,4 +84,8 @@ public class RecipeFacade {
     public void deleteRecipe(Recipe recipe) {
         recipeDAO.deleteRecipe(recipe);
     }
+
+    public void editRecipe(String name, String description, String type, String timeString, String peopleAmountString, String instructions, ArrayList<String> ingredientsName, ArrayList<Integer> ingredientsQuantity) {
+        
+    }
 }
