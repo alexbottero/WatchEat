@@ -11,5 +11,9 @@ package UI;
  */
 public interface UIController {
     
+    /**
+     * Data receive from the previous controller, works when it receive it
+     * @param givenData Object
+     */
     public void receiveData(Object givenData);
 }

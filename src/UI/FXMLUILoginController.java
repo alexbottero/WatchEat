@@ -55,6 +55,13 @@ public class FXMLUILoginController implements Initializable,UIController {
     @FXML
     private Button signUpButton;
     
+    /**
+     * When the Log in button is clicked
+     * @param event
+     * @throws SQLException
+     * @throws NoSuchAlgorithmException
+     * @throws UnsupportedEncodingException 
+     */
     @FXML
     private void handleButtonAction(ActionEvent event) throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if(event.getSource()==btLogIn){

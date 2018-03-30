@@ -91,6 +91,10 @@ public class FXMLEditRecipeController implements Initializable, UIController {
         consumables = recipeFacade.getConsumables();
     }    
 
+    /**
+     * When the edit recipe button is clicked 
+     * @param event ActionEvent
+     */
     @FXML
     private void editRecipeClicked(ActionEvent event) {
         String description = descriptionField.getText();
@@ -134,7 +138,7 @@ public class FXMLEditRecipeController implements Initializable, UIController {
     }
     
     /**
-     * Rajoute une ligne au formulaire des ingrédients
+     * Add a rox to the ingrdients form
      */
     public void addRowIngredient(){
         int indexIngredient = ingredientsField.size();
@@ -164,7 +168,7 @@ public class FXMLEditRecipeController implements Initializable, UIController {
     }
 
     /**
-     * Supprime une ligne du tableau des ingrédients
+     * Delete a row from the ingredients form table
      * @param index 
      */
     private void deleteRow(int index) {
@@ -186,6 +190,10 @@ public class FXMLEditRecipeController implements Initializable, UIController {
         }
     }
     
+    /**
+     * When the add ingredient button is clicked
+     * @param event ActionEvent
+     */
     @FXML
     private void addIngredientButtonClicked(ActionEvent event) {
         if(deleteButtons.size() < 11){
@@ -193,17 +201,29 @@ public class FXMLEditRecipeController implements Initializable, UIController {
         }
     }
 
+    /**
+     * When the back button is clicked
+     * @param event ActionEvent
+     */
     @FXML
     private void backClicked(ActionEvent event) {
         navHelpers.changeScene(typeField, "HomePage", event);
     }
 
+    /**
+     * When the recipes return button is clicked
+     * @param event 
+     */
     @FXML
     private void recipesReturnClicked(ActionEvent event) {
         navHelpers.changeScene(typeField, "Recipes", event);
     }
+    
+    /**
+     * When the deconnection button is clicked
+     * @param event ActionEvent
+     */
     @FXML
-
     private void deconnectionButtonClicked(ActionEvent event) {
         UserFacade.deconnection();
         navHelpers.changeScene(typeField, "UILogin", event);
