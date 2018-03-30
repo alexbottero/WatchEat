@@ -98,7 +98,6 @@ public class FXMLRecipeController implements Initializable, UIController {
         instructionsLabel.setText(recipe.getInstructions());
         peopleAmountLabel.setText(Integer.toString(recipe.getPeopleAmount()) + " person(s)");
         timeLabel.setText(Integer.toString(recipe.getTimeRecipe()) + " minutes");
-        authorLabel.setText(recipe.getCreator().getFullName());
         
         //Les ingrédients
         int index = 1;
