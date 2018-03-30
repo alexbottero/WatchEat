@@ -93,6 +93,10 @@ public class Menu {
         return this.creator;
     }
     
+    /**
+     *
+     * @param consumableList ArrayList to set the consumable list
+     */
     public void setConsumableList (ArrayList <Consumable> consumableList){
         this.consumableList = consumableList;
     }
@@ -100,16 +104,31 @@ public class Menu {
         return this.consumableList;
     }
     
+    /**
+     *
+     * @param c consumable
+     * add a consumable on the list of consumables
+     */
     public void addConsumable ( Consumable c){
         this.consumableList.add(c);
     }
     
+    /**
+     *
+     * @param listFood ArrayList
+     * add each food of the list food on the consumable list
+     */
     public void addListFood (ArrayList<Food> listFood){
         for (Food c : listFood){
             addConsumable((Consumable)c);
         }
     }
     
+    /**
+     *
+     * @param listRecipe ArrayList
+     * add each recipe of the list recipe on the consumable list
+     */
     public void addListRecipe (ArrayList<Recipe> listRecipe){
         for (Recipe c : listRecipe){
             addConsumable((Consumable)c);

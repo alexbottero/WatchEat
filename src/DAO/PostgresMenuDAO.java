@@ -29,6 +29,8 @@ import java.util.logging.Logger;
 public class PostgresMenuDAO implements MenuDAO {
     
     private JDBC jdbc;
+    
+    // Allows to change the format of the date
     DateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.FRENCH);
     
     public PostgresMenuDAO(){

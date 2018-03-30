@@ -16,32 +16,57 @@ import java.util.Date;
  */
 public interface MenuDAO {
     
+    /**
+     * get all menus
+     * @return ArrayList<Menu>
+     */
     public ArrayList<Menu> getMenus();
     
+    /**
+     * Get a menu with his name
+     * @param name of the menu
+     * @return Menu
+     */
     public Menu getMenu(String name);
     
+    /**
+     * Get all menus written by this user
+     * @param user User
+     * @return ArrayList<Menu>
+     */
     public ArrayList<Menu> getAllMenusFromUser(User user);
     
     /**
-     * @param Menu
+     * Get the menu link to this name and this user author
+     * @param name of the menu
+     * @param user creator of the menu
+     * @return Menu
+     */
+    public Menu getMenu(String name, User user);
+    
+    /**
+     * Delete the menu in param from the database
+     * @param Menu to delete
      */
     public void deleteMenu(Menu menu);
 
     
 
     /**
-     * @param name 
-     * @param desc 
-     * @param consumables
+     * Update the menu with this parameters
+     * @param name String
+     * @param desc String
+     * @param consumables ArrayList<Consumable>
      */
     public void updateMenu(String name, String desc, ArrayList<Consumable> consumables) ;
 
     /**
-     * @param name 
-     * @param desc 
-     * @param consumables 
-     * @param dateMenu 
-     * @param author;Nutritionist 
+     * Create a menu with this parameters
+     * @param name String : name of the menu
+     * @param desc String : the description
+     * @param consumables ArrayList<Consumable>
+     * @param dateMenu Date
+     * @param author Nutritionist 
      * @return
      */
     public void createMenu(String name, String desc, ArrayList<Consumable> consumables, Date dateMenu, User author);
